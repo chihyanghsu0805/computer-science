@@ -1,8 +1,8 @@
 from __future__ import absolute_import, print_function
 
+import argparse
 import numpy as np
 import time
-import argparse
 
 run = 32 # tim_sort
 
