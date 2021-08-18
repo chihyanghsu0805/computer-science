@@ -1,19 +1,44 @@
-repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
-    hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: https://github.com/psf/black
-    rev: 19.3b0
-    hooks:
-    -   id: black
--   repo: local
-    hooks:
-    -   id: pytest-check
-        name: pytest-check
-        entry: pytest
-        language: system
-        pass_filenames: false
-        always_run: true
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.5.4
+  hooks:
+  - id: isort
+    args: ["--profile", "black"]
+
+- repo: https://github.com/psf/black
+  rev: 19.3b0
+  hooks:
+  - id: black
+
+- repo: local
+  hooks:
+
+  - id: flake8
+    name: lint
+    stages: [commit]
+    language: system
+    entry: flake8
+    types: [python]
+    args:
+        - --max-line-length=88
+        - --ignore=E722, W503
+
+  - id: pydocstyle
+    name: docstring style
+    stages: [commit]
+    language: system
+    entry: pydocstyle
+    types: [python]
+    exclude: '^tests\/\S*'
+
+  - id: pytest-check
+    name: pytest-check
+    entry: pytest
+    language: system
+    pass_filenames: false
+    always_run: true
