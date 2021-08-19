@@ -3,6 +3,16 @@ from __future__ import absolute_import, print_function
 
 from array_list import ArrayList
 from hash_table import HashTable
+from string_builder import StringBuilder
+
+
+def test_stringbuilder():
+    """Test StringBuilder."""
+    sb = StringBuilder()
+    for _ in range(10):
+        sb.append("a")
+
+    assert str(sb) == "aaaaaaaaaa"
 
 
 def test_hashtable():

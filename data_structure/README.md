@@ -9,3 +9,12 @@ There are severak ways to avoid collision,
 
 ## Array List
 Array list have dynamic size to overcome fixed array size in Java.
+
+## String Builder
+Concatenating strings in the syntax of
+    s = ""
+    for word in words:
+        s1 = s1+word
+
+requires O(xn<sup>2</sup>) with x being characters and n as the number of words.
+String Builder act as an resizeble array to store all strings and join them when needed.
