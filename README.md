@@ -5,3 +5,4 @@ This repository contains coding practices.
 
 ## Data Structure
 - Hash Table
+- Array List
