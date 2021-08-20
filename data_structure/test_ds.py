@@ -3,7 +3,23 @@ from __future__ import absolute_import, print_function
 
 from array_list import ArrayList
 from hash_table import HashTable
+from linked_list import LinkedList
 from string_builder import StringBuilder
+
+
+def test_linkedlist():
+    """Test LinkedList."""
+    linked_list = LinkedList()
+
+    linked_list.push(1)
+    assert linked_list.head.value == 1
+
+    linked_list.push(0)
+    assert linked_list.head.value == 0
+
+    linked_list.append(2)
+    assert linked_list.head.value == 0
+    assert linked_list.head.next.next.value == 2
 
 
 def test_stringbuilder():
