@@ -19,3 +19,6 @@ Concatenating strings in the syntax of
 
 requires O(xn<sup>2</sup>) with x being characters and n as the number of words.
 String Builder act as an resizeble array to store all strings and join them when needed.
+
+## LinkedList
+Compared to array, LinkedList offers O(1) add and remove.
