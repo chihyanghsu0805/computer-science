@@ -4,7 +4,33 @@ from __future__ import absolute_import, print_function
 from array_list import ArrayList
 from hash_table import HashTable
 from linked_list import LinkedList
+from stack_queue import Stack
 from string_builder import StringBuilder
+
+
+def test_stack():
+    """Test Stack."""
+    s = Stack()
+
+    assert s.is_empty
+
+    s.push(1)
+    assert s.arr == [1]
+    assert s.top() == 1
+    assert not s.is_empty()
+
+    s.push(1.1)
+    assert s.arr == [1, 1.1]
+    assert s.top() == 1.1
+    assert not s.is_empty()
+
+    s.pop()
+    assert s.arr == [1]
+    assert s.top() == 1
+    assert not s.is_empty()
+
+    s.pop()
+    assert s.is_empty
 
 
 def test_linkedlist():
