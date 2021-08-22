@@ -4,15 +4,40 @@ from __future__ import absolute_import, print_function
 from array_list import ArrayList
 from hash_table import HashTable
 from linked_list import LinkedList
-from stack_queue import Stack
+from stack_queue import Queue, Stack
 from string_builder import StringBuilder
+
+
+def test_queue():
+    """Test Queue."""
+    q = Queue()
+
+    assert q.is_empty()
+
+    q.push(1)
+    assert q.arr == [1]
+    assert q.peek() == 1
+    assert not q.is_empty()
+
+    q.push(1.1)
+    assert q.arr == [1, 1.1]
+    assert q.peek() == 1
+    assert not q.is_empty()
+
+    q.pop()
+    assert q.arr == [1.1]
+    assert q.peek() == 1.1
+    assert not q.is_empty()
+
+    q.pop()
+    assert q.is_empty()
 
 
 def test_stack():
     """Test Stack."""
     s = Stack()
 
-    assert s.is_empty
+    assert s.is_empty()
 
     s.push(1)
     assert s.arr == [1]
@@ -30,7 +55,7 @@ def test_stack():
     assert not s.is_empty()
 
     s.pop()
-    assert s.is_empty
+    assert s.is_empty()
 
 
 def test_linkedlist():

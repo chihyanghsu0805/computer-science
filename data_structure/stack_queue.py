@@ -44,3 +44,44 @@ class Stack:
             bool: True if stack is empty.
         """
         return len(self.arr) == 0
+
+
+class Queue:
+    """Create Queue Class."""
+
+    def __init__(self) -> None:
+        """Initialize Class."""
+        self.arr = []
+
+    def push(self, value: Number) -> None:
+        """Push value to back of queue.
+
+        Args:
+            value (Number): input value.
+        """
+        self.arr.append(value)
+
+    def pop(self) -> None:
+        """Pop value from front."""
+        self.arr.pop(0)
+
+    def peek(self) -> Number:
+        """Return value from front of queue.
+
+        Raises:
+            IndexError: Empty list.
+
+        Returns:
+            Number: value from top.
+        """
+        if not self.arr:
+            raise IndexError
+        return self.arr[0]
+
+    def is_empty(self) -> bool:
+        """Check whether queue is empty.
+
+        Returns:
+            bool: True if stack is empty.
+        """
+        return len(self.arr) == 0
