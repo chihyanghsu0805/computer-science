@@ -22,3 +22,7 @@ String Builder act as an resizeble array to store all strings and join them when
 
 ## LinkedList
 Compared to array, LinkedList offers O(1) add and remove.
+
+## Stack and Queues
+Stack follows Last-In-First-Out.
+Queue follows First-In-First-Out, suitable for Bredth First Search.
