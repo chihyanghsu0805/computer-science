@@ -6,3 +6,7 @@ This repository contains coding practices.
 ## Data Structure
 - Hash Table
 - Array List
+- String Builder
+- Linked List
+- Stack and Queue
+- Binary Tree
