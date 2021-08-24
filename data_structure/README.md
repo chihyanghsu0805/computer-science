@@ -26,3 +26,10 @@ Compared to array, LinkedList offers O(1) add and remove.
 ## Stack and Queues
 Stack follows Last-In-First-Out.
 Queue follows First-In-First-Out, suitable for Bredth First Search.
+
+## Binary Tree
+Binary trees hold value and reference to left and right child.
+There are three common ways to traverse binary trees:
+- Preorder: Root, Lt, Rt
+- Inorder: Lt, Root, Rt
+- Postorder: Lt, Rt, Root

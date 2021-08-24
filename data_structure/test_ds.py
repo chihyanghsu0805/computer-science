@@ -2,10 +2,26 @@
 from __future__ import absolute_import, print_function
 
 from array_list import ArrayList
+from binary_tree import BinaryTree
 from hash_table import HashTable
 from linked_list import LinkedList
 from stack_queue import Queue, Stack
 from string_builder import StringBuilder
+
+
+def test_binary_tree():
+    """Test Binary Tree."""
+    bt = BinaryTree(1)
+    bt.lt = BinaryTree(2)
+    bt.rt = BinaryTree(3)
+    bt.lt.lt = BinaryTree(4)
+    bt.lt.rt = BinaryTree(5)
+    bt.rt.lt = BinaryTree(6)
+    bt.rt.rt = BinaryTree(7)
+
+    assert bt.traverse_inorder() == [4, 2, 5, 1, 6, 3, 7]
+    assert bt.traverse_preorder() == [1, 2, 4, 5, 3, 6, 7]
+    assert bt.traverse_postorder() == [4, 5, 2, 6, 7, 3, 1]
 
 
 def test_queue():
