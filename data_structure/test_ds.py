@@ -7,6 +7,19 @@ from hash_table import HashTable
 from linked_list import LinkedList
 from stack_queue import Queue, Stack
 from string_builder import StringBuilder
+from trie import Trie
+
+
+def test_trie():
+    """Test trie."""
+    t = Trie()
+    t.insert("Apple")
+    assert t.search("Apple")
+    assert t.starts_with("App")
+
+    t.insert("Banana")
+    assert not t.search("Band")
+    assert t.starts_with("Ban")
 
 
 def test_binary_tree():
