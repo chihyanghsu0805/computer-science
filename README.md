@@ -10,4 +10,8 @@ This repository contains coding practices.
 - Linked List
 - Stack and Queue
 - Binary Tree
+<<<<<<< HEAD
 - Trie
+=======
+
+>>>>>>> c3f274ba36848502284cdc16190309d341934358
