@@ -33,3 +33,6 @@ There are three common ways to traverse binary trees:
 - Preorder: Root, Lt, Rt
 - Inorder: Lt, Root, Rt
 - Postorder: Lt, Rt, Root
+
+## Trie (prefix Tree)
+Tries are n-ary trees that is optimal for looking up prefixes.
