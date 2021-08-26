@@ -4,10 +4,27 @@ from __future__ import absolute_import, print_function
 from array_list import ArrayList
 from binary_tree import BinaryTree
 from hash_table import HashTable
+from heap import MinHeap
 from linked_list import LinkedList
 from stack_queue import Queue, Stack
 from string_builder import StringBuilder
 from trie import Trie
+
+
+def test_min_heap():
+    """Test Min Heap."""
+    h = MinHeap(7)
+    h.heappush(7)
+    h.heappush(3)
+    h.heappush(2)
+    h.heappush(1)
+    h.heappush(4)
+    h.heappush(5)
+    h.heappush(6)
+
+    assert h.heappop() == 1
+    assert h.heappop() == 2
+    assert h.heappop() == 3
 
 
 def test_trie():

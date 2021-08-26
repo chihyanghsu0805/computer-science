@@ -36,3 +36,6 @@ There are three common ways to traverse binary trees:
 
 ## Trie (prefix Tree)
 Tries are n-ary trees that is optimal for looking up prefixes.
+
+## Heap
+Heaps are binary trees with min/max at root.
