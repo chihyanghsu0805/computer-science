@@ -11,3 +11,4 @@ This repository contains coding practices.
 - Stack and Queue
 - Binary Tree
 - Trie
+- Heap
