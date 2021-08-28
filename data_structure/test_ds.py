@@ -3,12 +3,34 @@ from __future__ import absolute_import, print_function
 
 from array_list import ArrayList
 from binary_tree import BinaryTree
+from graph import Edge, Graph, bfs, dfs
 from hash_table import HashTable
 from heap import MinHeap
 from linked_list import LinkedList
 from stack_queue import Queue, Stack
 from string_builder import StringBuilder
 from trie import Trie
+
+
+def test_graph():
+    """Test Graph."""
+    edges = [
+        Edge(0, 1),
+        Edge(0, 4),
+        Edge(0, 5),
+        Edge(1, 3),
+        Edge(3, 2),
+        Edge(3, 4),
+        Edge(2, 1),
+    ]
+    g = Graph(edges, 6)
+    path = []
+    dfs(g, 0, path)
+    assert path == [0, 1, 3, 2, 4, 5]
+
+    path = []
+    bfs(g, 0, path)
+    assert path == [0, 1, 4, 5, 3, 2]
 
 
 def test_min_heap():

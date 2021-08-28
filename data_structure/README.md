@@ -39,3 +39,10 @@ Tries are n-ary trees that is optimal for looking up prefixes.
 
 ## Heap
 Heaps are binary trees with min/max at root.
+
+## Graph
+Graphs are vertices connected by edges (directed, indirected).
+Graphs are commonly represented using Adjacency List, and Adjacency Matrix.
+Common ways to search a graph includes,
+- Depth First Search (Recursive)
+- Bredth First Search (Iterative with Queue)
