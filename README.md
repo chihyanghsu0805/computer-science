@@ -3,6 +3,7 @@ This repository contains coding practices.
 
 ## Sort
 - Bubble Sort
+- Selection Sort
 
 ## Data Structure
 - Hash Table
