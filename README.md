@@ -12,3 +12,4 @@ This repository contains coding practices.
 - Binary Tree
 - Trie
 - Heap
+- Graph
