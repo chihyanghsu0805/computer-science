@@ -1,10 +1,13 @@
 # Sorting Algorithms
 
-## Bubble Sort
+## Bubble Sort (Stable, In-place)
 Bubble sort compares each pair and swap bigger one to back, O(N<sup>2</sup>).
 
-## Selection Sort
+## Selection Sort (Can be Stable, In-place)
 Selection finds minimum and swap to corresponding index, O(N<sup>2</sup>).
 
-## Merge Sort
-Merge sort partitions the array then sort and merges, O(nlogN).
+## Merge Sort (Stable, In-place)
+Merge sort divides the array then sort and merges, O(nlogN).
+
+## Quick Sort (not Stable, In-place)
+Quick sort picks a pivot and partitions the array into larger and smaller subarrays and sort them recursively.
