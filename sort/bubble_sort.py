@@ -3,18 +3,12 @@
 from typing import List
 
 
-def bubble_sort(arr: List) -> List:
+def bubble_sort(arr: List):
     """Sort array using bubble sort.
 
     Args:
         arr (List): array to be sorted.
-
-    Returns:
-        List: sorted array.
     """
-    if not arr:
-        return arr
-
     N = len(arr)
 
     for i in range(N):
@@ -25,5 +19,3 @@ def bubble_sort(arr: List) -> List:
                 swapped = True
         if not swapped:
             break
-
-    return arr

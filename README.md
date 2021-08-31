@@ -4,6 +4,8 @@ This repository contains coding practices.
 ## Sort
 - Bubble Sort
 - Selection Sort
+- Merge Sort
+- Quick Sort
 
 ## Data Structure
 - Hash Table

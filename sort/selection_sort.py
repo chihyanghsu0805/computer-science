@@ -3,18 +3,12 @@
 from typing import List
 
 
-def selection_sort(arr: List) -> List:
+def selection_sort(arr: List) -> None:
     """Sort list with selection sort.
 
     Args:
         arr (List): list to be sorted.
-
-    Returns:
-        List: sorted list.
     """
-    if not arr:
-        return arr
-
     N = len(arr)
     for i in range(N):
         min_index = i
@@ -28,5 +22,3 @@ def selection_sort(arr: List) -> List:
             min_index -= 1
 
         arr[i] = key
-
-    return arr
