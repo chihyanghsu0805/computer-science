@@ -4,7 +4,7 @@
 Bubble sort compares each pair and swap bigger one to back, O(N<sup>2</sup>).
 
 ## Selection Sort (Can be Stable, In-place)
-Selection finds minimum and swap to corresponding index, O(N<sup>2</sup>).
+Selection sort finds minimum and swap to corresponding index, O(N<sup>2</sup>).
 
 ## Merge Sort (Stable, In-place)
 Merge sort divides the array then sort and merges, O(NlogN).
