@@ -18,7 +18,20 @@ class Edge:
         self.tar = tar
 
 
-class Graph:
+class GraphMatrix:
+    """Constructor."""
+
+    def __init__(self, vertices: int) -> None:
+        """Initialize Class.
+
+        Args:
+            vertices (int): number of vertices.
+        """
+        self.V = vertices
+        self.adj = [[0 for _ in range(vertices)] for _ in range(vertices)]
+
+
+class GraphList:
     """Constructor."""
 
     def __init__(self, edges: List, N: int) -> None:
@@ -34,11 +47,11 @@ class Graph:
             self.adj[e.src].append(e.tar)
 
 
-def dfs(graph: Graph, node: int, path: List):
+def dfs(graph: GraphList, node: int, path: List):
     """Depth First Search.
 
     Args:
-        graph (Graph): graph with adjacency list.
+        graph (GraphList): graph with adjacency list.
         node (int): root node.
         path (List): path with visted nodes.
     """
@@ -51,11 +64,11 @@ def dfs(graph: Graph, node: int, path: List):
         dfs(graph, nbor, path)
 
 
-def bfs(graph: Graph, root: int, path: List):
+def bfs(graph: GraphList, root: int, path: List):
     """Breadth First Search.
 
     Args:
-        graph (Graph): graoh with adjacency list.
+        graph (GraphList): graph with adjacency list.
         root (int): root node.
         path (List): path with visited nodes.
     """
@@ -75,9 +88,52 @@ def bfs(graph: Graph, root: int, path: List):
                 queue.append(nbor)
 
 
+def dijkstra(graph: GraphMatrix, source: int) -> List:
+    """Dijkstra.
+
+    Args:
+        graph (GraphMatrix): Graph with adjacency matrix.
+        source (int): source vertex.
+
+    Returns:
+        List: distance array.
+    """
+    distance = [float("inf")] * graph.V
+    distance[source] = 0
+    visited = [False] * graph.V
+
+    def min_distance(distance, visited):
+        minimum = float("inf")
+        for u in range(graph.V):
+            if distance[u] < minimum and not visited[u]:
+                minimum = distance[u]
+                min_index = u
+
+        return min_index
+
+    for _ in range(graph.V):
+
+        priority_node = min_distance(distance, visited)
+        visited[priority_node] = True
+
+        for next_node in range(graph.V):
+
+            if (
+                graph.adj[priority_node][next_node] > 0
+                and not visited[next_node]
+                and distance[next_node]
+                > distance[priority_node] + graph.adj[priority_node][next_node]
+            ):
+                distance[next_node] = (
+                    distance[priority_node] + graph.adj[priority_node][next_node]
+                )
+
+    return distance
+
+
 if __name__ == "__main__":
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
-    g = Graph(edges, 4)
+    g = GraphList(edges, 4)
 
     path = []
     dfs(g, 2, path)
@@ -86,3 +142,19 @@ if __name__ == "__main__":
     path = []
     bfs(g, 2, path)
     assert path == [2, 0, 3, 1]
+
+    g = GraphMatrix(9)
+    g.adj = [
+        [0, 4, 0, 0, 0, 0, 0, 8, 0],
+        [4, 0, 8, 0, 0, 0, 0, 11, 0],
+        [0, 8, 0, 7, 0, 4, 0, 0, 2],
+        [0, 0, 7, 0, 9, 14, 0, 0, 0],
+        [0, 0, 0, 9, 0, 10, 0, 0, 0],
+        [0, 0, 4, 14, 10, 0, 2, 0, 0],
+        [0, 0, 0, 0, 0, 2, 0, 1, 6],
+        [8, 11, 0, 0, 0, 0, 1, 0, 7],
+        [0, 0, 2, 0, 0, 0, 6, 7, 0],
+    ]
+
+    distance = dijkstra(g, 0)
+    assert distance == [0, 4, 12, 19, 21, 11, 9, 8, 14]

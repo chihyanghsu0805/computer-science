@@ -19,7 +19,7 @@ class Edge:
         self.tar = tar
 
 
-class Graph:
+class GraphList:
     """Constructor."""
 
     def __init__(self, edges: List, N: int) -> None:
