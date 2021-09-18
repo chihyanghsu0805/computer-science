@@ -6,6 +6,8 @@ This repository contains coding practices.
 - Selection Sort
 - Merge Sort
 - Quick Sort
+- Counting Sort
+- Radix Sort
 
 ## Data Structure
 - Hash Table
