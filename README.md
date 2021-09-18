@@ -17,3 +17,6 @@ This repository contains coding practices.
 - Trie
 - Heap
 - Graph
+
+## Algorithms
+- Graph
