@@ -23,7 +23,6 @@ def test_graph():
         Edge(3, 4),
         Edge(2, 1),
     ]
-    print(edges)
     g = Graph(edges, 6)
 
     assert g.adj == [[1, 4, 5], [3], [1], [2, 4], [], []]
