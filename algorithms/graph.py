@@ -51,12 +51,38 @@ def dfs(graph: Graph, node: int, path: List):
         dfs(graph, nbor, path)
 
 
+def bfs(graph: Graph, root: int, path: List):
+    """Breadth First Search.
+
+    Args:
+        graph (Graph): graoh with adjacency list.
+        root (int): root node.
+        path (List): path with visited nodes.
+    """
+    queue = []
+    queue.append(root)
+
+    while queue:
+
+        node = queue.pop(0)
+
+        if node in path:
+            continue
+        else:
+            path.append(node)
+
+            for nbor in graph.adj[node]:
+                queue.append(nbor)
+
+
 if __name__ == "__main__":
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
     g = Graph(edges, 4)
 
     path = []
-
     dfs(g, 2, path)
-
     assert path == [2, 0, 1, 3]
+
+    path = []
+    bfs(g, 2, path)
+    assert path == [2, 0, 3, 1]
