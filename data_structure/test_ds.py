@@ -3,7 +3,7 @@ from __future__ import absolute_import, print_function
 
 from array_list import ArrayList
 from binary_tree import BinaryTree
-from graph import Edge, Graph, bfs, dfs
+from graph import Edge, GraphList
 from hash_table import HashTable
 from heap import MinHeap
 from linked_list import LinkedList
@@ -23,14 +23,9 @@ def test_graph():
         Edge(3, 4),
         Edge(2, 1),
     ]
-    g = Graph(edges, 6)
-    path = []
-    dfs(g, 0, path)
-    assert path == [0, 1, 3, 2, 4, 5]
+    g = GraphList(edges, 6)
 
-    path = []
-    bfs(g, 0, path)
-    assert path == [0, 1, 4, 5, 3, 2]
+    assert g.adj == [[1, 4, 5], [3], [1], [2, 4], [], []]
 
 
 def test_min_heap():
