@@ -10,6 +10,7 @@ from graph import (
     dijkstra,
     floyd_warshall,
     union_find,
+    union_find_rank,
 )
 
 
@@ -80,3 +81,4 @@ def test_union_find():
     edges = [Edge(0, 1), Edge(1, 2), Edge(2, 0)]
     g = GraphList(edges, 3)
     assert union_find(g)
+    assert union_find_rank(g)
