@@ -1,7 +1,7 @@
 """Test Graph Algorithms."""
 from __future__ import absolute_import, print_function
 
-from graph import Edge, GraphList, GraphMatrix, bfs, dfs, dijkstra
+from graph import Edge, GraphList, GraphMatrix, bfs, dfs, dijkstra, floyd_warshall
 
 
 def test_dfs():
@@ -45,3 +45,22 @@ def test_dijkstra():
 
     distance = dijkstra(g, 0)
     assert distance == [0, 4, 12, 19, 21, 11, 9, 8, 14]
+
+
+def test_floyd_warshall():
+    """Test Floyd Marshall."""
+    g = GraphMatrix(4)
+    g.adj = [
+        [0, 5, float("inf"), 10],
+        [float("inf"), 0, 3, float("inf")],
+        [float("inf"), float("inf"), 0, 1],
+        [float("inf"), float("inf"), float("inf"), 0],
+    ]
+
+    distance = floyd_warshall(g)
+    assert distance == [
+        [0, 5, 8, 9],
+        [float("inf"), 0, 3, 4],
+        [float("inf"), float("inf"), 0, 1],
+        [float("inf"), float("inf"), float("inf"), 0],
+    ]
