@@ -9,6 +9,7 @@ from graph import (
     dfs,
     dijkstra,
     floyd_warshall,
+    prim,
     union_find,
     union_find_rank,
 )
@@ -82,3 +83,16 @@ def test_union_find():
     g = GraphList(edges, 3)
     assert union_find(g)
     assert union_find_rank(g)
+
+
+def trest_prim():
+    """Test Prim."""
+    g = GraphMatrix(5)
+    g.adj = [
+        [0, 2, 0, 6, 0],
+        [2, 0, 3, 8, 5],
+        [0, 3, 0, 0, 7],
+        [6, 8, 0, 0, 9],
+        [0, 5, 7, 9, 0],
+    ]
+    assert prim(g) == [[-1, 0, 0], [0, 1, 2], [1, 2, 3], [0, 3, 6], [1, 4, 5]]

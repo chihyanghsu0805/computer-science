@@ -228,6 +228,54 @@ def union_find_rank(graph: GraphList) -> bool:
     return False
 
 
+def prim(graph: GraphMatrix) -> List:
+    """Prim.
+
+    Args:
+        graph (GraphMatrix): Graph with adjacency matrix.
+
+    Returns:
+        List: list describing [parent, node, weight].
+    """
+    min_span_tree = [False for _ in range(graph.V)]
+    parent = [None] * graph.V
+    parent[0] = -1
+
+    key = [float("inf") for _ in range(graph.V)]
+    key[0] = 0
+
+    def find_priority_vertex(min_span_tree, key):
+        min_k = float("inf")
+        min_idx = -1
+        for idx, k in enumerate(key):
+            if not min_span_tree[idx] and k < min_k:
+                min_idx = idx
+                min_k = k
+
+        return min_idx
+
+    for u in range(graph.V):
+
+        vertex = find_priority_vertex(min_span_tree, key)
+        min_span_tree[vertex] = True
+
+        for v in range(graph.V):
+
+            if (
+                graph.adj[u][v] > 0
+                and not min_span_tree[v]
+                and graph.adj[u][v] < key[v]
+            ):
+                key[v] = graph.adj[u][v]
+                parent[v] = u
+
+    res = []
+    for i in range(graph.V):
+        res.append([parent[i], i, key[i]])
+
+    return res
+
+
 if __name__ == "__main__":
 
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
@@ -277,3 +325,13 @@ if __name__ == "__main__":
     g = GraphList(edges, 3)
     assert union_find(g)
     assert union_find_rank(g)
+
+    g = GraphMatrix(5)
+    g.adj = [
+        [0, 2, 0, 6, 0],
+        [2, 0, 3, 8, 5],
+        [0, 3, 0, 0, 7],
+        [6, 8, 0, 0, 9],
+        [0, 5, 7, 9, 0],
+    ]
+    assert prim(g) == [[-1, 0, 0], [0, 1, 2], [1, 2, 3], [0, 3, 6], [1, 4, 5]]
