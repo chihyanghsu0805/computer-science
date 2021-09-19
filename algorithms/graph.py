@@ -187,6 +187,47 @@ def union_find(graph: GraphList) -> bool:
     return False
 
 
+def union_find_rank(graph: GraphList) -> bool:
+    """Union Find with Rank and Path Compression.
+
+    Args:
+        graph (GraphList): graph with adjacency list.
+
+    Returns:
+        bool: whether graph contains cycle.
+    """
+    parent = []
+    for u in range(graph.V):
+        parent.append([u, 0])  # list[parent, rank]
+
+    def find_parent(parent, i):
+        if parent[i][0] != i:
+            parent[i][0] = find_parent(parent, parent[i][0])
+        return parent[i][0]
+
+    def union(parent, x, y):
+
+        if parent[x][1] > parent[y][1]:
+            parent[y][0] = x
+        elif parent[x][1] < parent[y][1]:
+            parent[x][0] = y
+        else:
+            parent[y][0] = x
+            parent[x][1] += 1
+
+    for i, vertices in enumerate(graph.adj):
+        x = find_parent(parent, i)
+
+        for j in vertices:
+            y = find_parent(parent, j)
+
+            if x == y:
+                return True
+
+            union(parent, x, y)
+    return False
+
+
 if __name__ == "__main__":
 
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
@@ -235,3 +276,4 @@ if __name__ == "__main__":
     edges = [Edge(0, 1), Edge(1, 2), Edge(2, 0)]
     g = GraphList(edges, 3)
     assert union_find(g)
+    assert union_find_rank(g)
