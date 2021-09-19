@@ -4,11 +4,13 @@ from __future__ import absolute_import, print_function
 from graph import (
     Edge,
     GraphList,
+    GraphListWeight,
     GraphMatrix,
     bfs,
     dfs,
     dijkstra,
     floyd_warshall,
+    kruskal,
     prim,
     union_find,
     union_find_rank,
@@ -85,7 +87,7 @@ def test_union_find():
     assert union_find_rank(g)
 
 
-def trest_prim():
+def test_prim():
     """Test Prim."""
     g = GraphMatrix(5)
     g.adj = [
@@ -96,3 +98,14 @@ def trest_prim():
         [0, 5, 7, 9, 0],
     ]
     assert prim(g) == [[-1, 0, 0], [0, 1, 2], [1, 2, 3], [0, 3, 6], [1, 4, 5]]
+
+
+def test_kruskal():
+    """Test Kruskal."""
+    g = GraphListWeight(4)
+    g.add_edge(0, 1, 10)
+    g.add_edge(0, 2, 6)
+    g.add_edge(0, 3, 5)
+    g.add_edge(1, 3, 15)
+    g.add_edge(2, 3, 4)
+    assert kruskal(g) == [[2, 3, 4], [0, 3, 5], [0, 1, 10]]

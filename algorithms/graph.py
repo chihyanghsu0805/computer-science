@@ -7,15 +7,15 @@ from typing import List
 class Edge:
     """Constructor."""
 
-    def __init__(self, src: int, tar: int) -> None:
+    def __init__(self, source: int, target: int) -> None:
         """Initialize Class.
 
         Args:
-            src (int): source index.
-            tar (int): target index.
+            source (int): source vertex.
+            target (int): target vertex.
         """
-        self.src = src
-        self.tar = tar
+        self.source = source
+        self.target = target
 
 
 class GraphMatrix:
@@ -45,7 +45,30 @@ class GraphList:
         self.adj = [[] for _ in range(N)]
 
         for e in edges:
-            self.adj[e.src].append(e.tar)
+            self.adj[e.source].append(e.target)
+
+
+class GraphListWeight:
+    """Constructor."""
+
+    def __init__(self, vertices: int) -> None:
+        """Initialize Class.
+
+        Args:
+            vertices (int): number of vertices.
+        """
+        self.V = vertices
+        self.adj = []
+
+    def add_edge(self, u: int, v: int, w: float) -> None:
+        """Add Edge.
+
+        Args:
+            u (int): source vertex index.
+            v (int): target vertex index.
+            w (float): edge weight.
+        """
+        self.adj.append([u, v, w])
 
 
 def dfs(graph: GraphList, node: int, path: List):
@@ -276,6 +299,54 @@ def prim(graph: GraphMatrix) -> List:
     return res
 
 
+def kruskal(graph: GraphListWeight) -> List:
+    """Kruskal.
+
+    Args:
+        graph (GraphListWeight): Graph with weighted adjacency list.
+
+    Returns:
+        List: list describing [parent, vertex, weight]
+    """
+    i, e = 0, 0
+    parent, rank, res = [], [], []
+    graph.adj = sorted(graph.adj, key=lambda x: x[2])
+
+    def find_parent(parent, u):
+        if parent[u] != u:
+            parent[u] = find_parent(parent, parent[u])
+        return parent[u]
+
+    def union(parent, rank, x, y):
+        x_root = find_parent(parent, x)
+        y_root = find_parent(parent, y)
+
+        if rank[x_root] > rank[y_root]:
+            parent[y] = x
+        elif rank[x_root] < rank[y_root]:
+            parent[x] = y
+        else:
+            parent[y_root] = x_root
+            rank[x_root] += 1
+
+    for vertex in range(graph.V):
+        parent.append(vertex)
+        rank.append(0)
+
+    while e < graph.V - 1:
+        u, v, w = graph.adj[i]
+        i += 1
+        x = find_parent(parent, u)
+        y = find_parent(parent, v)
+
+        if x != y:
+            e += 1
+            res.append([u, v, w])
+            union(parent, rank, x, y)
+
+    return res
+
+
 if __name__ == "__main__":
 
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
@@ -335,3 +406,11 @@ if __name__ == "__main__":
         [0, 5, 7, 9, 0],
     ]
     assert prim(g) == [[-1, 0, 0], [0, 1, 2], [1, 2, 3], [0, 3, 6], [1, 4, 5]]
+
+    g = GraphListWeight(4)
+    g.add_edge(0, 1, 10)
+    g.add_edge(0, 2, 6)
+    g.add_edge(0, 3, 5)
+    g.add_edge(1, 3, 15)
+    g.add_edge(2, 3, 4)
+    assert kruskal(g) == [[2, 3, 4], [0, 3, 5], [0, 1, 10]]
