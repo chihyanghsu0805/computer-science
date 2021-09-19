@@ -1,7 +1,16 @@
 """Test Graph Algorithms."""
 from __future__ import absolute_import, print_function
 
-from graph import Edge, GraphList, GraphMatrix, bfs, dfs, dijkstra, floyd_warshall
+from graph import (
+    Edge,
+    GraphList,
+    GraphMatrix,
+    bfs,
+    dfs,
+    dijkstra,
+    floyd_warshall,
+    union_find,
+)
 
 
 def test_dfs():
@@ -64,3 +73,10 @@ def test_floyd_warshall():
         [float("inf"), float("inf"), 0, 1],
         [float("inf"), float("inf"), float("inf"), 0],
     ]
+
+
+def test_union_find():
+    """Test Union Find."""
+    edges = [Edge(0, 1), Edge(1, 2), Edge(2, 0)]
+    g = GraphList(edges, 3)
+    assert union_find(g)

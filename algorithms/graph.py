@@ -41,6 +41,7 @@ class GraphList:
             edge (List): List of connections [a, b] a -> b.
             N (int): number of vertices.
         """
+        self.V = N
         self.adj = [[] for _ in range(N)]
 
         for e in edges:
@@ -154,7 +155,40 @@ def floyd_warshall(graph: GraphMatrix) -> List:
     return distance
 
 
+def union_find(graph: GraphList) -> bool:
+    """Union Find.
+
+    Args:
+        graph (GraphList): graph with adjacency list.
+
+    Returns:
+        bool: whether graph contains cycle.
+    """
+    parent = [-1] * graph.V
+
+    def find_parent(parent, i):
+        if parent[i] == -1:
+            return i
+
+        return find_parent(parent, parent[i])
+
+    def union(parent, x, y):
+        parent[x] = y
+
+    for i, vertices in enumerate(graph.adj):
+        for j in vertices:
+            x = find_parent(parent, i)
+            y = find_parent(parent, j)
+
+            if x == y:
+                return True
+
+            union(parent, x, y)
+    return False
+
+
 if __name__ == "__main__":
+
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
     g = GraphList(edges, 4)
 
@@ -197,3 +231,7 @@ if __name__ == "__main__":
         [float("inf"), float("inf"), 0, 1],
         [float("inf"), float("inf"), float("inf"), 0],
     ]
+
+    edges = [Edge(0, 1), Edge(1, 2), Edge(2, 0)]
+    g = GraphList(edges, 3)
+    assert union_find(g)
