@@ -13,6 +13,7 @@ from graph import (
     kruskal,
     prim,
     topological_sort,
+    topological_sort_kahn,
     union_find,
     union_find_rank,
 )
@@ -117,3 +118,4 @@ def test_topological_sort():
     edges = [Edge(5, 2), Edge(5, 0), Edge(4, 0), Edge(4, 1), Edge(2, 3), Edge(3, 1)]
     g = GraphList(edges, 6)
     assert topological_sort(g) == [5, 4, 2, 3, 1, 0]
+    assert topological_sort_kahn(g) == [4, 5, 2, 0, 3, 1]
