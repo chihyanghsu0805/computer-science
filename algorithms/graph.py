@@ -347,6 +347,32 @@ def kruskal(graph: GraphListWeight) -> List:
     return res
 
 
+def topological_sort(graph: GraphList) -> List:
+    """Topological Sort.
+
+    Args:
+        graph (GraphList): Graph with adjacency list.
+
+    Returns:
+        List: topological sort of graph.
+    """
+    visited = [False] * graph.V
+    stack = []
+
+    def topological_sort_helper(i, visited, sort):
+        visited[i] = True
+        for j in graph.adj[i]:
+            if not visited[j]:
+                topological_sort_helper(j, visited, stack)
+        stack.append(i)
+
+    for i in range(graph.V):
+        if not visited[i]:
+            topological_sort_helper(i, visited, stack)
+
+    return stack[::-1]
+
+
 if __name__ == "__main__":
 
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
@@ -414,3 +440,7 @@ if __name__ == "__main__":
     g.add_edge(1, 3, 15)
     g.add_edge(2, 3, 4)
     assert kruskal(g) == [[2, 3, 4], [0, 3, 5], [0, 1, 10]]
+
+    edges = [Edge(5, 2), Edge(5, 0), Edge(4, 0), Edge(4, 1), Edge(2, 3), Edge(3, 1)]
+    g = GraphList(edges, 6)
+    assert topological_sort(g) == [5, 4, 2, 3, 1, 0]
