@@ -12,6 +12,8 @@ from graph import (
     floyd_warshall,
     kruskal,
     prim,
+    topological_sort,
+    topological_sort_kahn,
     union_find,
     union_find_rank,
 )
@@ -109,3 +111,11 @@ def test_kruskal():
     g.add_edge(1, 3, 15)
     g.add_edge(2, 3, 4)
     assert kruskal(g) == [[2, 3, 4], [0, 3, 5], [0, 1, 10]]
+
+
+def test_topological_sort():
+    """Test Topological Sort."""
+    edges = [Edge(5, 2), Edge(5, 0), Edge(4, 0), Edge(4, 1), Edge(2, 3), Edge(3, 1)]
+    g = GraphList(edges, 6)
+    assert topological_sort(g) == [5, 4, 2, 3, 1, 0]
+    assert topological_sort_kahn(g) == [4, 5, 2, 0, 3, 1]
