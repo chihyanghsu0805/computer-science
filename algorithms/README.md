@@ -6,3 +6,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - DFS: Graph traversal and visit children first. Good for puzzles and games. O(V+E)
 - Dijkstra: Finding shortest path (with distance) between nodes, does not work on negativ weights. O(V<sup>2</sup>), with binary heap O(ElogV)
 - FloydWarshall: Finding shortest path (with distance) between all nodes. O(V<sup>3</sup>)
+- Union-Find: Detect cycles in graph, assuming no self loops. O(N), can be improved to O(logN) or O(1).
