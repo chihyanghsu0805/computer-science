@@ -131,6 +131,29 @@ def dijkstra(graph: GraphMatrix, source: int) -> List:
     return distance
 
 
+def floyd_warshall(graph: GraphMatrix) -> List:
+    """Floyd Warshall.
+
+    Args:
+        graph (GraphMatrix): graph with adjacency matrix.
+
+    Returns:
+        List: distance array.
+    """
+    distance = []
+
+    for r in range(len(graph.adj)):
+        distance.append(graph.adj[r])
+
+    for k in range(graph.V):
+        for i in range(graph.V):
+            for j in range(graph.V):
+
+                distance[i][j] = min(distance[i][j], distance[i][k] + distance[k][j])
+
+    return distance
+
+
 if __name__ == "__main__":
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
     g = GraphList(edges, 4)
@@ -158,3 +181,19 @@ if __name__ == "__main__":
 
     distance = dijkstra(g, 0)
     assert distance == [0, 4, 12, 19, 21, 11, 9, 8, 14]
+
+    g = GraphMatrix(4)
+    g.adj = [
+        [0, 5, float("inf"), 10],
+        [float("inf"), 0, 3, float("inf")],
+        [float("inf"), float("inf"), 0, 1],
+        [float("inf"), float("inf"), float("inf"), 0],
+    ]
+
+    distance = floyd_warshall(g)
+    assert distance == [
+        [0, 5, 8, 9],
+        [float("inf"), 0, 3, 4],
+        [float("inf"), float("inf"), 0, 1],
+        [float("inf"), float("inf"), float("inf"), 0],
+    ]
