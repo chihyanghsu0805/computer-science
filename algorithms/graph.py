@@ -466,6 +466,7 @@ def boggle_dfs(boggle: List, dictionary: List) -> set:
 
     # Initialize visited
     # visited = [[False]*C]*R does not work
+    # Because [False] is referenced
     visited = []
     for _ in range(num_row):
         visited.append([False] * num_col)
@@ -473,6 +474,102 @@ def boggle_dfs(boggle: List, dictionary: List) -> set:
     for r in range(num_row):
         for c in range(num_col):
             dfs_2d(boggle, visited, r, c, s, found, dictionary)
+
+    return found
+
+
+class Trie:
+    """Constructor."""
+
+    def __init__(self) -> None:
+        """Initialize Class."""
+        self.trie = {}
+
+    def insert(self, word: str) -> None:
+        """Insert word into trie.
+
+        Args:
+            word (str): word to be inserted.
+        """
+        t = self.trie
+        for c in word:
+            if c not in t:
+                t[c] = {}
+            t = t[c]
+        t["#"] = True
+
+
+def boggle_trie(boggle: List, dictionary: List) -> List:
+    """Boggle with Trie.
+
+    Args:
+        boggle (List): boggle board.
+        dictionary (List): dictionary with words to find.
+
+    Returns:
+        List: found words.
+    """
+    t = Trie()
+    for word in dictionary:
+        t.insert(word)
+
+    num_row = len(boggle)
+    num_col = len(boggle[0])
+    found = set()
+
+    def search_word(trie, boggle, r, c, visited, s, found):
+        if "#" in trie and trie["#"]:
+            found.add(s)
+
+        nbors = [
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 0),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1),
+        ]
+
+        visited[r][c] = True
+
+        for dr, dc in nbors:
+            if (
+                r + dr < 0
+                or c + dc < 0
+                or r + dr > len(boggle) - 1
+                or c + dc > len(boggle[0]) - 1
+            ):
+                continue
+            if not visited[r + dr][c + dc] and boggle[r + dr][c + dc] in trie:
+                search_word(
+                    trie[boggle[r + dr][c + dc]],
+                    boggle,
+                    r + dr,
+                    c + dc,
+                    visited,
+                    s + boggle[r + dr][c + dc],
+                    found,
+                )
+
+        visited[r][c] = False
+
+        return found
+
+    visited = [[False for i in range(num_col)] for i in range(num_row)]
+    s = ""
+
+    for r in range(num_row):
+        for c in range(num_col):
+
+            if boggle[r][c] in t.trie:
+                found = search_word(
+                    t.trie[boggle[r][c]], boggle, r, c, visited, s + boggle[r][c], found
+                )
+
+            s = ""
 
     return found
 
@@ -554,3 +651,4 @@ if __name__ == "__main__":
 
     dictionary = ["GEEKS", "FOR", "QUIZ", "GUQ", "EE"]
     assert boggle_dfs(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
+    assert boggle_trie(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])

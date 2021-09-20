@@ -8,6 +8,7 @@ from graph import (
     GraphMatrix,
     bfs,
     boggle_dfs,
+    boggle_trie,
     dfs,
     dijkstra,
     floyd_warshall,
@@ -128,3 +129,4 @@ def test_boggle_dfs():
 
     dictionary = ["GEEKS", "FOR", "QUIZ", "GUQ", "EE"]
     assert boggle_dfs(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
+    assert boggle_trie(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
