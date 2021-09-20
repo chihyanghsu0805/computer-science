@@ -7,6 +7,7 @@ from graph import (
     GraphListWeight,
     GraphMatrix,
     bfs,
+    boggle_dfs,
     dfs,
     dijkstra,
     floyd_warshall,
@@ -119,3 +120,11 @@ def test_topological_sort():
     g = GraphList(edges, 6)
     assert topological_sort(g) == [5, 4, 2, 3, 1, 0]
     assert topological_sort_kahn(g) == [4, 5, 2, 0, 3, 1]
+
+
+def test_boggle_dfs():
+    """Test Boggle DFS."""
+    boggle = [["G", "I", "Z"], ["U", "E", "K"], ["Q", "S", "E"]]
+
+    dictionary = ["GEEKS", "FOR", "QUIZ", "GUQ", "EE"]
+    assert boggle_dfs(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
