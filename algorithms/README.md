@@ -11,3 +11,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Kruskal: Find minimum spanning tree. O(ElogE) or O(ElogV)
 - Topological Sort: Linear ordering of vertices do Directed Acyclic Graph (DAG) that parent always come before children. O(V+E)
 - Boggle: Find words in Boggle board. DFS: O(MN8<sup>MN</sup>), Trie: O(8<sup>MN</sup>)
+- Bridges: Find bridges in graph. O(V+E)
