@@ -9,6 +9,7 @@ from graph import (
     bfs,
     boggle_dfs,
     boggle_trie,
+    bridges,
     dfs,
     dijkstra,
     floyd_warshall,
@@ -130,3 +131,21 @@ def test_boggle_dfs():
     dictionary = ["GEEKS", "FOR", "QUIZ", "GUQ", "EE"]
     assert boggle_dfs(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
     assert boggle_trie(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
+
+
+def test_bridges():
+    """Test Bridges."""
+    edges = [
+        Edge(1, 0),
+        Edge(0, 2),
+        Edge(2, 1),
+        Edge(0, 3),
+        Edge(3, 4),
+        Edge(0, 1),
+        Edge(2, 0),
+        Edge(1, 2),
+        Edge(3, 0),
+        Edge(4, 3),
+    ]
+    g = GraphList(edges, 5)
+    assert bridges(g) == set([(0, 3), (3, 4)])

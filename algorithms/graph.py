@@ -574,6 +574,48 @@ def boggle_trie(boggle: List, dictionary: List) -> List:
     return found
 
 
+def bridges(graph: GraphList) -> List:
+    """Bridges.
+
+    Args:
+        graph (GraphList): Graph with adjacency list.
+
+    Returns:
+        List: bridge list.
+    """
+    visited = [False] * graph.V
+    discovery = [float("inf")] * graph.V  #
+    low = [float("inf")] * graph.V  #
+    parent = [-1] * graph.V
+    found = set()
+    t = 0
+
+    def find_bridges(graph, i, visited, parent, low, discovery, t, found):
+        visited[i] = True
+        discovery[i] = t
+        low[i] = t
+        t += 1
+
+        for j in graph.adj[i]:
+
+            if not visited[j]:
+                parent[j] = i
+                find_bridges(graph, j, visited, parent, low, discovery, t, found)
+
+                low[i] = min(low[i], low[j])
+                if low[j] > discovery[i]:
+                    found.add((i, j))
+
+            elif j != parent[i]:
+                low[i] = min(low[i], discovery[j])
+
+    for i in range(graph.V):
+        if not visited[i]:
+            find_bridges(graph, i, visited, parent, low, discovery, t, found)
+
+    return found
+
+
 if __name__ == "__main__":
 
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
@@ -652,3 +694,18 @@ if __name__ == "__main__":
     dictionary = ["GEEKS", "FOR", "QUIZ", "GUQ", "EE"]
     assert boggle_dfs(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
     assert boggle_trie(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
+
+    edges = [
+        Edge(1, 0),
+        Edge(0, 2),
+        Edge(2, 1),
+        Edge(0, 3),
+        Edge(3, 4),
+        Edge(0, 1),
+        Edge(2, 0),
+        Edge(1, 2),
+        Edge(3, 0),
+        Edge(4, 3),
+    ]
+    g = GraphList(edges, 5)
+    assert bridges(g) == set([(0, 3), (3, 4)])
