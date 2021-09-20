@@ -412,6 +412,71 @@ def topological_sort_kahn(graph: GraphList) -> List:
     return top_order
 
 
+def boggle_dfs(boggle: List, dictionary: List) -> set:
+    """Boggle with DFS.
+
+    Args:
+        boggle (List): boggle board.
+        dictionary (List): dictionary with words to find.
+
+    Returns:
+        set: found words.
+    """
+    num_row = len(boggle)
+    num_col = len(boggle[0])
+    s = ""
+    found = set()
+
+    def dfs_2d(boggle, visited, r, c, s, found, dictionary):
+
+        visited[r][c] = True
+
+        s += boggle[r][c]
+
+        nbors = [
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 0),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1),
+        ]
+
+        if s in dictionary:
+            found.add(s)
+
+        for dr, dc in nbors:
+            if (
+                r + dr < 0
+                or c + dc < 0
+                or r + dr > len(boggle) - 1
+                or c + dc > len(boggle[0]) - 1
+            ):
+                continue
+
+            if not visited[r + dr][c + dc]:
+                dfs_2d(boggle, visited, r + dr, c + dc, s, found, dictionary)
+
+        s = s[:-1]
+        visited[r][c] = False
+        return found
+
+    # Initialize visited
+    # visited = [[False]*C]*R does not work
+    visited = []
+    for _ in range(num_row):
+        visited.append([False] * num_col)
+
+    for r in range(num_row):
+        for c in range(num_col):
+            dfs_2d(boggle, visited, r, c, s, found, dictionary)
+
+    return found
+
+
 if __name__ == "__main__":
 
     edges = [Edge(0, 1), Edge(0, 2), Edge(1, 2), Edge(2, 0), Edge(2, 3), Edge(3, 3)]
@@ -484,3 +549,8 @@ if __name__ == "__main__":
     g = GraphList(edges, 6)
     assert topological_sort(g) == [5, 4, 2, 3, 1, 0]
     assert topological_sort_kahn(g) == [4, 5, 2, 0, 3, 1]
+
+    boggle = [["G", "I", "Z"], ["U", "E", "K"], ["Q", "S", "E"]]
+
+    dictionary = ["GEEKS", "FOR", "QUIZ", "GUQ", "EE"]
+    assert boggle_dfs(boggle, dictionary) == set(["EE", "GUQ", "QUIZ", "GEEKS"])
