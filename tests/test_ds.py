@@ -1,15 +1,15 @@
 """Run Tests."""
 from __future__ import absolute_import, print_function
 
-from array_list import ArrayList
-from binary_tree import BinaryTree
-from graph import Edge, GraphList
-from hash_table import HashTable
-from heap import MinHeap
-from linked_list import LinkedList
-from stack_queue import Queue, Stack
-from string_builder import StringBuilder
-from trie import Trie
+from data_structure.array_list import ArrayList
+from data_structure.binary_tree import BinaryTree
+from data_structure.graph import Edge, GraphList
+from data_structure.hash_table import HashTable
+from data_structure.heap import MinHeap
+from data_structure.linked_list import LinkedList
+from data_structure.stack_queue import Queue, Stack
+from data_structure.string_builder import StringBuilder
+from data_structure.trie import Trie
 
 
 def test_graph():

@@ -1,7 +1,7 @@
 """Test Linked List Algorithms."""
 from __future__ import absolute_import, print_function
 
-from linked_list_algo import (
+from algorithms.linked_list import (
     LinkedList,
     Node,
     compare_string,
