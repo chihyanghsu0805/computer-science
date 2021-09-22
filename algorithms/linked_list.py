@@ -274,6 +274,42 @@ def reverse_groups(list1: LinkedList, k: int) -> LinkedList:
     return res
 
 
+def find_intersection_union(
+    l1: LinkedList, l2: LinkedList
+) -> Union[LinkedList, LinkedList]:
+    """Find Intersection and Union.
+
+    Args:
+        l1 (LinkedList): first linked list.
+        l2 (LinkedList): second linked list.
+
+    Returns:
+        Union[LinkedList, LinkedList]: intersection, union.
+    """
+    values = set()
+
+    intersection = LinkedList()
+    union = LinkedList()
+
+    def helper(node, values, intersection, union):
+        while node:
+
+            if node.data in values:
+                intersection.insert(node.data)
+            else:
+                values.add(node.data)
+                union.insert(node.data)
+
+            node = node.next
+
+        return intersection, union
+
+    intersection, union = helper(l1.head, values, intersection, union)
+    intersection, union = helper(l2.head, values, intersection, union)
+
+    return intersection, union
+
+
 if __name__ == "__main__":
 
     linked_list = LinkedList()
@@ -352,3 +388,18 @@ if __name__ == "__main__":
 
     reversed = reverse_groups(list1, 3)
     assert reversed.store_data_list() == [3, 2, 1, 8, 9, 9, 7]
+
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+    list1.insert(9)
+
+    list2 = LinkedList()
+    list2.insert(9)
+    list2.insert(8)
+    list2.insert(7)
+
+    intersection, union = find_intersection_union(list1, list2)
+    assert intersection.store_data_list() == [9]
+    assert union.store_data_list() == [1, 2, 3, 9, 8, 7]

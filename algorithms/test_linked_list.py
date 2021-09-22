@@ -7,6 +7,7 @@ from algorithms.linked_list import (
     add_numbers,
     compare_string,
     delete_node,
+    find_intersection_union,
     insert_sorted,
     merge_alternate,
     reverse_groups,
@@ -121,3 +122,21 @@ def test_reverse_groups():
 
     reversed = reverse_groups(list1, 3)
     assert reversed.store_data_list() == [3, 2, 1, 8, 9, 9, 7]
+
+
+def test_find_intersection_union():
+    """Test Find Intersection and Union."""
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+    list1.insert(9)
+
+    list2 = LinkedList()
+    list2.insert(9)
+    list2.insert(8)
+    list2.insert(7)
+
+    intersection, union = find_intersection_union(list1, list2)
+    assert intersection.store_data_list() == [9]
+    assert union.store_data_list() == [1, 2, 3, 9, 8, 7]
