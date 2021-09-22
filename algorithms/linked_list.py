@@ -56,7 +56,7 @@ class LinkedList:
         return data
 
 
-def insert_sorted(linked_list: LinkedList, node: Node) -> LinkedList:
+def insert_sorted(root: Node, value: int) -> Node:
     """Insert into linked list in sorted fashion.
 
     Args:
@@ -66,24 +66,24 @@ def insert_sorted(linked_list: LinkedList, node: Node) -> LinkedList:
     Returns:
         LinkedList: target linked list.
     """
-    if not linked_list.head:
-        linked_list.head = node
+    node = Node(value)
+    if not root:
+        root = node
 
-    elif linked_list.head.data >= node.data:
-        node.next = linked_list.head
-        linked_list.head = node
+    elif root.data >= value:
+        node.next = root
+        root = node
     else:
-        root = linked_list.head
-        while root.next and root.next.data < node.data:
+        while root.next and root.next.data < value:
             root = root.next
 
         node.next = root.next
         root.next = node
 
-    return linked_list
+    return root
 
 
-def delete_node(linked_list: LinkedList, value: int) -> LinkedList:
+def delete_node(root: Node, value: int) -> Node:
     """Delete Node.
 
     Args:
@@ -94,7 +94,7 @@ def delete_node(linked_list: LinkedList, value: int) -> LinkedList:
         LinkedList: result linked list.
     """
     dummy = Node(-1)
-    dummy.next = linked_list.head
+    dummy.next = root
 
     prev = dummy
     curr = dummy.next
@@ -107,21 +107,21 @@ def delete_node(linked_list: LinkedList, value: int) -> LinkedList:
         prev.next = curr.next
         curr.next = None
 
-    return linked_list
+    return root
 
 
-def compare_string(s1: LinkedList, s2: LinkedList) -> int:
+def compare_string(root1: Node, root2: Node) -> int:
     """Compare String.
 
     Args:
-        s1 (LinkedList): first string.
-        s2 (LinkedList): second string.
+        s1 (Node): head of first string.
+        s2 (Node): head of second string.
 
     Returns:
         int: 0 if same, 1 if s1 < s2, -1 if s2 < s1.
     """
-    node1 = s1.head
-    node2 = s2.head
+    node1 = root1
+    node2 = root2
 
     while node1 and node2 and node1.data == node2.data:
         node1 = node1.next
@@ -146,15 +146,15 @@ def compare_string(s1: LinkedList, s2: LinkedList) -> int:
         return -1
 
 
-def add_numbers(l1: LinkedList, l2: LinkedList) -> LinkedList:
-    """Add Numbers.
+def add_numbers(root1: Node, root2: Node) -> Node:
+    """Add Numbers (Significanet Digit First).
 
     Args:
-        l1 (LinkedList): first linked list.
-        l2 (LinkedList): second linked list.
+        root1 (Node): head of first linked list.
+        root2 (Node): head of second linked list.
 
     Returns:
-        LinkedList: linked list storing sum.
+        Node: head of sum linked list.
     """
 
     def reverse_list(root):
@@ -169,8 +169,8 @@ def add_numbers(l1: LinkedList, l2: LinkedList) -> LinkedList:
 
         return prev
 
-    rev_l1 = reverse_list(l1.head)
-    rev_l2 = reverse_list(l2.head)
+    rev_l1 = reverse_list(root1)
+    rev_l2 = reverse_list(root2)
 
     def compute_sum(l1, l2):
 
@@ -195,26 +195,21 @@ def add_numbers(l1: LinkedList, l2: LinkedList) -> LinkedList:
 
     _sum = compute_sum(rev_l1, rev_l2)
     sum_root = reverse_list(_sum)
-    node = sum_root
-    sum_list = LinkedList()
-    while node:
-        sum_list.insert(node.data)
-        node = node.next
-    return sum_list
+    return sum_root
 
 
-def merge_alternate(l1: LinkedList, l2: LinkedList) -> Union[LinkedList, LinkedList]:
-    """Merge Alternate.
+def merge_alternate(root1: Node, root2: Node) -> Union[Node, Node]:
+    """Alternate Merge Linked List.
 
     Args:
-        l1 (LinkedList): first linked list.
-        l2 (LinkedList): second linked list.
+        root1 (Node): head of first linked list.
+        root2 (Node): head of second linked list.
 
     Returns:
-        Union[LinkedList, LinkedList]: merged first and second linked list.
+        Union[Node, Node]: head of first and second linked list.
     """
-    node1 = l1.head
-    node2 = l2.head
+    node1 = root1
+    node2 = root2
 
     while node1 and node2:
 
@@ -227,20 +222,20 @@ def merge_alternate(l1: LinkedList, l2: LinkedList) -> Union[LinkedList, LinkedL
         node1 = next1
         node2 = next2
 
-        l2.head = node2
+        root2 = node2
 
-    return l1, l2
+    return root1, root2
 
 
-def reverse_groups(list1: LinkedList, k: int) -> LinkedList:
-    """Reverse Groups.
+def reverse_groups(root: Node, k: int) -> Node:
+    """Reverse Linked List in Groups.
 
     Args:
-        list1 (LinkedList): target linked list.
-        k (int): group size.
+        root (Node): head of linked list.
+        k (int): group size
 
     Returns:
-        LinkedList: result linked list.
+        Node: head of linked list.
     """
 
     def reverse_nodes(node, k):
@@ -264,14 +259,9 @@ def reverse_groups(list1: LinkedList, k: int) -> LinkedList:
 
         return prev
 
-    root = reverse_nodes(list1.head, k)
+    root = reverse_nodes(root, k)
 
-    res = LinkedList()
-    while root:
-        res.insert(root.data)
-        root = root.next
-
-    return res
+    return root
 
 
 def find_intersection_union(
@@ -310,16 +300,16 @@ def find_intersection_union(
     return intersection, union
 
 
-def detect_remove_loop(l1: LinkedList) -> Union[bool, LinkedList]:
+def detect_remove_loop(root: Node) -> Union[bool, Node]:
     """Detect and Remove Loop.
 
     Args:
-        l1 (LinkedList): Given linked list.
+        root (Node): head of linked list.
 
     Returns:
-        Union[bool, LinkedList]: loop detected, modified linked list.
+        Union[bool, Node]: loop detected, head of modified linked list.
     """
-    slow, fast = l1.head, l1.head
+    slow, fast = root, root
 
     while slow and fast and fast.next:
 
@@ -328,7 +318,7 @@ def detect_remove_loop(l1: LinkedList) -> Union[bool, LinkedList]:
 
         if slow.data == fast.data:
 
-            slow = l1.head
+            slow = root
 
             while slow.next.data != fast.next.data:
 
@@ -337,35 +327,94 @@ def detect_remove_loop(l1: LinkedList) -> Union[bool, LinkedList]:
 
             fast.next = None
 
-            res = LinkedList()
-            node = l1.head
-            while node:
-                res.insert(node.data)
-                node = node.next
-            return True, res
+            return True, root
 
-    return False, l1
+    return False, root
+
+
+def merge_sort(root: Node) -> Node:
+    """Merge Sort.
+
+    Args:
+        root (Node): head of linked list.
+
+    Returns:
+        Node: head of sorted linked list.
+    """
+    if not root or not root.next:
+        return root
+
+    def get_middle(node):
+
+        slow = node
+        fast = node
+
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
+
+    def merge(a, b):
+        if not a:
+            return b
+        if not b:
+            return a
+
+        if a.data <= b.data:
+            result = a
+            result.next = merge(a.next, b)
+        else:
+            result = b
+            result.next = merge(a, b.next)
+
+        return result
+
+    mid = get_middle(root)
+    mid_next = mid.next
+    mid.next = None
+
+    lt = merge_sort(root)
+    rt = merge_sort(mid_next)
+
+    sorted_list = merge(lt, rt)
+    return sorted_list
+
+
+def get_data_list(head: Node) -> List:
+    """Get Data List.
+
+    Args:
+        head (Node): head of linked list.
+
+    Returns:
+        List: data list.
+    """
+    data = []
+
+    while head:
+        data.append(head.data)
+        head = head.next
+
+    return data
 
 
 if __name__ == "__main__":
 
-    linked_list = LinkedList()
-    assert linked_list.store_data_list() == []
+    list1 = LinkedList()
+    assert get_data_list(list1.head) == []
 
-    node = Node(5)
-    linked_list = insert_sorted(linked_list, node)
-    assert linked_list.store_data_list() == [5]
+    list1.head = insert_sorted(list1.head, 5)
+    assert get_data_list(list1.head) == [5]
 
-    node = Node(10)
-    linked_list = insert_sorted(linked_list, node)
-    assert linked_list.store_data_list() == [5, 10]
+    list1.head = insert_sorted(list1.head, 10)
+    assert get_data_list(list1.head) == [5, 10]
 
-    node = Node(3)
-    linked_list = insert_sorted(linked_list, node)
-    assert linked_list.store_data_list() == [3, 5, 10]
+    list1.head = insert_sorted(list1.head, 3)
+    assert get_data_list(list1.head) == [3, 5, 10]
 
-    linked_list = delete_node(linked_list, 5)
-    assert linked_list.store_data_list() == [3, 10]
+    list1.head = delete_node(list1.head, 5)
+    assert get_data_list(list1.head) == [3, 10]
 
     list1 = LinkedList()
     list1.insert("g")
@@ -383,7 +432,7 @@ if __name__ == "__main__":
     list2.insert("s")
     list2.insert("a")
 
-    assert compare_string(list1, list2) == -1
+    assert compare_string(list1.head, list2.head) == -1
 
     list1 = LinkedList()
     list1.insert(1)
@@ -396,8 +445,8 @@ if __name__ == "__main__":
     list2.insert(8)
     list2.insert(7)
 
-    _sum = add_numbers(list1, list2)
-    assert _sum.store_data_list() == [1, 0, 1, 1, 0]
+    _sum = add_numbers(list1.head, list2.head)
+    assert get_data_list(_sum) == [1, 0, 1, 1, 0]
 
     list1 = LinkedList()
     list1.insert(1)
@@ -410,9 +459,9 @@ if __name__ == "__main__":
     list2.insert(8)
     list2.insert(7)
 
-    merged_l1, merged_l2 = merge_alternate(list1, list2)
-    assert merged_l1.store_data_list() == [1, 9, 2, 9, 3, 8]
-    assert merged_l2.store_data_list() == [7]
+    merged_l1, merged_l2 = merge_alternate(list1.head, list2.head)
+    assert get_data_list(merged_l1) == [1, 9, 2, 9, 3, 8]
+    assert get_data_list(merged_l2) == [7]
 
     list1 = LinkedList()
     list1.insert(1)
@@ -423,8 +472,8 @@ if __name__ == "__main__":
     list1.insert(8)
     list1.insert(7)
 
-    reversed = reverse_groups(list1, 3)
-    assert reversed.store_data_list() == [3, 2, 1, 8, 9, 9, 7]
+    reversed = reverse_groups(list1.head, 3)
+    assert get_data_list(reversed) == [3, 2, 1, 8, 9, 9, 7]
 
     list1 = LinkedList()
     list1.insert(1)
@@ -448,13 +497,24 @@ if __name__ == "__main__":
     list1.insert(4)
     list1.insert(10)
 
-    bool1, l1 = detect_remove_loop(list1)
+    bool1, head1 = detect_remove_loop(list1.head)
 
     assert not bool1
-    assert l1.store_data_list() == [50, 20, 15, 4, 10]
+    assert get_data_list(head1) == [50, 20, 15, 4, 10]
 
     list1.head.next.next.next.next.next = list1.head.next.next
-    bool2, l2 = detect_remove_loop(list1)
+    bool2, head2 = detect_remove_loop(list1.head)
 
     assert bool2
-    assert l2.store_data_list() == [50, 20, 15, 4, 10]
+    assert get_data_list(head2) == [50, 20, 15, 4, 10]
+
+    list1 = LinkedList()
+    list1.insert(50)
+    list1.insert(20)
+    list1.insert(15)
+    list1.insert(4)
+    list1.insert(10)
+
+    head = merge_sort(list1.head)
+
+    assert get_data_list(head) == [4, 10, 15, 20, 50]

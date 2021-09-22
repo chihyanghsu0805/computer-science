@@ -22,3 +22,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Reverse Groups: O(N)
 - Intersection and Union: O(M+N)
 - Detect and Remove Loop: O(N)
+- Merge Sort: O(NlogN)
