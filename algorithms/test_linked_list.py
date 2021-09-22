@@ -9,6 +9,7 @@ from algorithms.linked_list import (
     delete_node,
     insert_sorted,
     merge_alternate,
+    reverse_groups,
 )
 
 
@@ -105,3 +106,18 @@ def test_merge_alternate():
     merged_l1, merged_l2 = merge_alternate(list1, list2)
     assert merged_l1.store_data_list() == [1, 9, 2, 9, 3, 8]
     assert merged_l2.store_data_list() == [7]
+
+
+def test_reverse_groups():
+    """Test Reverse Groups."""
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+    list1.insert(9)
+    list1.insert(9)
+    list1.insert(8)
+    list1.insert(7)
+
+    reversed = reverse_groups(list1, 3)
+    assert reversed.store_data_list() == [3, 2, 1, 8, 9, 9, 7]

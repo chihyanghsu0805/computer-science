@@ -232,6 +232,48 @@ def merge_alternate(l1: LinkedList, l2: LinkedList) -> Union[LinkedList, LinkedL
     return l1, l2
 
 
+def reverse_groups(list1: LinkedList, k: int) -> LinkedList:
+    """Reverse Groups.
+
+    Args:
+        list1 (LinkedList): target linked list.
+        k (int): group size.
+
+    Returns:
+        LinkedList: result linked list.
+    """
+
+    def reverse_nodes(node, k):
+
+        if not node:
+            return None
+
+        curr = node
+        prev = None
+        i = 0
+
+        while curr and i < k:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+            i += 1
+
+        if temp:
+            node.next = reverse_nodes(temp, k)
+
+        return prev
+
+    root = reverse_nodes(list1.head, k)
+
+    res = LinkedList()
+    while root:
+        res.insert(root.data)
+        root = root.next
+
+    return res
+
+
 if __name__ == "__main__":
 
     linked_list = LinkedList()
@@ -298,3 +340,15 @@ if __name__ == "__main__":
     merged_l1, merged_l2 = merge_alternate(list1, list2)
     assert merged_l1.store_data_list() == [1, 9, 2, 9, 3, 8]
     assert merged_l2.store_data_list() == [7]
+
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+    list1.insert(9)
+    list1.insert(9)
+    list1.insert(8)
+    list1.insert(7)
+
+    reversed = reverse_groups(list1, 3)
+    assert reversed.store_data_list() == [3, 2, 1, 8, 9, 9, 7]
