@@ -7,6 +7,7 @@ from algorithms.linked_list import (
     add_numbers,
     compare_string,
     delete_node,
+    detect_remove_loop,
     find_intersection_union,
     insert_sorted,
     merge_alternate,
@@ -140,3 +141,24 @@ def test_find_intersection_union():
     intersection, union = find_intersection_union(list1, list2)
     assert intersection.store_data_list() == [9]
     assert union.store_data_list() == [1, 2, 3, 9, 8, 7]
+
+
+def test_detect_remove_loop():
+    """Test Detect and Remove Loop."""
+    list1 = LinkedList()
+    list1.insert(50)
+    list1.insert(20)
+    list1.insert(15)
+    list1.insert(4)
+    list1.insert(10)
+
+    bool1, l1 = detect_remove_loop(list1)
+
+    assert not bool1
+    assert l1.store_data_list() == [50, 20, 15, 4, 10]
+
+    list1.head.next.next.next.next.next = list1.head.next.next
+    bool2, l2 = detect_remove_loop(list1)
+
+    assert bool2
+    assert l2.store_data_list() == [50, 20, 15, 4, 10]

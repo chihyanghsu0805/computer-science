@@ -310,6 +310,43 @@ def find_intersection_union(
     return intersection, union
 
 
+def detect_remove_loop(l1: LinkedList) -> Union[bool, LinkedList]:
+    """Detect and Remove Loop.
+
+    Args:
+        l1 (LinkedList): Given linked list.
+
+    Returns:
+        Union[bool, LinkedList]: loop detected, modified linked list.
+    """
+    slow, fast = l1.head, l1.head
+
+    while slow and fast and fast.next:
+
+        slow = slow.next
+        fast = fast.next.next
+
+        if slow.data == fast.data:
+
+            slow = l1.head
+
+            while slow.next.data != fast.next.data:
+
+                slow = slow.next
+                fast = fast.next
+
+            fast.next = None
+
+            res = LinkedList()
+            node = l1.head
+            while node:
+                res.insert(node.data)
+                node = node.next
+            return True, res
+
+    return False, l1
+
+
 if __name__ == "__main__":
 
     linked_list = LinkedList()
@@ -403,3 +440,21 @@ if __name__ == "__main__":
     intersection, union = find_intersection_union(list1, list2)
     assert intersection.store_data_list() == [9]
     assert union.store_data_list() == [1, 2, 3, 9, 8, 7]
+
+    list1 = LinkedList()
+    list1.insert(50)
+    list1.insert(20)
+    list1.insert(15)
+    list1.insert(4)
+    list1.insert(10)
+
+    bool1, l1 = detect_remove_loop(list1)
+
+    assert not bool1
+    assert l1.store_data_list() == [50, 20, 15, 4, 10]
+
+    list1.head.next.next.next.next.next = list1.head.next.next
+    bool2, l2 = detect_remove_loop(list1)
+
+    assert bool2
+    assert l2.store_data_list() == [50, 20, 15, 4, 10]
