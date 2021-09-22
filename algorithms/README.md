@@ -18,3 +18,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Delete Node: O(N)
 - Compare String: O(N)
 - Add Numbers (signifcant digits first): O(M+N)
+- Merge ALternate: O(N)
