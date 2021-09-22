@@ -8,6 +8,7 @@ from algorithms.linked_list import (
     compare_string,
     delete_node,
     insert_sorted,
+    merge_alternate,
 )
 
 
@@ -86,3 +87,21 @@ def test_add_numbers():
 
     _sum = add_numbers(list1, list2)
     assert _sum.store_data_list() == [1, 0, 1, 1, 0]
+
+
+def test_merge_alternate():
+    """Test Merge Alternate."""
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+
+    list2 = LinkedList()
+    list2.insert(9)
+    list2.insert(9)
+    list2.insert(8)
+    list2.insert(7)
+
+    merged_l1, merged_l2 = merge_alternate(list1, list2)
+    assert merged_l1.store_data_list() == [1, 9, 2, 9, 3, 8]
+    assert merged_l2.store_data_list() == [7]

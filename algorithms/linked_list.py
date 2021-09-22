@@ -1,7 +1,7 @@
 """Linked List Algorithms."""
 from __future__ import absolute_import, print_function
 
-from typing import List
+from typing import List, Union
 
 
 class Node:
@@ -203,6 +203,35 @@ def add_numbers(l1: LinkedList, l2: LinkedList) -> LinkedList:
     return sum_list
 
 
+def merge_alternate(l1: LinkedList, l2: LinkedList) -> Union[LinkedList, LinkedList]:
+    """Merge Alternate.
+
+    Args:
+        l1 (LinkedList): first linked list.
+        l2 (LinkedList): second linked list.
+
+    Returns:
+        Union[LinkedList, LinkedList]: merged first and second linked list.
+    """
+    node1 = l1.head
+    node2 = l2.head
+
+    while node1 and node2:
+
+        next1 = node1.next
+        next2 = node2.next
+
+        node1.next = node2
+        node2.next = next1
+
+        node1 = next1
+        node2 = next2
+
+        l2.head = node2
+
+    return l1, l2
+
+
 if __name__ == "__main__":
 
     linked_list = LinkedList()
@@ -254,3 +283,18 @@ if __name__ == "__main__":
 
     _sum = add_numbers(list1, list2)
     assert _sum.store_data_list() == [1, 0, 1, 1, 0]
+
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+
+    list2 = LinkedList()
+    list2.insert(9)
+    list2.insert(9)
+    list2.insert(8)
+    list2.insert(7)
+
+    merged_l1, merged_l2 = merge_alternate(list1, list2)
+    assert merged_l1.store_data_list() == [1, 9, 2, 9, 3, 8]
+    assert merged_l2.store_data_list() == [7]
