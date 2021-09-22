@@ -1,7 +1,7 @@
 """Test Graph Algorithms."""
 from __future__ import absolute_import, print_function
 
-from graph import (
+from algorithms.graph import (
     Edge,
     GraphList,
     GraphListWeight,

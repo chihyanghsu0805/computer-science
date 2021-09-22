@@ -146,6 +146,63 @@ def compare_string(s1: LinkedList, s2: LinkedList) -> int:
         return -1
 
 
+def add_numbers(l1: LinkedList, l2: LinkedList) -> LinkedList:
+    """Add Numbers.
+
+    Args:
+        l1 (LinkedList): first linked list.
+        l2 (LinkedList): second linked list.
+
+    Returns:
+        LinkedList: linked list storing sum.
+    """
+
+    def reverse_list(root):
+
+        node = root
+        prev = None
+        while node:
+            temp = node.next
+            node.next = prev
+            prev = node
+            node = temp
+
+        return prev
+
+    rev_l1 = reverse_list(l1.head)
+    rev_l2 = reverse_list(l2.head)
+
+    def compute_sum(l1, l2):
+
+        dummy = Node(0)
+        node = dummy
+
+        n1 = l1
+        n2 = l2
+        carry = 0
+
+        while n1 or n2 or carry:
+            v1 = n1.data if n1 else 0
+            v2 = n2.data if n2 else 0
+            _sum = (v1 + v2 + carry) % 10
+            carry = (v1 + v2 + carry) // 10
+            node.next = Node(_sum)
+            node = node.next
+            n1 = n1.next if n1 else None
+            n2 = n2.next if n2 else None
+
+        return dummy.next
+
+    _sum = compute_sum(rev_l1, rev_l2)
+    sum_root = reverse_list(_sum)
+    node = sum_root
+    sum_list = LinkedList()
+    while node:
+        sum_list.insert(node.data)
+        node = node.next
+    return sum_list
+
+
 if __name__ == "__main__":
 
     linked_list = LinkedList()
@@ -183,3 +240,17 @@ if __name__ == "__main__":
     list2.insert("a")
 
     assert compare_string(list1, list2) == -1
+
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+
+    list2 = LinkedList()
+    list2.insert(9)
+    list2.insert(9)
+    list2.insert(8)
+    list2.insert(7)
+
+    _sum = add_numbers(list1, list2)
+    assert _sum.store_data_list() == [1, 0, 1, 1, 0]

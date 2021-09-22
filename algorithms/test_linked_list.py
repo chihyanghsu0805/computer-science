@@ -1,9 +1,10 @@
 """Test Linked List Algorithms."""
 from __future__ import absolute_import, print_function
 
-from linked_list_algo import (
+from algorithms.linked_list import (
     LinkedList,
     Node,
+    add_numbers,
     compare_string,
     delete_node,
     insert_sorted,
@@ -68,3 +69,20 @@ def test_compare_string():
     list2.insert("a")
 
     assert compare_string(list1, list2) == -1
+
+
+def test_add_numbers():
+    """Test Add Numbers."""
+    list1 = LinkedList()
+    list1.insert(1)
+    list1.insert(2)
+    list1.insert(3)
+
+    list2 = LinkedList()
+    list2.insert(9)
+    list2.insert(9)
+    list2.insert(8)
+    list2.insert(7)
+
+    _sum = add_numbers(list1, list2)
+    assert _sum.store_data_list() == [1, 0, 1, 1, 0]
