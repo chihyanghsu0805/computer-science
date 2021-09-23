@@ -22,3 +22,4 @@ This repository contains coding practices.
 
 ## Algorithms
 - Graph
+- Linked List
