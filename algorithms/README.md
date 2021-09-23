@@ -20,3 +20,7 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Add Numbers (signifcant digits first): O(M+N)
 - Merge ALternate: O(N)
 - Reverse Groups: O(N)
+- Intersection and Union: O(M+N)
+- Detect and Remove Loop: O(N)
+- Merge Sort: O(NlogN)
+- Select Random (Reservoir Sampling): O(N)
