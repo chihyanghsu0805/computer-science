@@ -41,21 +41,6 @@ class LinkedList:
                 root = root.next
             root.next = node
 
-    def store_data_list(self) -> List:
-        """Store data in a list.
-
-        Returns:
-            List: data list.
-        """
-        data = []
-        root = self.head
-
-        while root:
-            data.append(root.data)
-            root = root.next
-
-        return data
-
 
 def insert_sorted(root: Node, value: int) -> Node:
     """Insert into linked list in sorted fashion.
@@ -379,14 +364,15 @@ def merge_sort(root: Node) -> Node:
     return sorted_list
 
 
-def select_random(root: Node) -> Node:
+def select_random(root: Node, N: int = 1) -> List:
     """Select Random Node.
 
     Args:
         root (Node): head of linked list.
+        N (int, optional): number of nodes. Defaults to 1.
 
     Returns:
-        Node: selected node.
+        List: selected nodes.
     """
     if not root:
         return None
@@ -395,19 +381,26 @@ def select_random(root: Node) -> Node:
         return root
 
     random.seed()
-    res = root
-    n = 2
-    curr = root.next
 
-    while curr:
+    reservoir = []
+    node = root
+    count = 0
+    for _ in range(N):
+        reservoir.append(node)
+        node = node.next
+        count += 1
 
-        if random.randrange(n) == 0:
-            res = curr
+    while node:
 
-        curr = curr.next
-        n += 1
+        idx = random.randrange(count + 1)
 
-    return res
+        if idx < N:
+            reservoir[idx] = node
+
+        node = node.next
+        count += 1
+
+    return reservoir
 
 
 def get_data_list(head: Node) -> List:
@@ -558,9 +551,12 @@ if __name__ == "__main__":
     res_freq = {}
 
     for _ in range(10000):
-        val = select_random(list1.head).data
-        res_freq[val] = res_freq.get(val, 0) + 1
+        val_list = select_random(list1.head, 1)
+
+        for val in val_list:
+            res_freq[val.data] = res_freq.get(val.data, 0) + 1
 
     res_prob = [x / 10000 for x in res_freq.values()]
+
     assert all([x < 0.25 for x in res_prob])
     assert all([x > 0.15 for x in res_prob])
