@@ -1,6 +1,7 @@
 """Linked List Algorithms."""
 from __future__ import absolute_import, print_function
 
+import random
 from typing import List, Union
 
 
@@ -381,6 +382,37 @@ def merge_sort(root: Node) -> Node:
     return sorted_list
 
 
+def select_random(root: Node) -> Node:
+    """Select Random Node.
+
+    Args:
+        root (Node): head of linked list.
+
+    Returns:
+        Node: selected node.
+    """
+    if not root:
+        return None
+
+    if root and not root.next:
+        return root
+
+    random.seed()
+    res = root
+    n = 2
+    curr = root.next
+
+    while curr:
+
+        if random.randrange(n) == 0:
+            res = curr
+
+        curr = curr.next
+        n += 1
+
+    return res
+
+
 def get_data_list(head: Node) -> List:
     """Get Data List.
 
@@ -518,3 +550,20 @@ if __name__ == "__main__":
     head = merge_sort(list1.head)
 
     assert get_data_list(head) == [4, 10, 15, 20, 50]
+
+    list1 = LinkedList()
+    list1.insert(5)
+    list1.insert(20)
+    list1.insert(4)
+    list1.insert(3)
+    list1.insert(30)
+
+    res_freq = {}
+
+    for _ in range(10000):
+        val = select_random(list1.head).data
+        res_freq[val] = res_freq.get(val, 0) + 1
+
+    res_prob = [x / 10000 for x in res_freq.values()]
+    assert all([x < 0.25 for x in res_prob])
+    assert all([x > 0.15 for x in res_prob])

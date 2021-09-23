@@ -13,6 +13,7 @@ from algorithms.linked_list import (
     merge_alternate,
     merge_sort,
     reverse_groups,
+    select_random,
 )
 
 
@@ -171,3 +172,23 @@ def test_merge_sort():
     head = merge_sort(list1.head)
 
     assert get_data_list(head) == [4, 10, 15, 20, 50]
+
+
+def test_select_random():
+    """Test Select Random."""
+    list1 = LinkedList()
+    list1.insert(5)
+    list1.insert(20)
+    list1.insert(4)
+    list1.insert(3)
+    list1.insert(30)
+
+    res_freq = {}
+
+    for _ in range(10000):
+        val = select_random(list1.head).data
+        res_freq[val] = res_freq.get(val, 0) + 1
+
+    res_prob = [x / 10000 for x in res_freq.values()]
+    assert all([x < 0.25 for x in res_prob])
+    assert all([x > 0.15 for x in res_prob])
