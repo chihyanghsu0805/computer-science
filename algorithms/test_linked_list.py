@@ -134,9 +134,9 @@ def test_find_intersection_union():
     list2.insert(8)
     list2.insert(7)
 
-    intersection, union = find_intersection_union(list1, list2)
-    assert intersection.store_data_list() == [9]
-    assert union.store_data_list() == [1, 2, 3, 9, 8, 7]
+    intersection, union = find_intersection_union(list1.head, list2.head)
+    assert intersection == {9}
+    assert union == {1, 2, 3, 9, 8, 7}
 
 
 def test_detect_remove_loop():
