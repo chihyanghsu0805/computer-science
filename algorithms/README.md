@@ -26,4 +26,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Select Random (Reservoir Sampling): O(N)
 
 ## Dynamic Programming
-- Longest Common Sequence: O<sub>T</sub>(MN), O<sub>S</sub>(MN), O<sub>S</sub>(N)
+- Longest Common Sequence: O<sub>T</sub>(MN), O<sub>S</sub>(MN) -> O<sub>S</sub>(N)
