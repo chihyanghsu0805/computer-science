@@ -28,3 +28,5 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 ## Dynamic Programming
 - Longest Common Sequence: O<sub>T</sub>(MN), O<sub>S</sub>(MN) -> O<sub>S</sub>(N)
 - Longest Increasing Subsequence: O(NlogN)
+- Minimum Cost: O<sub>T</sub>(MN), O<sub>S</sub>(MN) -> O<sub>S</sub>(N)
+- Minimum Partition Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS) -> O<sub>S</sub>(N)

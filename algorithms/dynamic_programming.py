@@ -51,7 +51,7 @@ def find_longest_common_subsequence(s1: str, s2: str) -> Union[int, str]:
     return memo[m][n], s[::-1]
 
 
-def find_longest_common_subsequence2(s1: str, s2: str) -> Union[int, str]:
+def find_longest_common_subsequence2(s1: str, s2: str) -> int:
     """Find Longest Common Subsequence.
 
     Args:
@@ -59,13 +59,13 @@ def find_longest_common_subsequence2(s1: str, s2: str) -> Union[int, str]:
         s2 (str): second string.
 
     Returns:
-        Union[int, str]: length of subsequence, subsequence
+        int: length of subsequence
     """
     m = len(s1)
     n = len(s2)
 
-    prev = [None] * (n + 1)
-    curr = [None] * (n + 1)
+    prev = [0] * (n + 1)
+    curr = [0] * (n + 1)
 
     for i in range(m + 1):
         for j in range(n + 1):
@@ -79,9 +79,40 @@ def find_longest_common_subsequence2(s1: str, s2: str) -> Union[int, str]:
             else:
                 curr[j] = max(prev[j], curr[j - 1])
 
-        prev = curr
+        # Dont use prev = curr
+        prev = [i for i in curr]
 
     return curr[n]
+
+
+def find_longest_common_subsequence3(s1: str, s2: str) -> Union[int, str]:
+    """Find Longest Common Subsequence.
+
+    Args:
+        s1 (str): first string.
+        s2 (str): second string.
+
+    Returns:
+        Union[int, str]: length of subsequence, subsequence
+    """
+    m = len(s1)
+    n = len(s2)
+
+    memo = [[0 for _ in range(n + 1)] for _ in range(2)]
+
+    for i in range(m + 1):
+        for j in range(n + 1):
+
+            if i == 0 or j == 0:
+                memo[i % 2][j] = 0
+
+            elif s1[i - 1] == s2[j - 1]:
+                memo[i % 2][j] = memo[(i + 1) % 2][j - 1] + 1
+
+            else:
+                memo[i % 2][j] = max(memo[(i + 1) % 2][j], memo[i % 2][j - 1])
+
+    return memo[i % 2][n]
 
 
 def find_longest_increasing_subsequence(arr: List) -> int:
@@ -130,6 +161,188 @@ def find_longest_increasing_subsequence(arr: List) -> int:
     return len(temp)
 
 
+def find_minimum_edit(s1: str, s2: str) -> int:
+    """Find Minimum Edits.
+
+    Args:
+        s1 (str): first string.
+        s2 (str): secodn string (fixed).
+
+    Returns:
+        int: number of edits.
+    """
+    m = len(s1)
+    n = len(s2)
+
+    memo = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+
+    for i in range(m + 1):
+        for j in range(n + 1):
+
+            if i == 0:
+                memo[i][j] = j
+
+            elif j == 0:
+                memo[i][j] = i
+
+            elif s1[i - 1] == s2[j - 1]:
+                memo[i][j] = memo[i - 1][j - 1]
+
+            else:
+                memo[i][j] = 1 + min(memo[i][j - 1], memo[i - 1][j], memo[i - 1][j - 1])
+
+    return memo[m][n]
+
+
+def find_minimum_edit2(s1: str, s2: str) -> int:
+    """Find Minimum Edits.
+
+    Args:
+        s1 (str): first string.
+        s2 (str): secodn string (fixed).
+
+    Returns:
+        int: number of edits.
+    """
+    m = len(s1)
+    n = len(s2)
+
+    prev = [i for i in range(n + 1)]
+    curr = [0 for _ in range(n + 1)]
+
+    for i in range(1, m + 1):
+        for j in range(n + 1):
+
+            if j == 0:
+                curr[j] = i
+
+            elif s1[i - 1] == s2[j - 1]:
+
+                curr[j] = prev[j - 1]
+
+            else:
+                curr[j] = 1 + min(curr[j - 1], prev[j], prev[j - 1])
+
+        # Dont use prev = curr
+        prev = [i for i in curr]
+
+    return prev[n]
+
+
+def find_minimum_edit3(s1: str, s2: str) -> int:
+    """Find Minimum Edits.
+
+    Args:
+        s1 (str): first string.
+        s2 (str): secodn string (fixed).
+
+    Returns:
+        int: number of edits.
+    """
+    m = len(s1)
+    n = len(s2)
+
+    # m columns since s2 is fixed
+    memo = [[0 for _ in range(m + 1)] for _ in range(2)]
+
+    for i in range(m + 1):
+        memo[0][i] = i
+
+    # First
+    for i in range(1, n + 1):
+        for j in range(m + 1):
+
+            # Use i % 2 to distinguish prev and curr
+            if j == 0:
+                memo[i % 2][j] = i
+
+            elif s1[j - 1] == s2[i - 1]:
+                memo[i % 2][j] = memo[(i - 1) % 2][j - 1]
+
+            else:
+                memo[i % 2][j] = 1 + min(
+                    memo[(i - 1) % 2][j], memo[i % 2][j - 1], memo[(i - 1) % 2][j - 1]
+                )
+
+    return memo[n % 2][m]
+
+
+def find_minimum_partition_sum(arr: List) -> int:
+    """Find Minimum Partition Sum.
+
+    Args:
+        arr (List): array.
+
+    Returns:
+        int: minimum.
+    """
+    _sum = sum(arr)
+    N = len(arr)
+
+    dp = [[0 for _ in range(_sum + 1)] for _ in range(N + 1)]
+
+    for i in range(N + 1):
+        dp[i][0] = True
+
+    for j in range(1, _sum + 1):
+        dp[0][j] = False
+
+    for i in range(1, N + 1):
+        for j in range(1, _sum + 1):
+
+            dp[i][j] = dp[i - 1][j]
+
+            if arr[i - 1] <= j:
+                dp[i][j] = dp[i][j] | dp[i - 1][j - arr[i - 1]]
+
+    diff = _sum
+
+    for j in range(_sum // 2, -1, -1):
+        if dp[N][j]:
+            diff = _sum - j - j
+            break
+
+    return diff
+
+
+def find_minimum_partition_sum2(arr: List) -> int:
+    """Find Minimum Partition Sum.
+
+    Args:
+        arr (List): array.
+
+    Returns:
+        int: minimum.
+    """
+    _sum = sum(arr)
+    N = len(arr)
+
+    prev = [False for _ in range(_sum + 1)]
+    prev[0] = True
+
+    curr = [False for _ in range(_sum + 1)]
+    curr[0] = True
+
+    for i in range(1, N + 1):
+        for j in range(1, _sum + 1):
+
+            curr[j] = prev[j]
+
+            if arr[i - 1] <= j:
+                curr[j] = curr[j] | prev[j - arr[i - 1]]
+
+        prev = [i for i in curr]
+
+    diff = _sum
+
+    for j in range(_sum // 2, -1, -1):
+        if prev[j]:
+            diff = _sum - j - j
+            break
+
+    return diff
+
+
 if __name__ == "__main__":
 
     X = "AGGTAB"
@@ -138,6 +351,18 @@ if __name__ == "__main__":
     assert find_longest_common_subsequence(X, Y)[0] == 4
     assert find_longest_common_subsequence(X, Y)[1] == "GTAB"
     assert find_longest_common_subsequence2(X, Y) == 4
+    assert find_longest_common_subsequence3(X, Y) == 4
 
     arr = [10, 22, 9, 33, 21, 50, 41, 60]
     assert find_longest_increasing_subsequence(arr) == 5
+
+    str1 = "sunday"
+    str2 = "saturday"
+
+    assert find_minimum_edit(str1, str2) == 3
+    assert find_minimum_edit2(str1, str2) == 3
+    assert find_minimum_edit3(str1, str2) == 3
+
+    arr = [3, 1, 4, 2, 2, 1]
+    assert find_minimum_partition_sum(arr) == 1
+    assert find_minimum_partition_sum2(arr) == 1
