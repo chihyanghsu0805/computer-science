@@ -24,3 +24,6 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Detect and Remove Loop: O(N)
 - Merge Sort: O(NlogN)
 - Select Random (Reservoir Sampling): O(N)
+
+## Dynamic Programming
+- Longest Common Sequence: O<sub>T</sub>(MN), O<sub>S</sub>(MN), O<sub>S</sub>(N)
