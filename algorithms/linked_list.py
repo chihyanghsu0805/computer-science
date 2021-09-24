@@ -41,21 +41,6 @@ class LinkedList:
                 root = root.next
             root.next = node
 
-    def store_data_list(self) -> List:
-        """Store data in a list.
-
-        Returns:
-            List: data list.
-        """
-        data = []
-        root = self.head
-
-        while root:
-            data.append(root.data)
-            root = root.next
-
-        return data
-
 
 def insert_sorted(root: Node, value: int) -> Node:
     """Insert into linked list in sorted fashion.
@@ -265,38 +250,35 @@ def reverse_groups(root: Node, k: int) -> Node:
     return root
 
 
-def find_intersection_union(
-    l1: LinkedList, l2: LinkedList
-) -> Union[LinkedList, LinkedList]:
+def find_intersection_union(root1: Node, root2: Node) -> Union[set, set]:
     """Find Intersection and Union.
 
     Args:
-        l1 (LinkedList): first linked list.
-        l2 (LinkedList): second linked list.
+        root1 (Node): head of first linked list.
+        root2 (Node): head of scond linked list.
 
     Returns:
-        Union[LinkedList, LinkedList]: intersection, union.
+        Union[set, set]: intersection and union.
     """
     values = set()
-
-    intersection = LinkedList()
-    union = LinkedList()
+    intersection = set()
+    union = set()
 
     def helper(node, values, intersection, union):
         while node:
 
             if node.data in values:
-                intersection.insert(node.data)
+                intersection.add(node.data)
             else:
                 values.add(node.data)
-                union.insert(node.data)
+                union.add(node.data)
 
             node = node.next
 
         return intersection, union
 
-    intersection, union = helper(l1.head, values, intersection, union)
-    intersection, union = helper(l2.head, values, intersection, union)
+    helper(root1, values, intersection, union)
+    helper(root2, values, intersection, union)
 
     return intersection, union
 
@@ -382,14 +364,15 @@ def merge_sort(root: Node) -> Node:
     return sorted_list
 
 
-def select_random(root: Node) -> Node:
+def select_random(root: Node, N: int = 1) -> List:
     """Select Random Node.
 
     Args:
         root (Node): head of linked list.
+        N (int, optional): number of nodes. Defaults to 1.
 
     Returns:
-        Node: selected node.
+        List: selected nodes.
     """
     if not root:
         return None
@@ -398,19 +381,26 @@ def select_random(root: Node) -> Node:
         return root
 
     random.seed()
-    res = root
-    n = 2
-    curr = root.next
 
-    while curr:
+    reservoir = []
+    node = root
+    count = 0
+    for _ in range(N):
+        reservoir.append(node)
+        node = node.next
+        count += 1
 
-        if random.randrange(n) == 0:
-            res = curr
+    while node:
 
-        curr = curr.next
-        n += 1
+        idx = random.randrange(count + 1)
 
-    return res
+        if idx < N:
+            reservoir[idx] = node
+
+        node = node.next
+        count += 1
+
+    return reservoir
 
 
 def get_data_list(head: Node) -> List:
@@ -518,9 +508,9 @@ if __name__ == "__main__":
     list2.insert(8)
     list2.insert(7)
 
-    intersection, union = find_intersection_union(list1, list2)
-    assert intersection.store_data_list() == [9]
-    assert union.store_data_list() == [1, 2, 3, 9, 8, 7]
+    intersection, union = find_intersection_union(list1.head, list2.head)
+    assert intersection == {9}
+    assert union == {1, 2, 3, 9, 8, 7}
 
     list1 = LinkedList()
     list1.insert(50)
@@ -561,9 +551,12 @@ if __name__ == "__main__":
     res_freq = {}
 
     for _ in range(10000):
-        val = select_random(list1.head).data
-        res_freq[val] = res_freq.get(val, 0) + 1
+        val_list = select_random(list1.head, 1)
+
+        for val in val_list:
+            res_freq[val.data] = res_freq.get(val.data, 0) + 1
 
     res_prob = [x / 10000 for x in res_freq.values()]
+
     assert all([x < 0.25 for x in res_prob])
     assert all([x > 0.15 for x in res_prob])

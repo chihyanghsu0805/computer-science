@@ -134,9 +134,9 @@ def test_find_intersection_union():
     list2.insert(8)
     list2.insert(7)
 
-    intersection, union = find_intersection_union(list1, list2)
-    assert intersection.store_data_list() == [9]
-    assert union.store_data_list() == [1, 2, 3, 9, 8, 7]
+    intersection, union = find_intersection_union(list1.head, list2.head)
+    assert intersection == {9}
+    assert union == {1, 2, 3, 9, 8, 7}
 
 
 def test_detect_remove_loop():
@@ -186,9 +186,12 @@ def test_select_random():
     res_freq = {}
 
     for _ in range(10000):
-        val = select_random(list1.head).data
-        res_freq[val] = res_freq.get(val, 0) + 1
+        val_list = select_random(list1.head, 1)
+
+        for val in val_list:
+            res_freq[val.data] = res_freq.get(val.data, 0) + 1
 
     res_prob = [x / 10000 for x in res_freq.values()]
+
     assert all([x < 0.25 for x in res_prob])
     assert all([x > 0.15 for x in res_prob])
