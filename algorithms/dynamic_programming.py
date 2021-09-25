@@ -569,6 +569,200 @@ def play_coin_game(arr: List) -> int:
     return table[0][N - 1]
 
 
+def fill_knapsack(weight: List, value: List, threshold: int) -> int:
+    """Fill Knapsack.
+
+    Args:
+        weight (List): array of weights.
+        value (List): array of values.
+        threshold (int): weight threshold.
+
+    Returns:
+        int: maximum value.
+    """
+    N = len(weight)
+    memo = [[-1 for _ in range(threshold + 1)] for _ in range(N + 1)]
+
+    def knapsack(W, n):
+
+        if not n:
+            return 0
+
+        if not W:
+            return 0
+
+        if memo[n][W] != -1:
+            return memo[n][W]
+
+        if weight[n - 1] <= W:
+
+            memo[n][W] = max(
+                value[n - 1] + knapsack(W - weight[n - 1], n - 1), knapsack(W, n - 1)
+            )
+        elif weight[-1] > W:
+            memo[n][W] = knapsack(W, n - 1)
+
+        return memo[n][W]
+
+    knapsack(threshold, N)
+
+    return memo[N][threshold]
+
+
+def fill_knapsack2(weight: List, value: List, threshold: int) -> int:
+    """Fill Knapsack.
+
+    Args:
+        weight (List): array of weights.
+        value (List): array of values.
+        threshold (int): weight threshold.
+
+    Returns:
+        int: maximum value.
+    """
+    N = len(weight)
+    memo = [[-1 for _ in range(threshold + 1)] for _ in range(N + 1)]
+
+    for i in range(N + 1):
+        for w in range(threshold + 1):
+
+            if not i or not w:
+                memo[i][w] = 0
+
+            elif weight[i - 1] <= w:
+                memo[i][w] = max(
+                    value[i - 1] + memo[i - 1][w - weight[i - 1]], memo[i - 1][w]
+                )
+            else:
+                memo[i][w] = memo[i - 1][w]
+
+    return memo[N][threshold]
+
+
+def evaluate_boolean(symbols: List, operations: List) -> int:
+    """Evaluate Boolean.
+
+    Args:
+        symbols (List): array of symbols.
+        operations (List): array of operations.
+
+    Returns:
+        int: number of ways.
+    """
+    N = len(symbols)
+    F = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
+    T = [[0 for _ in range(N + 1)] for _ in range(N + 1)]
+
+    for i in range(N):
+        if symbols[i] == "F":
+            F[i][i] = 1
+        else:
+            F[i][i] = 0
+
+        if symbols[i] == "T":
+            T[i][i] = 1
+        else:
+            T[i][i] = 0
+
+    for gap in range(1, N):
+        i = 0
+        for j in range(gap, N):
+            T[i][j] = 0
+            F[i][j] = 0
+            for g in range(gap):
+                k = i + g
+
+                tik = T[i][k] + F[i][k]
+                tkj = T[k + 1][j] + F[k + 1][j]
+
+                if operations[k] == "&":
+                    T[i][j] += T[i][k] * T[k + 1][j]
+                    F[i][j] += tik * tkj - T[i][k] * T[k + 1][j]
+
+                if operations[k] == "|":
+                    F[i][j] += F[i][k] * F[k + 1][j]
+                    T[i][j] += tik * tkj - F[i][k] * F[k + 1][j]
+
+                if operations[k] == "^":
+                    T[i][j] += F[i][k] * T[k + 1][j] + T[i][k] * F[k + 1][j]
+                    F[i][j] += T[i][k] * T[k + 1][j] + F[i][k] * F[k + 1][j]
+
+            i += 1
+
+    return T[0][N - 1]
+
+
+def evaluate_boolean2(symbols, operations) -> int:
+    """Evaluate Boolean.
+
+    Args:
+        symbols (List): array of symbols.
+        operations (List): array of operations.
+
+    Returns:
+        int: number of ways.
+    """
+    s = ""
+    s_ptr = 0
+    o_ptr = 0
+
+    while s_ptr < len(symbols) and o_ptr < len(operations):
+
+        s += symbols[s_ptr]
+        s += operations[o_ptr]
+        s_ptr += 1
+        o_ptr += 1
+
+    s += symbols[s_ptr]
+    memo = {}
+
+    def count(s, result, memo):
+
+        if not s:
+            return 0
+
+        if len(s) == 1:
+            if result:
+                return s == "T"
+            return s == "F"
+
+        if (result, s) in memo:
+            return memo[(result, s)]
+
+        ways = 0
+
+        for i in range(1, len(s), 2):
+
+            c = s[i]
+            lt = s[:i]
+            rt = s[i + 1 :]
+
+            lt_T = count(lt, True, memo)
+            lt_F = count(lt, False, memo)
+            rt_T = count(rt, True, memo)
+            rt_F = count(rt, False, memo)
+
+            total = (lt_T + lt_F) * (rt_T + rt_F)
+            total_T = 0
+
+            if c == "^":
+                total_T = lt_T * rt_F + lt_F * rt_T
+            elif c == "&":
+                total_T = lt_T * rt_T
+            elif c == "|":
+                total_T = lt_T * rt_T + lt_F * rt_T + lt_T * rt_F
+
+            sub_ways = total_T if result else total - total_T
+            ways += sub_ways
+
+        memo[(result, s)] = ways
+
+        return ways
+
+    ways = count(s, True, memo)
+    return ways
+
+
 if __name__ == "__main__":
 
     X = "AGGTAB"
@@ -621,3 +815,14 @@ if __name__ == "__main__":
 
     arr = [20, 30, 2, 2, 2, 10]
     assert play_coin_game(arr) == 42
+
+    v = [60, 100, 120]
+    w = [10, 20, 30]
+    W = 50
+    assert fill_knapsack(w, v, W) == 220
+    assert fill_knapsack2(w, v, W) == 220
+
+    symbols = "TTFT"
+    operators = "|&^"
+    assert evaluate_boolean(symbols, operators) == 4
+    assert evaluate_boolean2(symbols, operators) == 4

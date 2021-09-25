@@ -4,6 +4,10 @@ from __future__ import absolute_import, print_function
 from algorithms.dynamic_programming import (
     count_number_ways,
     count_number_ways2,
+    evaluate_boolean,
+    evaluate_boolean2,
+    fill_knapsack,
+    fill_knapsack2,
     find_all_subsets,
     find_longest_common_subsequence,
     find_longest_common_subsequence2,
@@ -92,3 +96,20 @@ def test_play_coin_game():
 
     arr = [20, 30, 2, 2, 2, 10]
     assert play_coin_game(arr) == 42
+
+
+def test_fill_knapsack():
+    """Test Fill Knapsack."""
+    v = [60, 100, 120]
+    w = [10, 20, 30]
+    W = 50
+    assert fill_knapsack(w, v, W) == 220
+    assert fill_knapsack2(w, v, W) == 220
+
+
+def test_evaluate_boolean():
+    """Test Evaluate Boolean."""
+    symbols = "TTFT"
+    operators = "|&^"
+    assert evaluate_boolean(symbols, operators) == 4
+    assert evaluate_boolean2(symbols, operators) == 4

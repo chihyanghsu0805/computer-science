@@ -35,3 +35,5 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Subset Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS)
     - Find All Subset Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS)
 - Coin Game: O<sub>T</sub>(N<sup>2</sup>), O<sub>S</sub>(N<sup>2</sup>)
+- 0-1 Knapsack: O<sub>T</sub>(NW), O<sub>S</sub>(NW)
+- Boolean Evaluation: O(N<sup>3</sup>)
