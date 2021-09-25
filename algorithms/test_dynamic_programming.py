@@ -4,6 +4,7 @@ from __future__ import absolute_import, print_function
 from algorithms.dynamic_programming import (
     count_number_ways,
     count_number_ways2,
+    find_all_subsets,
     find_longest_common_subsequence,
     find_longest_common_subsequence2,
     find_longest_common_subsequence3,
@@ -13,6 +14,8 @@ from algorithms.dynamic_programming import (
     find_minimum_edit2,
     find_minimum_edit3,
     find_minimum_partition_sum,
+    find_subset_sum,
+    find_subset_sum2,
 )
 
 
@@ -60,3 +63,19 @@ def test_find_longest_path():
     """Test Find Longest Path."""
     m = [[1, 2, 9], [5, 3, 8], [4, 6, 7]]
     assert find_longest_path(m) == 4
+
+
+def test_find_subset_sum():
+    """Test Find Subset Sum."""
+    arr = [3, 34, 4, 12, 5, 2]
+    _sum = 9
+    assert find_subset_sum(arr, _sum)[0]
+    dp = find_subset_sum(arr, _sum)[1]
+    subsets = []
+    find_all_subsets(arr, len(arr), _sum, [], dp, subsets)
+    assert all(sum(sub) == _sum for sub in subsets)
+    assert find_subset_sum2(arr, _sum)
+
+    _sum = 30
+    assert not find_subset_sum(arr, _sum)[0]
+    assert not find_subset_sum2(arr, _sum)

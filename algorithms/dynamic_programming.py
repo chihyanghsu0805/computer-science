@@ -437,6 +437,103 @@ def find_longest_path(matrix: List) -> int:
     return longest_path
 
 
+def find_subset_sum(arr: List, target: int) -> bool:
+    """Find Subset Sum.
+
+    Args:
+        arr (List): given array.
+        target (int): target sum.
+
+    Returns:
+        bool: sum found.
+    """
+    N = len(arr)
+
+    dp = [[False for _ in range(target + 1)] for _ in range(N + 1)]
+
+    for i in range(N + 1):
+        dp[i][0] = True
+
+    for i in range(1, N + 1):
+        for j in range(1, target + 1):
+
+            if arr[i - 1] > j:
+                dp[i][j] = dp[i - 1][j]
+
+            elif j >= arr[i - 1]:
+                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - arr[i - 1]]
+
+    return dp[-1][target], dp
+
+
+def find_subset_sum2(arr: List, target: int) -> bool:
+    """Find Subset Sum.
+
+    Args:
+        arr (List): given array.
+        target (int): target sum.
+
+    Returns:
+        bool: sum found.
+    """
+    N = len(arr)
+
+    dp = [[False for _ in range(target + 1)] for _ in range(2)]
+
+    for i in range(N + 1):
+        for j in range(target + 1):
+
+            if j == 0:
+                dp[i % 2][j] = True
+
+            elif i == 0:
+                dp[i % 2][j] = False
+
+            elif arr[i - 1] > j:
+                dp[i % 2][j] = dp[(i + 1) % 2][j]
+
+            elif j >= arr[i - 1]:
+                dp[i % 2][j] = dp[(i + 1) % 2][j] or dp[(i + 1) % 2][j - arr[i - 1]]
+
+    return dp[i % 2][target]
+
+
+def find_all_subsets(
+    arr: List, index: int, target: int, path: List, subset: List, result: List
+):
+    """Find All Subsets.
+
+    Args:
+        arr (List): given array.
+        index (int): row index in subset matrix.
+        target (int): target sum.
+        path (List): path to target sum.
+        subset (List): subset matrix.
+        result (List): subset that sums to target.
+    """
+    if index == 0 and target != 0 and subset[0][target]:
+        path.append(arr[index])
+        result.append(path)
+        return
+
+    if index == 0 and target == 0:
+        result.append(path)
+        return
+
+    if subset[index - 1][target]:
+        find_all_subsets(arr, index - 1, target, path, subset, result)
+
+    if target >= arr[index - 1] and subset[index][target - arr[index - 1]]:
+        find_all_subsets(
+            arr,
+            index - 1,
+            target - arr[index - 1],
+            path + [arr[index - 1]],
+            subset,
+            result,
+        )
+
+
 if __name__ == "__main__":
 
     X = "AGGTAB"
@@ -467,3 +564,17 @@ if __name__ == "__main__":
 
     m = [[1, 2, 9], [5, 3, 8], [4, 6, 7]]
     assert find_longest_path(m) == 4
+
+    arr = [3, 34, 4, 12, 5, 2]
+    _sum = 9
+
+    assert find_subset_sum(arr, _sum)[0]
+    dp = find_subset_sum(arr, _sum)[1]
+    subsets = []
+    find_all_subsets(arr, len(arr), _sum, [], dp, subsets)
+    assert all(sum(sub) == _sum for sub in subsets)
+    assert find_subset_sum2(arr, _sum)
+
+    _sum = 30
+    assert not find_subset_sum(arr, _sum)[0]
+    assert not find_subset_sum2(arr, _sum)
