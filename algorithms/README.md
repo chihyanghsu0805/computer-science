@@ -27,3 +27,13 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 
 ## Dynamic Programming
 - Longest Common Sequence: O<sub>T</sub>(MN), O<sub>S</sub>(MN) -> O<sub>S</sub>(N)
+- Longest Increasing Subsequence: O(NlogN)
+- Minimum Cost: O<sub>T</sub>(MN), O<sub>S</sub>(MN) -> O<sub>S</sub>(N)
+- Minimum Partition Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS) -> O<sub>S</sub>(N)
+- Number of Ways: O<sub>T</sub>(N), O<sub>S</sub>(N) -> O<sub>S</sub>(1)
+- Longest Path: O<sub>T</sub>(MN), O<sub>S</sub>(MN)
+- Subset Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS)
+    - Find All Subset Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS)
+- Coin Game: O<sub>T</sub>(N<sup>2</sup>), O<sub>S</sub>(N<sup>2</sup>)
+- 0-1 Knapsack: O<sub>T</sub>(NW), O<sub>S</sub>(NW)
+- Boolean Evaluation: O(N<sup>3</sup>)
