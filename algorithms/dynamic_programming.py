@@ -343,6 +343,48 @@ def find_minimum_partition_sum2(arr: List) -> int:
     return diff
 
 
+def count_number_ways(n: int) -> int:
+    """Count Number of Ways.
+
+    Args:
+        n (int): number of step.
+
+    Returns:
+        int: number of ways.
+    """
+    dp = [0] * (n + 1)
+
+    dp[1] = 1
+    dp[2] = 2
+    dp[3] = 4
+
+    for i in range(4, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+
+    return dp[n]
+
+
+def count_number_ways2(n: int) -> int:
+    """Count Number of Ways.
+
+    Args:
+        n (int): number of step.
+
+    Returns:
+        int: number of ways.
+    """
+    dp = [0] * 3
+
+    dp[0] = 1
+    dp[1] = 1
+    dp[2] = 2
+
+    for i in range(3, n + 1):
+        dp[i % 3] = dp[(i - 1) % 3] + dp[(i - 2) % 3] + dp[(i - 3) % 3]
+
+    return dp[n % 3]
+
+
 if __name__ == "__main__":
 
     X = "AGGTAB"
@@ -366,3 +408,7 @@ if __name__ == "__main__":
     arr = [3, 1, 4, 2, 2, 1]
     assert find_minimum_partition_sum(arr) == 1
     assert find_minimum_partition_sum2(arr) == 1
+
+    n = 4
+    assert count_number_ways(n) == 7
+    assert count_number_ways2(n) == 7

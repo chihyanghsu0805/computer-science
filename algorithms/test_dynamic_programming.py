@@ -2,6 +2,8 @@
 from __future__ import absolute_import, print_function
 
 from algorithms.dynamic_programming import (
+    count_number_ways,
+    count_number_ways2,
     find_longest_common_subsequence,
     find_longest_common_subsequence2,
     find_longest_common_subsequence3,
@@ -44,3 +46,10 @@ def test_find_minimum_partition_sum():
     """Test Minimum Partition Sum."""
     arr = [3, 1, 4, 2, 2, 1]
     assert find_minimum_partition_sum(arr) == 1
+
+
+def test_count_number_ways():
+    """Test Count Number of Ways."""
+    n = 4
+    assert count_number_ways(n) == 7
+    assert count_number_ways2(n) == 7
