@@ -34,3 +34,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Longest Path: O<sub>T</sub>(MN), O<sub>S</sub>(MN)
 - Subset Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS)
     - Find All Subset Sum: O<sub>T</sub>(NS), O<sub>S</sub>(NS)
+- Coin Game: O<sub>T</sub>(N<sup>2</sup>), O<sub>S</sub>(N<sup>2</sup>)

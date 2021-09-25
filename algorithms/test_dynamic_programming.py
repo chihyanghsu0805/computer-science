@@ -16,6 +16,7 @@ from algorithms.dynamic_programming import (
     find_minimum_partition_sum,
     find_subset_sum,
     find_subset_sum2,
+    play_coin_game,
 )
 
 
@@ -79,3 +80,15 @@ def test_find_subset_sum():
     _sum = 30
     assert not find_subset_sum(arr, _sum)[0]
     assert not find_subset_sum2(arr, _sum)
+
+
+def test_play_coin_game():
+    """Test Play Coin Game."""
+    arr = [8, 15, 3, 7]
+    assert play_coin_game(arr) == 22
+
+    arr = [2, 2, 2, 2]
+    assert play_coin_game(arr) == 4
+
+    arr = [20, 30, 2, 2, 2, 10]
+    assert play_coin_game(arr) == 42

@@ -534,6 +534,41 @@ def find_all_subsets(
         )
 
 
+def play_coin_game(arr: List) -> int:
+    """Play Coin Game.
+
+    Args:
+        arr (List): array of coins.
+
+    Returns:
+        int: optimal value.
+    """
+    N = len(arr)
+
+    table = [[0 for _ in range(N)] for _ in range(N)]
+
+    for gap in range(N):
+        for j in range(gap, N):
+
+            # Base case:
+            # F[i][j] = Vi if j==i
+            # F[i][j] = max(Vi, Vj) if j==i+1
+            i = j - gap
+
+            x, y, z = 0, 0, 0
+            if 2 <= gap:
+                # F[i+2][j], if player took i, opponent took i+1
+                x = table[i + 2][j]
+                # F[i+1][j-1], if player took j, opponent took i or vice versa
+                y = table[i + 1][j - 1]
+                # F[i+2][j], if player took j, opponent took j-1
+                z = table[i][j - 2]
+
+            table[i][j] = max(arr[i] + min(x, y), arr[j] + min(y, z))
+
+    return table[0][N - 1]
+
+
 if __name__ == "__main__":
 
     X = "AGGTAB"
@@ -578,3 +613,11 @@ if __name__ == "__main__":
     _sum = 30
     assert not find_subset_sum(arr, _sum)[0]
     assert not find_subset_sum2(arr, _sum)
+
+    arr = [8, 15, 3, 7]
+    assert play_coin_game(arr) == 22
+    arr = [2, 2, 2, 2]
+    assert play_coin_game(arr) == 4
+
+    arr = [20, 30, 2, 2, 2, 10]
+    assert play_coin_game(arr) == 42
