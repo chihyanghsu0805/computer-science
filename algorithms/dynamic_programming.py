@@ -385,6 +385,58 @@ def count_number_ways2(n: int) -> int:
     return dp[n % 3]
 
 
+def find_longest_path(matrix: List) -> int:
+    """Find Longest Path.
+
+    Args:
+        matrix (List): grid of unique integers.
+
+    Returns:
+        int: longest path.
+    """
+    m = len(matrix)
+    n = len(matrix[0])
+    longest_path = 1
+    dp = [[-1 for _ in range(n)] for _ in range(m)]
+
+    def valid_cell(r, c):
+        if r < 0 or c < 0 or r > m - 1 or c > n - 1:
+            return False
+        return True
+
+    def find_path(r, c):
+
+        if not valid_cell(r, c):
+            return 0
+
+        if dp[r][c] != -1:
+            return dp[r][c]
+
+        nbors = [(1, 0), (-1, 0), (0, -1), (0, 1)]
+
+        current = 1
+        for dr, dc in nbors:
+
+            if valid_cell(r + dr, c + dc):
+
+                if matrix[r + dr][c + dc] - matrix[r][c] == 1:
+                    temp = 1 + find_path(r + dr, c + dc)
+                    current = max(temp, current)
+
+        dp[r][c] = current
+        return dp[r][c]
+
+    for r in range(m):
+        for c in range(n):
+
+            if dp[r][c] == -1:
+                find_path(r, c)
+
+            longest_path = max(longest_path, dp[r][c])
+
+    return longest_path
+
+
 if __name__ == "__main__":
 
     X = "AGGTAB"
@@ -412,3 +464,6 @@ if __name__ == "__main__":
     n = 4
     assert count_number_ways(n) == 7
     assert count_number_ways2(n) == 7
+
+    m = [[1, 2, 9], [5, 3, 8], [4, 6, 7]]
+    assert find_longest_path(m) == 4

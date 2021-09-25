@@ -8,6 +8,7 @@ from algorithms.dynamic_programming import (
     find_longest_common_subsequence2,
     find_longest_common_subsequence3,
     find_longest_increasing_subsequence,
+    find_longest_path,
     find_minimum_edit,
     find_minimum_edit2,
     find_minimum_edit3,
@@ -53,3 +54,9 @@ def test_count_number_ways():
     n = 4
     assert count_number_ways(n) == 7
     assert count_number_ways2(n) == 7
+
+
+def test_find_longest_path():
+    """Test Find Longest Path."""
+    m = [[1, 2, 9], [5, 3, 8], [4, 6, 7]]
+    assert find_longest_path(m) == 4
