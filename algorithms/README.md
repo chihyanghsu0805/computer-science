@@ -37,3 +37,11 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Coin Game: O<sub>T</sub>(N<sup>2</sup>), O<sub>S</sub>(N<sup>2</sup>)
 - 0-1 Knapsack: O<sub>T</sub>(NW), O<sub>S</sub>(NW)
 - Boolean Evaluation: O(N<sup>3</sup>)
+
+## Sorting and Searching
+- Binary Search: O(logN)
+- Search in Sorted and Rotated: O(logN)
+- Bubble Sort: O(N<sup>2</sup>)
+- Insertion Sort: O(N<sup>2</sup>)
+- Merge Sort: O(NlogN)
+- Heap Sort:
