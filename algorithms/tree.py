@@ -171,6 +171,38 @@ def view_bottom(root: Node) -> List:
     return [map[i] for i in sorted(map.keys())]
 
 
+def view_top(root: Node) -> List:
+    """View from Top.
+
+    Args:
+        root (Node): root of tree.
+
+    Returns:
+        List: Top view.
+    """
+    if not root:
+        return []
+
+    horizontal_d = 0
+    map = {}
+    queue = []
+    queue.append((root, horizontal_d))
+
+    while queue:
+
+        node, d = queue.pop(0)
+        if d not in map:
+            map[d] = node.value
+
+        if node.lt:
+            queue.append((node.lt, d - 1))
+
+        if node.rt:
+            queue.append((node.rt, d + 1))
+
+    return [map[i] for i in sorted(map.keys())]
+
+
 if __name__ == "__main__":
 
     root = Node(1)
@@ -217,13 +249,12 @@ if __name__ == "__main__":
     root.rt.rt.rt = Node(90)
     assert check_full_binary_tree(root)
 
-    root = Node(20)
-    root.lt = Node(8)
-    root.rt = Node(22)
-    root.lt.lt = Node(5)
-    root.lt.rt = Node(3)
-    root.rt.lt = Node(4)
-    root.rt.rt = Node(25)
-    root.lt.rt.lt = Node(10)
-    root.lt.rt.rt = Node(14)
-    assert view_bottom(root) == [5, 10, 4, 14, 25]
+    root = Node(1)
+    root.lt = Node(2)
+    root.rt = Node(3)
+    root.lt.lt = Node(4)
+    root.lt.rt = Node(5)
+    root.rt.lt = Node(6)
+    root.rt.rt = Node(7)
+    assert view_bottom(root) == [4, 2, 6, 3, 7]
+    assert view_top(root) == [4, 2, 1, 3, 7]
