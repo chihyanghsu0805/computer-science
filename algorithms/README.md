@@ -54,3 +54,5 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Minimum Depth of Binary Tree: O(N)
 - Maximum Path Sum: O(N)
 - Check Array is Preorder of Binary Tree: O(N)
+- Check Full Binary Tree: O(N)
+- Bottom View: O(N)

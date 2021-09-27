@@ -119,6 +119,58 @@ def check_array_preorder_tree(arr: List) -> bool:
     return True
 
 
+def check_full_binary_tree(root: Node) -> bool:
+    """Check Full Binary Tree.
+
+    Args:
+        root (Node): root of tree.
+
+    Returns:
+        bool: tree is full.
+    """
+    if not root:
+        return True
+
+    if not root.lt and not root.rt:
+        return True
+
+    if root.lt and root.rt:
+        return check_full_binary_tree(root.lt) and check_full_binary_tree(root.rt)
+
+    return False
+
+
+def view_bottom(root: Node) -> List:
+    """View from Bottom.
+
+    Args:
+        root (Node): root of tree.
+
+    Returns:
+        List: bottom view.
+    """
+    if not root:
+        return []
+
+    horizontal_d = 0
+    map = {}
+    queue = []
+    queue.append((root, horizontal_d))
+
+    while queue:
+
+        node, d = queue.pop(0)
+        map[d] = node.value
+
+        if node.lt:
+            queue.append((node.lt, d - 1))
+
+        if node.rt:
+            queue.append((node.rt, d + 1))
+
+    return [map[i] for i in sorted(map.keys())]
+
+
 if __name__ == "__main__":
 
     root = Node(1)
@@ -143,3 +195,35 @@ if __name__ == "__main__":
     assert check_array_preorder_tree(arr)
     arr = [40, 30, 35, 20, 80, 100]
     assert not check_array_preorder_tree(arr)
+
+    root = Node(10)
+    root.lt = Node(20)
+    root.rt = Node(30)
+
+    root.lt.rt = Node(40)
+    root.lt.lt = Node(50)
+    root.rt.lt = Node(60)
+    root.rt.rt = Node(70)
+
+    root.lt.lt.lt = Node(80)
+    root.lt.lt.rt = Node(90)
+    root.lt.rt.lt = Node(80)
+    root.lt.rt.rt = Node(90)
+    root.rt.lt.lt = Node(80)
+    root.rt.lt.rt = Node(90)
+    root.rt.rt.lt = Node(80)
+
+    assert not check_full_binary_tree(root)
+    root.rt.rt.rt = Node(90)
+    assert check_full_binary_tree(root)
+
+    root = Node(20)
+    root.lt = Node(8)
+    root.rt = Node(22)
+    root.lt.lt = Node(5)
+    root.lt.rt = Node(3)
+    root.rt.lt = Node(4)
+    root.rt.rt = Node(25)
+    root.lt.rt.lt = Node(10)
+    root.lt.rt.rt = Node(14)
+    assert view_bottom(root) == [5, 10, 4, 14, 25]
