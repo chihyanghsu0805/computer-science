@@ -44,4 +44,8 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Bubble Sort: O(N<sup>2</sup>)
 - Insertion Sort: O(N<sup>2</sup>)
 - Merge Sort: O(NlogN)
-- Heap Sort:
+- Heap Sort: O(NlogN)
+- Quick Sort: O(NlogN)
+- Interpolation Search: O(N)
+- Kth Smallest/Largest Element in Array: O(N) (expected)
+- Find Pair with Closest Sum in Sorted Array: O(N)

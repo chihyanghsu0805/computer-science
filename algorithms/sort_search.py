@@ -181,6 +181,177 @@ def heap_sort(arr: List) -> None:
         heapify(arr, i, 0)
 
 
+def quick_sort(arr: List, lo: int, hi: int) -> None:
+    """Run Quick Sort.
+
+    Args:
+        arr (List): Given array.
+        lo (int): start index.
+        hi (int): end index.
+    """
+
+    def partition(arr, lo, hi):
+        # Hoare's
+
+        pivot_index = lo
+        pivot_value = arr[pivot_index]
+
+        while lo < hi:
+
+            while lo < len(arr) and arr[lo] <= pivot_value:
+                lo += 1
+
+            while arr[hi] > pivot_value:
+                hi -= 1
+
+            if lo < hi:
+                arr[lo], arr[hi] = arr[hi], arr[lo]
+
+        arr[hi], arr[pivot_index] = arr[pivot_index], arr[hi]
+
+        return hi
+
+    if lo < hi:
+        idx = partition(arr, lo, hi)
+
+        quick_sort(arr, lo, idx - 1)
+        quick_sort(arr, idx + 1, hi)
+
+
+def interpolation_search(arr: List, target: int, lo: int, hi: int) -> int:
+    """Run Interpolation Search.
+
+    Args:
+        arr (List): Given array.
+        target (int): target value.
+        lo (int): start index.
+        hi (int): end index.
+
+    Returns:
+        int: array index, -1 if not found.
+    """
+    if target < arr[lo] or target > arr[hi]:
+        return -1
+
+    if hi < lo:
+        return -1
+
+    idx = lo + ((hi - lo) // (arr[hi] - arr[lo]) * (target - arr[lo]))
+
+    if arr[idx] == target:
+        return idx
+    elif arr[idx] < target:
+        return interpolation_search(arr, target, idx + 1, hi)
+    else:
+        return interpolation_search(arr, target, lo, idx - 1)
+
+
+def interpolation_search2(arr: List, target: int) -> int:
+    """Run Interpolation Search.
+
+    Args:
+        arr (List): Given array.
+        target (int): target value.
+        lo (int): start index.
+        hi (int): end index.
+
+    Returns:
+        int: array index, -1 if not found.
+    """
+    lo = 0
+    hi = len(arr) - 1
+    while lo <= hi:
+
+        if hi == lo:
+            idx = hi
+        else:
+            idx = lo + ((hi - lo) // (arr[hi] - arr[lo]) * (x - arr[lo]))
+
+        if arr[idx] == target:
+            return idx
+        elif arr[idx] < target:
+            lo = idx + 1
+        else:
+            hi = idx - 1
+
+    return -1
+
+
+def quick_select(arr: list, K: int) -> int:
+    """Quick Select.
+
+    Args:
+        arr (list): Given array.
+        K (int): Kth.
+
+    Returns:
+        int: array index.
+    """
+
+    def partition(arr, lo, hi):
+        # Lomuto's
+
+        pivot_index = lo + (hi - lo) // 2
+        pivot_value = arr[pivot_index]
+
+        arr[pivot_index], arr[hi] = arr[hi], arr[pivot_index]
+        store_index = lo
+        for i in range(lo, hi):
+            if arr[i] < pivot_value:
+                arr[store_index], arr[i] = arr[i], arr[store_index]
+                store_index += 1
+
+        arr[store_index], arr[hi] = arr[hi], arr[store_index]
+        return store_index
+
+    lo, hi = 0, len(arr) - 1
+
+    while lo <= hi:
+
+        if lo == hi:
+            return arr[lo]
+
+        pivot_index = partition(arr, lo, hi)
+        if pivot_index == K:
+            return arr[pivot_index]
+        elif pivot_index < K:
+            lo = pivot_index + 1
+        else:
+            hi = pivot_index - 1
+
+    return -1
+
+
+def find_pair_closest_sum(arr: List, target: int) -> List:
+    """Find pair with Closest Sum.
+
+    Args:
+        arr (List): Given array.
+        target (int): Target sum.
+
+    Returns:
+        List: array indices.
+    """
+    lt, rt = 0, len(arr) - 1
+
+    min_diff = float("inf")
+
+    while lt < rt:
+
+        diff = abs(arr[lt] + arr[rt] - target)
+        if diff < min_diff:
+            min_diff = diff
+            pair = [lt, rt]
+
+        if arr[lt] + arr[rt] > target:
+            rt -= 1
+
+        else:
+            lt += 1
+
+    return pair
+
+
 if __name__ == "__main__":
 
     arr = [2, 3, 4, 10, 40]
@@ -212,3 +383,25 @@ if __name__ == "__main__":
     arr = [64, 34, 25, 12, 22, 11, 90]
     heap_sort(arr)
     assert arr == [11, 12, 22, 25, 34, 64, 90]
+
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    quick_sort(arr, 0, len(arr) - 1)
+    assert arr == [11, 12, 22, 25, 34, 64, 90]
+
+    arr = [2, 3, 4, 10, 40]
+    x = 10
+    assert interpolation_search(arr, x, 0, len(arr) - 1) == 3
+    assert interpolation_search2(arr, x) == 3
+    x = 15
+    assert interpolation_search(arr, x, 0, len(arr) - 1) == -1
+    assert interpolation_search2(arr, x) == -1
+
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    temp = [quick_select(arr, i) for i in range(0, len(arr))]
+    assert temp == sorted(arr)
+
+    arr = [10, 22, 28, 29, 30, 40]
+    x = 54
+    assert find_pair_closest_sum(arr, x) == [1, 4]
+    x = 56
+    assert find_pair_closest_sum(arr, x) == [2, 3]

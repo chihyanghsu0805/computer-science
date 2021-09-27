@@ -5,9 +5,12 @@ from __future__ import absolute_import, print_function
 from algorithms.sort_search import (
     binary_search,
     bubble_sort,
+    find_pair_closest_sum,
     heap_sort,
     insertion_sort,
     merge_sort,
+    quick_select,
+    quick_sort,
     search_sorted_rotated,
 )
 
@@ -58,3 +61,26 @@ def test_heap_sort():
     arr = [64, 34, 25, 12, 22, 11, 90]
     heap_sort(arr)
     assert arr == [11, 12, 22, 25, 34, 64, 90]
+
+
+def test_quick_sort():
+    """Test Quick Sort."""
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    quick_sort(arr, 0, len(arr) - 1)
+    assert arr == [11, 12, 22, 25, 34, 64, 90]
+
+
+def test_quick_select():
+    """Test Quick Select."""
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    temp = [quick_select(arr, i) for i in range(0, len(arr))]
+    assert temp == sorted(arr)
+
+
+def test_find_pair_closest_sum():
+    """Test Find Pair Closest Sum."""
+    arr = [10, 22, 28, 29, 30, 40]
+    x = 54
+    assert find_pair_closest_sum(arr, x) == [1, 4]
+    x = 56
+    assert find_pair_closest_sum(arr, x) == [2, 3]
