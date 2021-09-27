@@ -49,3 +49,8 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Interpolation Search: O(N)
 - Kth Smallest/Largest Element in Array: O(N) (expected)
 - Find Pair with Closest Sum in Sorted Array: O(N)
+
+## Tree
+- Minimum Depth of Binary Tree: O(N)
+- Maximum Path Sum: O(N)
+- Check Array is Preorder of Binary Tree: O(N)
