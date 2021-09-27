@@ -56,3 +56,6 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Check Array is Preorder of Binary Tree: O(N)
 - Check Full Binary Tree: O(N)
 - Bottom View: O(N)
+- Top View: O(N)
+- Remove Node with path < K: O(N)
+- Lowest Common Ancestor: O(H)

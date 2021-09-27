@@ -3,10 +3,14 @@
 from algorithms.tree import (
     Node,
     check_array_preorder_tree,
+    find_lowest_common_ancestor,
     find_max_path_sum,
     find_min_depth,
     find_min_depth2,
+    inorder,
+    remove_node_on_path,
     view_bottom,
+    view_top,
 )
 
 
@@ -54,3 +58,47 @@ def test_view_bottom():
     root.lt.rt.lt = Node(10)
     root.lt.rt.rt = Node(14)
     assert view_bottom(root) == [5, 10, 4, 14, 25]
+
+
+def test_view_top():
+    """Test View Top."""
+    root = Node(1)
+    root.lt = Node(2)
+    root.rt = Node(3)
+    root.lt.lt = Node(4)
+    root.lt.rt = Node(5)
+    root.rt.lt = Node(6)
+    root.rt.rt = Node(7)
+    assert view_top(root) == [4, 2, 1, 3, 7]
+
+
+def test_remove_node_on_path():
+    """Test Remove Node on Path."""
+    k = 4
+    root = Node(1)
+    root.lt = Node(2)
+    root.rt = Node(3)
+    root.lt.lt = Node(4)
+    root.lt.rt = Node(5)
+    root.lt.lt.lt = Node(7)
+    root.rt.rt = Node(6)
+    root.rt.rt.lt = Node(8)
+
+    assert inorder(remove_node_on_path(root, k)) == [7, 4, 2, 1, 3, 8, 6]
+
+
+def test_find_lowest_common_ancestor():
+    """Test Find Lowest Common Ancestor."""
+    root = Node(20)
+    root.lt = Node(8)
+    root.rt = Node(22)
+    root.lt.lt = Node(4)
+    root.lt.rt = Node(12)
+    root.lt.rt.lt = Node(10)
+    root.lt.rt.rt = Node(14)
+    v1, v2 = 10, 14
+    assert find_lowest_common_ancestor(root, v1, v2).value == 12
+    v1, v2 = 8, 14
+    assert find_lowest_common_ancestor(root, v1, v2).value == 8
+    v1, v2 = 10, 22
+    assert find_lowest_common_ancestor(root, v1, v2).value == 20

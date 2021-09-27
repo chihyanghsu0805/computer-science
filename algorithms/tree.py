@@ -203,6 +203,83 @@ def view_top(root: Node) -> List:
     return [map[i] for i in sorted(map.keys())]
 
 
+def remove_node_on_path(root: Node, k: int) -> Node:
+    """Remove Node on Path Shorter than K.
+
+    Args:
+        root (Node): root of tree.
+        k (int): path length threshold.
+
+    Returns:
+        Node: root of tree.
+    """
+
+    def helper(root, k, d):
+        if not root:
+            return None
+        root.lt = helper(root.lt, k, d + 1)
+        root.rt = helper(root.rt, k, d + 1)
+
+        if not root.lt and not root.rt and d < k:
+            return None
+
+        return root
+
+    return helper(root, k, 1)
+
+
+def inorder(root: Node) -> List:
+    """Traverse Inorder.
+
+    Args:
+        root (Node): Root of tree.
+
+    Returns:
+        List: inorder value array.
+    """
+    arr = []
+    current = root
+    stack = []
+    while True:
+
+        if current:
+            stack.append(current)
+            current = current.lt
+
+        elif stack:
+            current = stack.pop()
+            arr.append(current.value)
+            current = current.rt
+
+        else:
+            break
+
+    return arr
+
+
+def find_lowest_common_ancestor(root: Node, v1: int, v2: int) -> Node:
+    """Find Lowest Common Ancestor in BST.
+
+    Args:
+        root (Node): root of tree.
+        v1 (int): first value.
+        v2 (int): second value.
+
+    Returns:
+        Node: Lowest Common Ancestor.
+    """
+    if not root:
+        return None
+
+    if v1 < root.value and v2 < root.value:
+        return find_lowest_common_ancestor(root.lt, v1, v2)
+
+    if v1 > root.value and v2 > root.value:
+        return find_lowest_common_ancestor(root.rt, v1, v2)
+
+    return root
+
+
 if __name__ == "__main__":
 
     root = Node(1)
@@ -258,3 +335,29 @@ if __name__ == "__main__":
     root.rt.rt = Node(7)
     assert view_bottom(root) == [4, 2, 6, 3, 7]
     assert view_top(root) == [4, 2, 1, 3, 7]
+
+    k = 4
+    root = Node(1)
+    root.lt = Node(2)
+    root.rt = Node(3)
+    root.lt.lt = Node(4)
+    root.lt.rt = Node(5)
+    root.lt.lt.lt = Node(7)
+    root.rt.rt = Node(6)
+    root.rt.rt.lt = Node(8)
+
+    assert inorder(remove_node_on_path(root, k)) == [7, 4, 2, 1, 3, 8, 6]
+
+    root = Node(20)
+    root.lt = Node(8)
+    root.rt = Node(22)
+    root.lt.lt = Node(4)
+    root.lt.rt = Node(12)
+    root.lt.rt.lt = Node(10)
+    root.lt.rt.rt = Node(14)
+    v1, v2 = 10, 14
+    assert find_lowest_common_ancestor(root, v1, v2).value == 12
+    v1, v2 = 8, 14
+    assert find_lowest_common_ancestor(root, v1, v2).value == 8
+    v1, v2 = 10, 22
+    assert find_lowest_common_ancestor(root, v1, v2).value == 20
