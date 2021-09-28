@@ -37,3 +37,34 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Coin Game: O<sub>T</sub>(N<sup>2</sup>), O<sub>S</sub>(N<sup>2</sup>)
 - 0-1 Knapsack: O<sub>T</sub>(NW), O<sub>S</sub>(NW)
 - Boolean Evaluation: O(N<sup>3</sup>)
+
+## Sorting and Searching
+- Binary Search: O(logN)
+- Search in Sorted and Rotated: O(logN)
+- Bubble Sort: O(N<sup>2</sup>)
+- Insertion Sort: O(N<sup>2</sup>)
+- Merge Sort: O(NlogN)
+- Heap Sort: O(NlogN)
+- Quick Sort: O(NlogN)
+- Interpolation Search: O(N)
+- Kth Smallest/Largest Element in Array: O(N) (expected)
+- Find Pair with Closest Sum in Sorted Array: O(N)
+
+## Tree
+- Minimum Depth of Binary Tree: O(N)
+- Maximum Path Sum: O(N)
+- Check Array is Preorder of Binary Tree: O(N)
+- Check Full Binary Tree: O(N)
+- Bottom View: O(N)
+- Top View: O(N)
+- Remove Node with path < K: O(N)
+- Lowest Common Ancestor: O(H)
+- Subtree: O(N)
+- Reverse Alternate Level: O(N)
+
+## Number Theory
+- Modular Exponentiation: O(logN)
+- Modular Multiplicative Inverse: O(N) -> O(logN)
+- Primality Test: O(N) -> O(N<sup>1/2</sup>) -> O(klogN)
+- Euler's Totient: O(NlogN)
+- Sieve of Eratosthenes (Count Primes): O(NloglogN)
