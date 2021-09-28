@@ -24,3 +24,6 @@ This repository contains coding practices.
 - Graph
 - Linked List
 - Dynamic Programming
+- Sorting and Searching
+- Tree
+- Number Theory
