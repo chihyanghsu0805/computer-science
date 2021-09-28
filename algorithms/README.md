@@ -59,3 +59,5 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Top View: O(N)
 - Remove Node with path < K: O(N)
 - Lowest Common Ancestor: O(H)
+- Subtree: O(N)
+- Reverse Alternate Level: O(N)

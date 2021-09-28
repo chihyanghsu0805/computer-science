@@ -3,12 +3,14 @@
 from algorithms.tree import (
     Node,
     check_array_preorder_tree,
+    check_subtree,
     find_lowest_common_ancestor,
     find_max_path_sum,
     find_min_depth,
     find_min_depth2,
     inorder,
     remove_node_on_path,
+    reverse_alternate_level,
     view_bottom,
     view_top,
 )
@@ -102,3 +104,57 @@ def test_find_lowest_common_ancestor():
     assert find_lowest_common_ancestor(root, v1, v2).value == 8
     v1, v2 = 10, 22
     assert find_lowest_common_ancestor(root, v1, v2).value == 20
+
+
+def test_check_subtree():
+    """Test Check Subtree."""
+    root1 = Node("A")
+    root1.lt = Node("B")
+    root1.rt = Node("D")
+    root1.lt.lt = Node("C")
+    root1.rt.rt = Node("E")
+
+    root2 = Node("A")
+    root2.lt = Node("B")
+    root2.rt = Node("D")
+    root2.lt.lt = Node("C")
+
+    assert not check_subtree(root2, root1)
+
+
+def test_reverse_alternate_level():
+    """Test Reverse Alternate Level."""
+    root = Node("a")
+    root.lt = Node("b")
+    root.rt = Node("c")
+    root.lt.lt = Node("d")
+    root.lt.rt = Node("e")
+    root.rt.lt = Node("f")
+    root.rt.rt = Node("g")
+    root.lt.lt.lt = Node("h")
+    root.lt.lt.rt = Node("i")
+    root.lt.rt.lt = Node("j")
+    root.lt.rt.rt = Node("k")
+    root.rt.lt.lt = Node("l")
+    root.rt.lt.rt = Node("m")
+    root.rt.rt.lt = Node("n")
+    root.rt.rt.rt = Node("o")
+
+    reverse_alternate_level(root)
+    assert inorder(root) == [
+        "o",
+        "d",
+        "n",
+        "c",
+        "m",
+        "e",
+        "l",
+        "a",
+        "k",
+        "f",
+        "j",
+        "b",
+        "i",
+        "g",
+        "h",
+    ]

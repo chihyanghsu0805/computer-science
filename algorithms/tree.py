@@ -280,6 +280,54 @@ def find_lowest_common_ancestor(root: Node, v1: int, v2: int) -> Node:
     return root
 
 
+def check_subtree(root1: Node, root2: Node) -> bool:
+    """Check Root1 is Subtree of Root2.
+
+    Args:
+        root1 (Node): root of first tree.
+        root2 (Node): root of second tree.
+
+    Returns:
+        bool: True if root1 is subtree of root2.
+    """
+    return preorder(root1) in preorder(root2)
+
+
+def preorder(root: Node) -> str:
+    """Traverse Inorder.
+
+    Args:
+        root (Node): Root of tree.
+
+    Returns:
+        str: preorder string.
+    """
+    return (
+        "^" + str(root.value) + preorder(root.lt) + preorder(root.rt) if root else "#"
+    )
+
+
+def reverse_alternate_level(root: Node) -> None:
+    """Reverse Alternate Level.
+
+    Args:
+        root (Node): Root of tree.
+    """
+
+    def helper(root1, root2, depth):
+
+        if not root1 and not root2:
+            return
+
+        if depth % 2 == 0:
+            root1.value, root2.value = root2.value, root1.value
+
+        helper(root1.lt, root2.rt, depth + 1)
+        helper(root1.rt, root2.lt, depth + 1)
+
+    helper(root.lt, root.rt, 0)
+
+
 if __name__ == "__main__":
 
     root = Node(1)
@@ -361,3 +409,51 @@ if __name__ == "__main__":
     assert find_lowest_common_ancestor(root, v1, v2).value == 8
     v1, v2 = 10, 22
     assert find_lowest_common_ancestor(root, v1, v2).value == 20
+
+    root1 = Node("A")
+    root1.lt = Node("B")
+    root1.rt = Node("D")
+    root1.lt.lt = Node("C")
+    root1.rt.rt = Node("E")
+
+    root2 = Node("A")
+    root2.lt = Node("B")
+    root2.rt = Node("D")
+    root2.lt.lt = Node("C")
+
+    assert not check_subtree(root2, root1)
+
+    root = Node("a")
+    root.lt = Node("b")
+    root.rt = Node("c")
+    root.lt.lt = Node("d")
+    root.lt.rt = Node("e")
+    root.rt.lt = Node("f")
+    root.rt.rt = Node("g")
+    root.lt.lt.lt = Node("h")
+    root.lt.lt.rt = Node("i")
+    root.lt.rt.lt = Node("j")
+    root.lt.rt.rt = Node("k")
+    root.rt.lt.lt = Node("l")
+    root.rt.lt.rt = Node("m")
+    root.rt.rt.lt = Node("n")
+    root.rt.rt.rt = Node("o")
+
+    reverse_alternate_level(root)
+    assert inorder(root) == [
+        "o",
+        "d",
+        "n",
+        "c",
+        "m",
+        "e",
+        "l",
+        "a",
+        "k",
+        "f",
+        "j",
+        "b",
+        "i",
+        "g",
+        "h",
+    ]
