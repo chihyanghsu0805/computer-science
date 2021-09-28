@@ -37,8 +37,7 @@
     language: system
     entry: pydocstyle
     types: [python]
-    #exclude: '^tests\/\S*'
-    exclude: '^test\/\S*'
+    exclude: '^tests\/\S*'
 
 - repo: local
   hooks:
