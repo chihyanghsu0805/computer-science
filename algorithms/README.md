@@ -61,3 +61,10 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Lowest Common Ancestor: O(H)
 - Subtree: O(N)
 - Reverse Alternate Level: O(N)
+
+## Number Theory
+- Modular Exponentiation: O(logN)
+- Modular Multiplicative Inverse: O(N) -> O(logN)
+- Primality Test: O(N) -> O(N<sup>1/2</sup>) -> O(klogN)
+- Euler's Totient: O(NlogN)
+- Sieve of Eratosthenes (Count Primes):
