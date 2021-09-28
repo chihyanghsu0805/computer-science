@@ -67,4 +67,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Modular Multiplicative Inverse: O(N) -> O(logN)
 - Primality Test: O(N) -> O(N<sup>1/2</sup>) -> O(klogN)
 - Euler's Totient: O(NlogN)
-- Sieve of Eratosthenes (Count Primes):
+- Sieve of Eratosthenes (Count Primes): O(NloglogN)
