@@ -27,3 +27,4 @@ This repository contains coding practices.
 - Sorting and Searching
 - Tree
 - Number Theory
+- Bit
