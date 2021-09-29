@@ -67,4 +67,15 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Modular Multiplicative Inverse: O(N) -> O(logN)
 - Primality Test: O(N) -> O(N<sup>1/2</sup>) -> O(klogN)
 - Euler's Totient: O(NlogN)
-- Sieve of Eratosthenes (Count Primes): O(NloglogN)
+- Sieve of Eratosthenes (Count Primes): O<sub>T</sub>(NloglogN), O<sub>S</sub>(N)
+- Convex Hull: O(N<sup>2</sup>)
+- Euclidean Algorithms: O(log(min(A,B)))
+- Segmented Sieve: O<sub>T</sub>(NloglogN), O<sub>S</sub>(N<sup>1/2</sup>)
+- Remainder Theorem: O(N)
+- Lucas Theorem: O(p<sup>2</sup>log<sub>p</sub>N)
+
+## Bit
+- Maximum Subarray XOR: O(N<sup>2</sup>) -> O(N)
+- Nth Magic Number: O(1)
+- Sum Bit Difference: O(N<sup>2</sup>) -> O(N)
+- Swap Bits: O(1)
