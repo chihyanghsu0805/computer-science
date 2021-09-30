@@ -85,3 +85,10 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Rotate Bits: O(1)
 - Count Flip Bits: O(1)
 - Find Next Sparse Number: O(logX)
+
+## Strings and Arrays
+- Reverse String Ignoring Special Character: O(N)
+- All Possible Palindrome Partitions: O(N<sup>2</sup>)
+- Count Triples with Smaller Sum: O(N<sup>2</sup>)
+- Zig Zag: O(N)
+- Generate All Sorted Subarray from Two Sorted Arrays:
