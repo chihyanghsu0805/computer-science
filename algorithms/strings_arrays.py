@@ -379,6 +379,26 @@ def maximize_profit2(arr: List) -> List:
     return result
 
 
+def find_smallest_number_not_sum(arr: List) -> int:
+    """Find Smallest Number not Sum of Subarray.
+
+    Args:
+        arr (List): Given array.
+
+    Returns:
+        int: answer.
+    """
+    N = len(arr)
+    res = 1
+
+    for i in range(N):
+        if arr[i] <= res:
+            res += arr[i]
+        else:
+            break
+    return res
+
+
 if __name__ == "__main__":
 
     s = "a!!!b.c.d,e'f,ghi"
@@ -447,3 +467,12 @@ if __name__ == "__main__":
     price = [100, 180, 260, 310, 40, 535, 695]
     assert maximize_profit(price) == 865
     assert maximize_profit2(price) == [(0, 3), (4, 6)]
+
+    arr = [1, 3, 4, 5]
+    assert find_smallest_number_not_sum(arr) == 2
+    arr = [1, 2, 6, 10, 11, 15]
+    assert find_smallest_number_not_sum(arr) == 4
+    arr = [1, 1, 1, 1]
+    assert find_smallest_number_not_sum(arr) == 5
+    arr = [1, 1, 3, 4]
+    assert find_smallest_number_not_sum(arr) == 10
