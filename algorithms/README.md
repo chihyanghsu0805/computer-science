@@ -92,3 +92,7 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Count Triples with Smaller Sum: O(N<sup>2</sup>)
 - Zig Zag: O(N)
 - Generate All Sorted Subarray from Two Sorted Arrays:
+- Pythagorean Triplets: O(N<sup>2</sup>)
+- Find Smallest Positive Integer not a Sum: O(N)
+- Length of Largest Subsequence: O(N<sup>2</sup>)
+- Maximize Profit:

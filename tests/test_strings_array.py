@@ -8,6 +8,13 @@ from algorithms.strings_arrays import (
     find_all_palindrome_partitions,
     find_all_palindrome_partitions2,
     find_all_sorted_subarrays,
+    find_longest_contiguous_subarray,
+    find_longest_contiguous_subarray2,
+    find_pythagorean,
+    find_smallest_number_not_sum,
+    find_smallest_subarray_greater_sum,
+    maximize_profit,
+    maximize_profit2,
     reverse_ignore_special,
 )
 
@@ -70,3 +77,49 @@ def test_find_all_sorted_subarrays():
         [15, 30],
         [25, 30],
     ]
+
+
+def test_find_pythagorean():
+    """Test Find Pythagorean."""
+    arr = [3, 1, 4, 6, 5]
+    assert find_pythagorean(arr)
+
+
+def test_find_longest_contiguous_subarray():
+    """Test Find Longest Contiguous Subarray."""
+    arr = [1, 56, 58, 57, 90, 92, 94, 93, 91, 45]
+    assert find_longest_contiguous_subarray(arr) == 5
+    arr = [10, 12, 12, 10, 10, 11, 10]
+    assert find_longest_contiguous_subarray2(arr) == 2
+
+
+def test_find_smallest_subarray_greater_sum():
+    """Test Find Smallest Subarray Greater Sum."""
+    arr = [1, 4, 45, 6, 10, 19]
+    K = 51
+    assert find_smallest_subarray_greater_sum(arr, K) == 3
+    arr = [1, 10, 5, 2, 7]
+    K = 9
+    assert find_smallest_subarray_greater_sum(arr, K) == 1
+    arr = [1, 11, 100, 1, 0, 200, 3, 2, 1, 250]
+    K = 280
+    assert find_smallest_subarray_greater_sum(arr, K) == 4
+
+
+def test_maximize_profit():
+    """Test Maximize Profit."""
+    price = [100, 180, 260, 310, 40, 535, 695]
+    assert maximize_profit(price) == 865
+    assert maximize_profit2(price) == [(0, 3), (4, 6)]
+
+
+def test_find_smallest_number_not_sum():
+    """Test Find Smallest Number Not Sum."""
+    arr = [1, 3, 4, 5]
+    assert find_smallest_number_not_sum(arr) == 2
+    arr = [1, 2, 6, 10, 11, 15]
+    assert find_smallest_number_not_sum(arr) == 4
+    arr = [1, 1, 1, 1]
+    assert find_smallest_number_not_sum(arr) == 5
+    arr = [1, 1, 3, 4]
+    assert find_smallest_number_not_sum(arr) == 10

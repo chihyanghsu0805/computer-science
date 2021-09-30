@@ -207,6 +207,198 @@ def find_all_sorted_subarrays(arr1: List, arr2: List) -> List:
     return all
 
 
+def find_pythagorean(arr: List) -> bool:
+    """Find Pythagorean in Array.
+
+    Args:
+        arr (List): given array.
+
+    Returns:
+        bool: True if pythagorean exists.
+    """
+    sq = [x ** 2 for x in arr]
+    sq.sort()
+    N = len(sq)
+
+    for c in range(N - 1, 1, -1):
+
+        a = 0
+        b = c - 1
+
+        while a < b:
+
+            if sq[a] + sq[b] == sq[c]:
+                return True
+            elif sq[a] + sq[b] < sq[c]:
+                a += 1
+            else:
+                b -= 1
+
+    return False
+
+
+def find_longest_contiguous_subarray(arr: List) -> int:
+    """Find Longest Contiguous Subarray (Unique).
+
+    Args:
+        arr (List): given array.
+
+    Returns:
+        int: length of longest array.
+    """
+    longest = 1
+    N = len(arr)
+    for i in range(N - 1):
+
+        for j in range(i + 1, N):
+
+            sub = arr[i : j + 1]
+            sub_min = min(sub)
+            sub_max = max(sub)
+
+            if sub_max - sub_min == j - i:
+                longest = max(longest, j - i + 1)
+
+    return longest
+
+
+def find_longest_contiguous_subarray2(arr: List) -> int:
+    """Find Longest Contiguous Subarray (Duplicates).
+
+    Args:
+        arr (List): given array.
+
+    Returns:
+        int: length of longest array.
+    """
+    longest = 1
+    N = len(arr)
+    for i in range(N - 1):
+
+        curr_set = set()
+        curr_set.add(arr[i])
+
+        for j in range(i + 1, N):
+
+            if arr[j] in curr_set:
+                break
+
+            curr_set.add(arr[j])
+
+            sub = arr[i : j + 1]
+            sub_min = min(sub)
+            sub_max = max(sub)
+
+            if sub_max - sub_min == j - i:
+                longest = max(longest, j - i + 1)
+
+    return longest
+
+
+def find_smallest_subarray_greater_sum(arr: List, K: int) -> List:
+    """Find Smallest Subarray with Greater Sum than K.
+
+    Args:
+        arr (List): Given array.
+        K (int): Target sum.
+
+    Returns:
+        List: Smallest subarray.
+    """
+    smallest = float("inf")
+    sub_sum = 0
+
+    f_ptr = 0
+    b_ptr = 0
+
+    while b_ptr < len(arr):
+
+        while sub_sum <= K and b_ptr < len(arr):
+            sub_sum += arr[b_ptr]
+            b_ptr += 1
+
+        while sub_sum > K and f_ptr < b_ptr:
+            if smallest > b_ptr - f_ptr:
+                smallest = b_ptr - f_ptr
+
+            sub_sum -= arr[f_ptr]
+            f_ptr += 1
+
+    return smallest if smallest != float("inf") else -1
+
+
+def maximize_profit(arr: List) -> int:
+    """Maximize Profit.
+
+    Args:
+        arr (List): given array.
+
+    Returns:
+        int: profit.
+    """
+    profit = 0
+    prev = arr[0]
+
+    for n in arr:
+        if n >= prev:
+            profit += n - prev
+        prev = n
+
+    return profit
+
+
+def maximize_profit2(arr: List) -> List:
+    """Maximize Profit.
+
+    Args:
+        arr (List): given array.
+
+    Returns:
+        List: days to trade.
+    """
+    i = 0
+    result = []
+
+    while i < len(arr) - 1:
+
+        while i < len(arr) - 1 and arr[i] >= arr[i + 1]:
+            i += 1
+
+        if i == len(arr) - 1:
+            break
+
+        buy = i
+        i += 1
+
+        while i < len(arr) and arr[i] >= arr[i - 1]:
+            i += 1
+
+        sell = i - 1
+
+        result.append((buy, sell))
+    return result
+
+
+def find_smallest_number_not_sum(arr: List) -> int:
+    """Find Smallest Number not Sum of Subarray.
+
+    Args:
+        arr (List): Given array.
+
+    Returns:
+        int: answer.
+    """
+    N = len(arr)
+    res = 1
+
+    for i in range(N):
+        if arr[i] <= res:
+            res += arr[i]
+        else:
+            break
+    return res
+
+
 if __name__ == "__main__":
 
     s = "a!!!b.c.d,e'f,ghi"
@@ -253,3 +445,34 @@ if __name__ == "__main__":
         [15, 30],
         [25, 30],
     ]
+
+    arr = [3, 1, 4, 6, 5]
+    assert find_pythagorean(arr)
+
+    arr = [1, 56, 58, 57, 90, 92, 94, 93, 91, 45]
+    assert find_longest_contiguous_subarray(arr) == 5
+    arr = [10, 12, 12, 10, 10, 11, 10]
+    assert find_longest_contiguous_subarray2(arr) == 2
+
+    arr = [1, 4, 45, 6, 10, 19]
+    K = 51
+    assert find_smallest_subarray_greater_sum(arr, K) == 3
+    arr = [1, 10, 5, 2, 7]
+    K = 9
+    assert find_smallest_subarray_greater_sum(arr, K) == 1
+    arr = [1, 11, 100, 1, 0, 200, 3, 2, 1, 250]
+    K = 280
+    assert find_smallest_subarray_greater_sum(arr, K) == 4
+
+    price = [100, 180, 260, 310, 40, 535, 695]
+    assert maximize_profit(price) == 865
+    assert maximize_profit2(price) == [(0, 3), (4, 6)]
+
+    arr = [1, 3, 4, 5]
+    assert find_smallest_number_not_sum(arr) == 2
+    arr = [1, 2, 6, 10, 11, 15]
+    assert find_smallest_number_not_sum(arr) == 4
+    arr = [1, 1, 1, 1]
+    assert find_smallest_number_not_sum(arr) == 5
+    arr = [1, 1, 3, 4]
+    assert find_smallest_number_not_sum(arr) == 10
