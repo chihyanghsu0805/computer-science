@@ -11,6 +11,7 @@ from algorithms.strings_arrays import (
     find_longest_contiguous_subarray,
     find_longest_contiguous_subarray2,
     find_pythagorean,
+    find_smallest_number_not_sum,
     find_smallest_subarray_greater_sum,
     maximize_profit,
     maximize_profit2,
@@ -110,3 +111,15 @@ def test_maximize_profit():
     price = [100, 180, 260, 310, 40, 535, 695]
     assert maximize_profit(price) == 865
     assert maximize_profit2(price) == [(0, 3), (4, 6)]
+
+
+def test_find_smallest_number_not_sum():
+    """Test Find Smallest Number Not Sum."""
+    arr = [1, 3, 4, 5]
+    assert find_smallest_number_not_sum(arr) == 2
+    arr = [1, 2, 6, 10, 11, 15]
+    assert find_smallest_number_not_sum(arr) == 4
+    arr = [1, 1, 1, 1]
+    assert find_smallest_number_not_sum(arr) == 5
+    arr = [1, 1, 3, 4]
+    assert find_smallest_number_not_sum(arr) == 10
