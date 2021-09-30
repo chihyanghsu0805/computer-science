@@ -95,4 +95,4 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Pythagorean Triplets: O(N<sup>2</sup>)
 - Find Smallest Positive Integer not a Sum: O(N)
 - Length of Largest Subsequence: O(N<sup>2</sup>)
-- Maximize Profit:
+- Maximize Profit: O(N)
