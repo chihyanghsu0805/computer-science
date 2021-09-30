@@ -28,3 +28,4 @@ This repository contains coding practices.
 - Tree
 - Number Theory
 - Bit
+- Strings and Arrays
