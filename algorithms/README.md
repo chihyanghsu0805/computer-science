@@ -81,7 +81,7 @@ https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/
 - Swap Bits: O(1)
 - Find Once: O(N)
 - Binary Representation: O(1)
-- COunt Bits: O(1)
+- Count Bits: O(1)
 - Rotate Bits: O(1)
 - Count Flip Bits: O(1)
 - Find Next Sparse Number: O(logX)
