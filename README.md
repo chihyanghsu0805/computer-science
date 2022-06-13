@@ -1,4 +1,4 @@
-# cs_practice
+# Computer Science Practice
 This repository contains coding practices.
 
 ## Sort
