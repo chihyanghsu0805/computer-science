@@ -1,6 +1,7 @@
 https://leetcode.com/problems/permutations/
 https://leetcode.com/problems/permutations-ii/
 
+```
 class Solution:
 
     # Use each value for each location till path has n values
@@ -37,3 +38,4 @@ class Solution:
                 counts[k] += 1
                 
         return
+```
