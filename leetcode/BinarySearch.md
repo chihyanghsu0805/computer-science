@@ -77,9 +77,9 @@ class Solution:
             else:
                 hi = mid - 1
         
-         # This version of binary search exits the while loop while lo > hi
-         # Therefore, the lo is the smallest value satisfying the condition
-         # Similar to bisect.bisect_left
-         # In other words, [1, 3, 4] find bigger than 1, it returns [1, 2, 4]
+        # This version of binary search exits the while loop while lo > hi
+        # Therefore, the lo is the smallest value satisfying the condition
+        # Similar to bisect.bisect_left
+        # In other words, [1, 3, 4] find bigger than 1, it returns [1, 2, 4]
         return lo
 ```
