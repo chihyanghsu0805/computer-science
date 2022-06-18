@@ -13,4 +13,3 @@ https://leetcode.com/problems/combination-sum/discuss/429538/General-Backtrackin
 ## [TreeTraversal](./TreeTraversal.md)
 ## [JumpGame](./JumpGame.md)
 ## [MonotonicStack](./MonotonicStack.md)
-MonotonicStack
