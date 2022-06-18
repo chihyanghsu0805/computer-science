@@ -11,3 +11,6 @@ https://leetcode.com/problems/combination-sum/discuss/429538/General-Backtrackin
 ## [TreePath](./TreePath.md)
 ## [CommonAncestor](./CommonAncestor.md)
 ## [TreeTraversal](./TreeTraversal.md)
+## [JumpGame](./JumpGame.md)
+## [MonotonicStack](./MonotonicStack.md)
+MonotonicStack
