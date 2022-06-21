@@ -15,3 +15,5 @@ https://leetcode.com/problems/combination-sum/discuss/429538/General-Backtrackin
 ## [MonotonicStack](./MonotonicStack.md)
 ## [PrefixSum](./PrefixSum.md)
 ## [SlidingWindow](./SlidingWindow.md)
+## [KSum](./KSum.md)
+## [BuyAndSellStock](./BuyAndSellStock.md) 
