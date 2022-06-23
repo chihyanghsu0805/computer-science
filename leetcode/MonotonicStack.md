@@ -63,3 +63,49 @@ class Solution:
             
         return largest
 ```
+
+https://leetcode.com/problems/maximal-rectangle/
+```
+class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        
+        rows = len(matrix)
+        cols = len(matrix[0])
+        
+        h = [0] * cols
+        
+        maximum = 0
+        
+        for r in range(rows):
+            
+            for c in range(cols):
+                
+                if matrix[r][c] == "0":
+                    h[c] = 0
+                else:
+                    h[c] += 1
+            
+            current = self.max_rectangle_histogram(h)
+            maximum = max(maximum, current)
+            
+        return maximum
+    
+    def max_rectangle_histogram(self, histogram):
+        
+        maximum = 0
+        
+        stack = []
+        for i, h in enumerate(histogram + [0]):
+            
+            while stack and histogram[stack[-1]] >= h:
+                
+                j = stack.pop()
+                curr_h = histogram[j]
+                curr_w = i if not stack else i - stack[-1] - 1
+                
+                maximum = max(maximum, curr_h * curr_w)
+                
+            stack.append(i)
+            
+        return maximum
+```
