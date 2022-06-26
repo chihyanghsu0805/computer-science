@@ -17,3 +17,10 @@ https://leetcode.com/problems/combination-sum/discuss/429538/General-Backtrackin
 ## [SlidingWindow](./SlidingWindow.md)
 ## [KSum](./KSum.md)
 ## [BuyAndSellStock](./BuyAndSellStock.md) 
+## [UniqueBST](./UniqueBST.md)
+## [ConvertToBST](./ConvertToBST.md)
+
+https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+
+https://leetcode.com/problems/minimum-depth-of-binary-tree/
+https://leetcode.com/problems/maximum-depth-of-binary-tree/
