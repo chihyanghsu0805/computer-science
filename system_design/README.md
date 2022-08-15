@@ -4,5 +4,5 @@
 -   [Key Characteristics](./characteristics.md) 
 
 ## Case Studies
--   [Step by Step](./guide,md)
+-   [Step by Step](./guide.md)
     
