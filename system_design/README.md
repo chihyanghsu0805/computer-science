@@ -7,6 +7,7 @@
 -   [Data Partitioning](./partition.md)
 -   [Indexes](./indexes.md)
 -   [Proxies](./proxies.md)
+-   [Redundancy and Replication](./redundancy.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
