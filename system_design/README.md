@@ -8,6 +8,7 @@
 -   [Indexes](./indexes.md)
 -   [Proxies](./proxies.md)
 -   [Redundancy and Replication](./redundancy.md)
+-   [SQL v.s. NoSQL](./sql.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
