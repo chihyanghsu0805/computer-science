@@ -10,6 +10,7 @@
 -   [Redundancy and Replication](./redundancy.md)
 -   [SQL v.s. NoSQL](./sql.md)
 -   [CAP](./cap.md)
+-   [PACELC](./pacelc.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
