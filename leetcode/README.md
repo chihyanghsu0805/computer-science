@@ -24,3 +24,5 @@ https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
 
 https://leetcode.com/problems/minimum-depth-of-binary-tree/
 https://leetcode.com/problems/maximum-depth-of-binary-tree/
+
+https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
