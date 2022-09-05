@@ -11,6 +11,7 @@
 -   [SQL v.s. NoSQL](./sql.md)
 -   [CAP](./cap.md)
 -   [PACELC](./pacelc.md)
+-   [Consistent Hashing](./consistent.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
