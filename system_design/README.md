@@ -12,6 +12,7 @@
 -   [CAP](./cap.md)
 -   [PACELC](./pacelc.md)
 -   [Consistent Hashing](./consistent.md)
+-   [Long Polling / Websockets / Server Sent](./polling.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
