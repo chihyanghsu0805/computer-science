@@ -13,6 +13,7 @@
 -   [PACELC](./pacelc.md)
 -   [Consistent Hashing](./consistent.md)
 -   [Long Polling / Websockets / Server Sent](./polling.md)
+-   [Blooming Filters](./blooming.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
