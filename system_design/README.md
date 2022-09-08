@@ -14,6 +14,7 @@
 -   [Consistent Hashing](./consistent.md)
 -   [Long Polling / Websockets / Server Sent](./polling.md)
 -   [Blooming Filters](./blooming.md)
+-   [Quorum](./quorum.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
