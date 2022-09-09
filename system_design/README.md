@@ -15,6 +15,7 @@
 -   [Long Polling / Websockets / Server Sent](./polling.md)
 -   [Blooming Filters](./blooming.md)
 -   [Quorum](./quorum.md)
+-   [Leader and Follower](./leader.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
