@@ -16,6 +16,7 @@
 -   [Blooming Filters](./blooming.md)
 -   [Quorum](./quorum.md)
 -   [Leader and Follower](./leader.md)
+-   [Heartbeat](./heartbeat.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
