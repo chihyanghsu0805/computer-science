@@ -18,12 +18,20 @@
 -   [Leader and Follower](./leader.md)
 -   [Heartbeat](./heartbeat.md)
 -   [Checksum](./checksum.md)
+-   [Asynchronism](./async.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
 
+## Trade-offs
+-   [Trade Offs](./trade.md)
+
+## Object Storage
 
 https://www.netapp.com/data-storage/storagegrid/what-is-object-storage/
 https://en.wikipedia.org/wiki/Object_storage
 
+## Caches
 https://en.wikipedia.org/wiki/Memcached
+https://en.wikipedia.org/wiki/Redis
+
