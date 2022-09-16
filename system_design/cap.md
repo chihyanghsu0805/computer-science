@@ -4,8 +4,8 @@
 -   Availability: Every request received by a non-failing node must respond, may not be the most recent data.
 -   Partition tolerance: A partition is a communication break between any two nodes.
 
--   CA: RDBMS
--   CP: Requies atomic reads and writes, BigTable, HBase.
+-   CA: RDBMS (Relational Database Management System)
+-   CP: Requires atomic reads and writes, BigTable, HBase.
 -   AP: Eventual consistency, Dynamo, Cassandra, CouchDB.
 
 ## Consistency Patterns

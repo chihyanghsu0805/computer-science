@@ -19,6 +19,9 @@
 -   [Heartbeat](./heartbeat.md)
 -   [Checksum](./checksum.md)
 -   [Asynchronism](./async.md)
+-   [Domain Name System](./dns.md)
+-   [Content Delivery Network](./cdn.md)
+-   [Application Layer](./application.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)

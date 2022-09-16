@@ -6,10 +6,22 @@ Cache misses: global cache and distributed cache.
 
 Cache hit
 
-## Content Delivery/Distribution Network (CDN)
--   Static media
+Avoid file based caching.
 
-## Cache Invalidation
+-   Client
+-   [CDN](./cdn.md)
+-   [Web Server](./proxies.md#reverse-proxy)
+-   Database
+-   Application
+-   Database Query
+    -   Hard to delete
+    -   If a data changes, all queries need to be deleted
+-   Object Level
+    -   Remove the object when data changed
+    -   Allows asynchronous processing
+    -   User sessions, fully rendered webpages, activity streams, user graph data
+
+## Cache invalidation
 
 If data is modified in database, it should be invalidated in the cache.
 
@@ -27,3 +39,18 @@ If data is modified in database, it should be invalidated in the cache.
 -   Moset Recently Used
 -   Least Frequently Used
 -   Random Replacement
+
+## Cache update
+-   Cache aside (Memcache)
+    -   Look in cache -> Cache miss -> Look in database -> Add to cache -> Return
+    -   Delay, Data may be stale (TTL)
+-   Write through
+    -   Write to cache -> write to database -> return
+    -   Slow due to write
+-   Write behind (back)
+    -   Write to cache -> asynchronous write to database (add event to queue) -> return
+    -   Data loss
+-   Refresh ahead
+    -   Automatically refresh recently accessed cache entry prior to expiration
+    -   Inaccurate prediction results in reduced performance
+
