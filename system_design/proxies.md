@@ -8,4 +8,16 @@ Collapsed forwarding, combine the same data access requests into one request.
 
 ## Reverse Proxy
 
-Anonymizing the server, caching, load balancing, routing requests. 
+-   Advantanges:
+    -   Anonymizing the server
+    -   Load balancing
+    -   Routing requests
+    -   Increased security
+    -   Incresed scalability and flexibility
+    -   SSL termination
+    -   Compression
+    -   Caching
+    -   Static content
+
+-   Disadvantages:
+    -   Single point of failure

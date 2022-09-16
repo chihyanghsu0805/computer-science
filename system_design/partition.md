@@ -4,7 +4,6 @@ Splitting up a database/table to improve manageability, performance, availabilit
 
 Scale horizonatally.
 
-
 ## Methods
 -   Horizontal partitioning (Data sharding): range based partitioning. May lead to unbalanced servers.
 
