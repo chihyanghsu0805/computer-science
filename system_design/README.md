@@ -30,6 +30,28 @@
 ## Trade-offs
 -   [Trade Offs](./trade.md)
 
+## Real World
+-   Data processing
+    -   [MapReduce (Google)](https://research.google.com/archive/mapreduce-osdi04.pdf)
+    -   Spark (Databricks)
+    -   Storm (Twitter)
+
+-   Data store
+    -   [BigTable (column-oriented, Google)](https://research.google.com/archive/bigtable-osdi06.pdf)
+    -   HBase (open source BigTable)
+    -   [Cassandra (column-oriented, Facebook)](http://www.cl.cam.ac.uk/~ey204/teaching/ACS/R212_2014_2015/papers/lakshman_ladis_2009.pdf)
+    -   [DynamoDB (document-oriented, Amazon)](https://www.amazon.science/publications/dynamo-amazons-highly-available-key-value-store)
+    -   MongoDB (column-oriented)
+    -   Spanner (global, Google)
+    -   Memcached (cache)
+    -   Redis (cache)
+
+-   File system
+    -   [Google file system, GFS](https://research.google/pubs/pub51/)
+    -   HDFS (open source GFS)
+
+-   Kafka (message queue, Linkedin)
+
 ## Object Storage
 
 https://www.netapp.com/data-storage/storagegrid/what-is-object-storage/
