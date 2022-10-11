@@ -54,3 +54,10 @@ If data is modified in database, it should be invalidated in the cache.
     -   Automatically refresh recently accessed cache entry prior to expiration
     -   Inaccurate prediction results in reduced performance
 
+## Considerations for using cache
+
+-   When to use cache: frequent reads but infrequent modifications. 
+-   Expiration policy
+-   Eviction policy
+-   Consistency
+-   Mitigating failures

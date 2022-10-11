@@ -23,12 +23,15 @@
 -   Big data with no structure
 -   Cloud based
 -   Rapid development
+-   Super low latency
+-   Only need to serializae and deserialize
+-   Massive amount of data
 
-##  Relational, SQL
+##  Relational Database Management System (RDBMS), SQL
 
 -   structured, predefined schema
 -   rows and columns
--   MySQL, Oracle, SQLite, Postgres, MariaDB
+-   MySQL, Oracle, SQLite, PostgreSQL, MariaDB
 
 ##  Non-relational, NoSQL
 -   BASE
@@ -37,9 +40,11 @@
     -   Eventual consistency
     
 -   Unstructured, distributed, dynamic schema
+
 -   Key-value Stores:
     -   Key is an attribute name linked to a value
-    -   Redis, Voldemort, Dynamo
+    -   Redis, Voldemort, DynamoDB
+
 -   Document Databases:
     -   data stored in documents and grouped in collections, documents can have entirely different structures
     -   CouchDB, MongoDB
