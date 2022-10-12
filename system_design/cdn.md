@@ -20,3 +20,10 @@ Time-to-live (TTL) determines how long content is cached. Sites with heavy traff
 Content might be stale if it is updated before TTL expires it.
 
 URLs need to be changed to point to CDN.
+
+## Considerations
+
+-   Cost
+-   Setting cache expiry
+-   Fallback
+-   Invalidating files
