@@ -34,6 +34,7 @@
 -   MySQL, Oracle, SQLite, PostgreSQL, MariaDB
 
 ##  Non-relational, NoSQL
+
 -   BASE
     -   Basically available
     -   Soft state

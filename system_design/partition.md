@@ -5,9 +5,21 @@ Splitting up a database/table to improve manageability, performance, availabilit
 Scale horizonatally.
 
 ## Methods
--   Horizontal partitioning (Data sharding): range based partitioning. May lead to unbalanced servers.
+-   Horizontal partitioning (Data sharding):
+    -   same schema
+    -   range based partitioning
+    -   may lead to unbalanced servers
+    -   select sharding key that can evenly distribute data
+    -   resharding ([Consistent Hashing](./consistent.md))
+    -   celebrity
+    -   Join and denormalization ([LINK](./sql.md#scaling-relational-database))
 
--   Vertical partitioning: store tables related to specifc features. May be necesary to further partition.
+-   Vertical partitioning
+    -   store tables related to specifc features
+    -   may be necesary to further partition
+    -   may get up to 24TB according to Amazon Relational Database Service
+    -   SPOF
+    -   Cost
 
 -   Directory-Based Partitioning: directory server that holds the mapping between each tuple key to its database server.
 

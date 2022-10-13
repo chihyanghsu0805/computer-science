@@ -26,9 +26,20 @@
 -   [Stateless](./stateless.md)
 -   [Data Center](./center.md)
 -   [Message Queue](./message.md)
+-   [Logging / Metrics / Automation](./logging.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
+
+## Scling to Millions
+-   Stateless web tier
+-   Redundancy at every tier
+-   Cache data
+-   Multiple data centers
+-   CDN
+-   Scale data tier by sharding
+-   Split tiers into individual services
+-   Monitor and automate
 
 ## Trade-offs
 -   [Trade Offs](./trade.md)
