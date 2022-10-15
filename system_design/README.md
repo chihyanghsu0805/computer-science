@@ -27,11 +27,12 @@
 -   [Data Center](./center.md)
 -   [Message Queue](./message.md)
 -   [Logging / Metrics / Automation](./logging.md)
+-   [Back of the Envelope Estimation](./estimation.md)
 
 ## Case Studies
 -   [Step by Step](./guide.md)
 
-## Scling to Millions
+## ScAling to Millions
 -   Stateless web tier
 -   Redundancy at every tier
 -   Cache data
