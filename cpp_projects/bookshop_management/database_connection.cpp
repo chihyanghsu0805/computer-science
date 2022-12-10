@@ -1,5 +1,5 @@
 // Copyright [year] <Copyright Owner>
-#include "cpp_projects/book_management/database_connection.h"
+#include "cpp_projects/bookshop_management/database_connection.h"
 
 #include <mysql.h>
 
