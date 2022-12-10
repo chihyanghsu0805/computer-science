@@ -8,6 +8,7 @@
   rev: v1.3.5
   hooks:
   - id: clang-format
+    args: [--style=Google]
   - id: cpplint
 
 
