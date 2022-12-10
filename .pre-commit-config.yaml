@@ -4,6 +4,13 @@
   - id: end-of-file-fixer
   - id: trailing-whitespace
 
+- repo: https://github.com/pocc/pre-commit-hooks
+  rev: v1.3.5
+  hooks:
+  - id: clang-format
+  - id: cpplint
+
+
 - repo: https://github.com/pycqa/isort
   rev: 5.5.4
   hooks:
