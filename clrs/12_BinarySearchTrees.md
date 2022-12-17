@@ -14,7 +14,7 @@ The root is the only node with parent = NULL.
 
 Binary search tree property: x.left.key <= x.key <= x.right.key
 
-Keys can be printed in sorted order by [INORDER-TREE-WALK]([./ms/ch12.py](https://github.com/chihyanghsu0805/computer-science/blob/3a2c3d60a71c603b95242ff57f3cae6a9b964738/clrs/ch12.py#L6)) in $\theta$(N) time.
+Keys can be printed in sorted order by [INORDER-TREE-WALK](./ch12.py#L6)) in $\theta$(N) time.
 
 
 ## 12.2
