@@ -23,7 +23,7 @@ Keys can be printed in sorted order by [INORDER-TREE-WALK](./ch12.py#L6) in $\th
 
 [Minimum](./data_structures.py#L75), O(h)
 
-[Maximum], O(h)
+[Maximum](./data_structures.py#L89), O(h)
 
 [Successor], O(h)
 
