@@ -19,19 +19,19 @@ Keys can be printed in sorted order by [INORDER-TREE-WALK](./ch12.py#L6)) in $\t
 
 ## 12.2
 
-[Searching](./tree_search.py), O(h)
+[Searching](./data_structures.py#L54), O(h)
 
-Minimum, O(h)
+[Minimum], O(h)
 
-Maximum, O(h)
+[Maximum], O(h)
 
-Successor, O(h)
+[Successor], O(h)
 
 Predecessor, O(h)
 
 ## 12.3
 
-[Insertion](./data_structures.py), O(h)
+[Insertion](./data_structures.py#L30), O(h)
 
 Deletion, O(h)
 
