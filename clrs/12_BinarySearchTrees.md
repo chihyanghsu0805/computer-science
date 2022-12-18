@@ -33,7 +33,7 @@ Keys can be printed in sorted order by [INORDER-TREE-WALK](./ch12.py#L6) in $\th
 
 [Insertion](./data_structures.py#L30), O(h)
 
-Deletion, O(h)
+Deletion(./data_structures.py#L143), O(h)
 
 ## Problems
 
