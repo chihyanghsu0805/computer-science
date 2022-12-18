@@ -1,7 +1,7 @@
 # System Design
 
 ## Glossary
--   [Key Characteristics](./characteristics.md) 
+-   [Key Characteristics](./characteristics.md)
 -   [Load Balancing](./load_balancing.md)
 -   [Caching](./caching.md)
 -   [Data Partitioning](./partition.md)
@@ -32,7 +32,7 @@
 ## Case Studies
 -   [Step by Step](./guide.md)
 
-## ScAling to Millions
+## Scaling to Millions
 -   Stateless web tier
 -   Redundancy at every tier
 -   Cache data
@@ -77,4 +77,3 @@ https://en.wikipedia.org/wiki/Object_storage
 https://en.wikipedia.org/wiki/Memcached
 
 https://en.wikipedia.org/wiki/Redis
-
