@@ -25,7 +25,7 @@ Keys can be printed in sorted order by [INORDER-TREE-WALK](./ch12.py#L6) in $\th
 
 [Maximum](./data_structures.py#L89), O(h)
 
-[Successor], O(h)
+[Successor](./data_structures.py#L103), O(h)
 
 Predecessor, O(h)
 
