@@ -21,7 +21,7 @@ Keys can be printed in sorted order by [INORDER-TREE-WALK](./ch12.py#L6) in $\th
 
 [Searching](./data_structures.py#L54), O(h)
 
-[Minimum], O(h)
+[Minimum](./data_structures.py#L75), O(h)
 
 [Maximum], O(h)
 
