@@ -1,33 +1,30 @@
 """Contain implementation for chapter 12."""
 
-from data_structures import BinarySearchTree, BinarySearchTreeNode
+import sys
 
+sys.path.append("../../")
 
-def inorder_tree_walk(x: BinarySearchTreeNode) -> None:
-    """Traverse tree inorder.
-
-    Args:
-        x (BinarySearchTreeNode): node.
-    """
-    if not x:
-        return
-
-    inorder_tree_walk(x.left)
-    print(x.key)
-    inorder_tree_walk(x.right)
-
+from clrs.algorithms.trees import inorder_tree_walk, validate_binary_search_tree
+from clrs.data_structures.binary_search_tree import BinarySearchTree
+from clrs.data_structures.binary_tree import BinaryTreeNode
 
 if __name__ == "__main__":
 
-    bstnode_1 = BinarySearchTreeNode(1)
-    bstnode_2 = BinarySearchTreeNode(2)
-    bstnode_3 = BinarySearchTreeNode(3)
+    bstnode_1 = BinaryTreeNode(1)
+    bstnode_2 = BinaryTreeNode(2)
+    bstnode_3 = BinaryTreeNode(3)
 
     # Tree insertion
     bst1 = BinarySearchTree()
     bst1.tree_insert(bstnode_2)
     bst1.tree_insert(bstnode_1)
     bst1.tree_insert(bstnode_3)
+
+    # Validate binary search tree property
+    bool_bst_property = validate_binary_search_tree(
+        bst1.root, float("inf"), -float("inf")
+    )
+    print(f"Tree obeys Binary Search Tree property: {bool_bst_property}")
 
     # Inorder
     print("Inorder traversal of Binary Search Tree gives sorted keys:")
@@ -105,16 +102,17 @@ if __name__ == "__main__":
     bst1.tree_delete(bstnode_2)
     print(f"Inorder traversal after deleting key = {bstnode_2.key}")
     inorder_tree_walk(bst1.root)
-
+    print("----------")
     # Case 3: two child
     # Create a new tree because previous left/right/parent pointers are not NULL
     bst2 = BinarySearchTree()
-    bstnode_4 = BinarySearchTreeNode(4)
-    bstnode_5 = BinarySearchTreeNode(5)
-    bstnode_6 = BinarySearchTreeNode(6)
+    bstnode_4 = BinaryTreeNode(4)
+    bstnode_5 = BinaryTreeNode(5)
+    bstnode_6 = BinaryTreeNode(6)
     bst2.tree_insert(bstnode_5)
     bst2.tree_insert(bstnode_4)
     bst2.tree_insert(bstnode_6)
+    print("Inorder traversal of Binary Search Tree gives sorted keys:")
     inorder_tree_walk(bst2.root)
     bst2.tree_delete(bstnode_5)
     print(f"Inorder traversal after deleting key = {bstnode_5.key}")

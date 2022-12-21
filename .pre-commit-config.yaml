@@ -4,14 +4,6 @@
   - id: end-of-file-fixer
   - id: trailing-whitespace
 
-- repo: https://github.com/pocc/pre-commit-hooks
-  rev: v1.3.5
-  hooks:
-  - id: clang-format
-    args: [--style=Google]
-  - id: cpplint
-
-
 - repo: https://github.com/pycqa/isort
   rev: 5.5.4
   hooks:
@@ -34,7 +26,7 @@
     types: [python]
     args:
         - --max-line-length=88
-        - --ignore=E722, W503, E203
+        - --ignore=E722, W503, E203, E402
 
 - repo: https://github.com/pycqa/pydocstyle
   rev: 4.0.0
