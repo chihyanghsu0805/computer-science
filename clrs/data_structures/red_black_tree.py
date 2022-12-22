@@ -222,3 +222,146 @@ class RedBlackTree(BinarySearchTree):
         x.parent = y
 
         return
+
+    def transplant(self, u: RedBlackTreeNode, v: RedBlackTreeNode) -> None:
+        """Transplant u with v.
+
+        Args:
+            u (RedBlackTreeNode): a red black tree node.
+            v (RedBlackTreeNode): a red black tree node.
+        """
+        if u.parent == self.NIL:
+            self.root = v
+
+        elif u == u.parent.left:
+            u.parent.left = v
+
+        else:
+            u.parent.right = v
+
+        v.parent = u.parent
+
+        return
+
+    def tree_delete(self, z: RedBlackTreeNode) -> None:
+        """Delete z from tree.
+
+        Args:
+            z (RedBlackTreeNode): node to be deleted.
+        """
+        y = z
+        y_original_color = y.color
+
+        # If z only has one child, transplant
+        # Fixup if y was BLACK
+        if z.left == self.NIL:
+            x = z.right  # Keep for fixup
+            self.transplant(z, z.right)
+
+        elif z.right == self.NIL:
+            x = z.left  # Keep for fixup
+            self.transplant(z, z.left)
+
+        else:
+            # z has two children, replacement is successor
+            y = self.tree_minimum(z.right)
+            y_original_color = y.color
+
+            x = y.right
+            if y != z.right:
+                # if y is not child of z
+                # transplant y with y.right since successor dont have left child
+                self.transplant(y, y.right)
+                # put y in z
+                y.right = z.right
+                y.right.parent = y
+
+            else:
+                x.parent = y  # if x is NIL
+
+            # transplant z with y
+            self.transplant(z, y)
+            y.left = z.left
+            y.left.parent = y
+            y.color = z.color
+
+        # Fixup if y was BLACK and properties are violated
+        if y_original_color == BLACK:
+            self.tree_delete_fixup(x)
+
+        return
+
+    def tree_delete_fixup(self, x: RedBlackTreeNode) -> None:
+        """Fix pointer and color to maintain red black tree property.
+
+        Args:
+            x (RedBlackTreeNode): node with double black.
+        """
+        # Transfer additional BLACK up till root or x is RED
+        while x != self.root and x.color == BLACK:
+
+            if x == x.parent.left:
+                w = x.parent.right  # sibling
+
+                if w.color == RED:
+
+                    # Color sibling BLACK and rotate to make sibling x.parent
+                    w.color = BLACK
+                    x.parent.color = RED
+                    self.left_rotate(x.parent)
+                    w = x.parent.right
+
+                if w.left.color == BLACK and w.right.color == BLACK:
+                    # Sibling's children cannot consume the additional BLACK
+                    # Transfer additional BLACK up from w and x
+                    w.color = RED
+                    x = x.parent
+
+                else:
+                    # Parent consumes the additional BLACK
+                    # Sibling's right child consumes sibling's BLACK
+                    # Sibling becomes parent
+                    if w.right.color == BLACK:
+                        w.left.color = BLACK
+                        w.color = RED
+                        self.right_rotate(w)
+                        w = x.parent.right
+
+                    w.color = x.parent.color
+                    x.parent.color = BLACK
+                    w.right.color = BLACK
+                    self.left_rotate(x.parent)
+                    x = self.root
+
+            else:
+                # Symmetric
+                w = x.parent.left
+
+                if w.color == RED:
+                    w.color = BLACK
+                    x.parent.color = RED
+                    self.right_rotate(x.parent)
+                    w = x.parent.left
+
+                if w.right.color == BLACK and w.left.color == BLACK:
+                    w.color = RED
+                    x = x.parent
+
+                else:
+                    if w.left.color == BLACK:
+                        w.right.color = BLACK
+                        w.color = RED
+                        self.left_rotate(w)
+                        w = x.parent.left
+
+                    w.color = x.parent.color
+                    x.parent.color = BLACK
+                    w.right.color = BLACK
+                    self.right_rotate(x.parent)
+                    x = self.root
+
+        # x is root or RED
+        # fix x's color
+        x.color = BLACK
+
+        return

@@ -37,7 +37,7 @@ Pointers are changed with [left rotation] and [right rotation].
 
 Insert a node, color `RED`, fix the color.
 
-Which properties are violated:
+Which properties are violated?
 
 1.  Every node is either `RED` or `BLACK`
 -   NOT violated because new node is `RED`
@@ -52,4 +52,31 @@ Which properties are violated:
 
 [Insertion]
 
-## 13.3 Deletions
+Insert takes O(lgN), RB-FixUp only repeats in Case 1 at most logN times and no more than two rotations in Case 2 and 3, so O(lgN), overall, O(lgN).
+
+13.3-1 Because it would be adding bh unconditionally and might violate 5.
+13.3-4 RB-FixUp only marks z.parent.parent RED. For NIL to be z.parent.parent, z.parent must be root whick is BLACK violates while loop condition. Root may be colored RED but would be corrected in the last color assignment.
+13.3-5 Using RB-Insert, at least z is RED. IN RB-Insert-FixUp, if while loop ix executed, tehn at least z.parent is RED. The only exception is z is root.
+
+## 13.4 Deletions
+
+Find replacement (y), transplant, if y was `BLACK` fix the color.
+
+Which properties are violated?
+
+1.  Every node is either `RED` or `BLACK`
+-   Violated due to fix of 5
+2.  Root is `BLACK`
+-   May be violated if root is deleted and replacement is `RED`
+3.  Leaf is `BLACK`
+-   NOT violated
+4.  If node is `RED`, both children are `BLACK`
+-   May be violated if y.parent was `RED` and y's transplant is `RED`
+5.  For each node, all simple paths from node to descendant leaves have same number of `BLACK` nodes
+-   Originally violated if y was `BLACK` for all y's ancestor, fix with additional `BLACK`
+
+FixUp seeks consumption of the addtional `BLACK` through  transfer up or sibling's children.
+
+[Deletion]
+
+Delete takes O(lgN), FixUp transfer up takes at most O(logN), sibling's children takes constant.
