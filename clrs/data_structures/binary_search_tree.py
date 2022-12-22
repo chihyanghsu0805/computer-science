@@ -1,23 +1,8 @@
-"""Contain data structures."""
+"""Contain binary search tree."""
 
-__all__ = ["BinarySearchTree", "BinarySearchTreeNode"]
+from clrs.data_structures.binary_tree import BinaryTreeNode
 
-
-class BinarySearchTreeNode:
-    """Class for instance of binary search tree node."""
-
-    def __init__(self, key: any, satellite: any = None) -> None:
-        """Initialize class.
-
-        Args:
-            key (any): key for node.
-            satellite (any, optional): satellite for node. Defaults to None.
-        """
-        self.key = key
-        self.satellite = satellite
-        self.parent = None
-        self.left = None
-        self.right = None
+__all__ = ["BinarySearchTree"]
 
 
 class BinarySearchTree:
@@ -27,7 +12,7 @@ class BinarySearchTree:
         """Initialize class."""
         self.root = None
 
-    def tree_insert(self, z: BinarySearchTreeNode) -> None:
+    def tree_insert(self, z: BinaryTreeNode) -> None:
         """Insert node into tree.
 
         Args:
@@ -51,7 +36,9 @@ class BinarySearchTree:
         else:
             y.right = z
 
-    def tree_search(self, k: any) -> BinarySearchTreeNode:
+        return
+
+    def tree_search(self, k: any) -> BinaryTreeNode:
         """Search node with key in tree.
 
         Args:
@@ -72,7 +59,7 @@ class BinarySearchTree:
 
         return x
 
-    def tree_minimum(self, x: BinarySearchTreeNode) -> BinarySearchTreeNode:
+    def tree_minimum(self, x: BinaryTreeNode) -> BinaryTreeNode:
         """Find node with minimum key in tree rooted at x.
 
         Args:
@@ -86,7 +73,7 @@ class BinarySearchTree:
 
         return x
 
-    def tree_maximum(self, x: BinarySearchTreeNode) -> BinarySearchTreeNode:
+    def tree_maximum(self, x: BinaryTreeNode) -> BinaryTreeNode:
         """Find node with maximum key in tree rooted at x.
 
         Args:
@@ -100,7 +87,7 @@ class BinarySearchTree:
 
         return x
 
-    def tree_successor(self, x: BinarySearchTreeNode) -> BinarySearchTreeNode:
+    def tree_successor(self, x: BinaryTreeNode) -> BinaryTreeNode:
         """Find successor of node.
 
         Args:
@@ -120,7 +107,7 @@ class BinarySearchTree:
 
         return y
 
-    def tree_predecessor(self, x: BinarySearchTreeNode) -> BinarySearchTreeNode:
+    def tree_predecessor(self, x: BinaryTreeNode) -> BinaryTreeNode:
         """Find predecessor for node.
 
         Args:
@@ -140,7 +127,7 @@ class BinarySearchTree:
 
         return y
 
-    def tree_delete(self, x: BinarySearchTreeNode) -> None:
+    def tree_delete(self, x: BinaryTreeNode) -> None:
         """Delete node from tree.
 
         Args:
@@ -168,7 +155,9 @@ class BinarySearchTree:
             y.left = x.left
             y.left.parent = y
 
-    def transplant(self, u: BinarySearchTreeNode, v: BinarySearchTreeNode) -> None:
+        return
+
+    def transplant(self, u: BinaryTreeNode, v: BinaryTreeNode) -> None:
         """Connect u.parent with v.
 
         Args:
@@ -186,3 +175,5 @@ class BinarySearchTree:
 
         if v:
             v.parent = u.parent
+
+        return
