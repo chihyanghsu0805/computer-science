@@ -4,6 +4,9 @@ from typing import List, Tuple
 PRICES = [1, 5, 8, 9, 10, 17, 17, 20, 24, 30]
 REVENUE = [1, 5, 8, 10, 13, 17, 18, 22, 25, 30]
 
+MATRIX_SIZE = [(30, 35), (35, 15), (15, 5), (5, 10), (10, 20), (20, 25)]
+OPERATIONS = [0, 15750, 7875, 9375, 11875, 15125]
+
 
 def cut_rod(p: List, n: int) -> int:
     """Cut rod recursively.
@@ -125,6 +128,59 @@ def print_cut_rod_solution(p: List, n: int) -> None:
         n = n - s[n]
 
 
+def matrix_chain_order(p: List[Tuple], n: int) -> Tuple[List[List], List[List]]:
+    """Compute optimal parentheses for minimal operations in matrix multiplication.
+
+    Args:
+        p (List[Tuple]): list of matrix sizes.
+        n (int): number of matrices.
+
+    Returns:
+        Tuple[List[List], List[List]]: 2d array of operations and parentheses.
+    """
+    m = [[0] * n for _ in range(n)]
+    s = [[0] * n for _ in range(n)]
+    for i in range(n):
+        m[i][i] = 0
+
+    for gap in range(2, n + 1):
+
+        for i in range(n - gap + 1):
+
+            j = i + gap - 1
+
+            m[i][j] = float("inf")
+
+            for k in range(i, j):
+                q = m[i][k] + m[k + 1][j]
+                q += p[i][0] * p[k][1] * p[j][1]
+
+                if q < m[i][j]:
+                    m[i][j] = q
+                    s[i][j] = k
+
+    return m, s
+
+
+def print_optimal_parens(s: List[List], i: int, j: int) -> str:
+    """Print optimal parentheses.
+
+    Args:
+        s (List[List]): 2d array of parenthese.
+        i (int): start.
+        j (int): end.
+
+    Returns:
+        str: string with matrix indices to parenthesize.
+    """
+    if i == j:
+        return f"A_{i}"
+    else:
+        ij = print_optimal_parens(s, i, s[i][j])
+        jk = print_optimal_parens(s, s[i][j] + 1, j)
+        return f"({ij}x{jk})"
+
+
 if __name__ == "__main__":
 
     # 14.1 Cut rod
@@ -140,3 +196,14 @@ if __name__ == "__main__":
         print_cut_rod_solution(PRICES, i)
         print("Revenue: ")
         print(r)
+
+    # 14.2 Matrix chain multiplication
+
+    for i in range(1, len(MATRIX_SIZE) + 1):
+        p, s = matrix_chain_order(MATRIX_SIZE, i)
+        print(s)
+        assert p[0][-1] == OPERATIONS[i - 1]
+        print("Operations: ")
+        print(p[0][-1])
+        print("Parens: ")
+        print(print_optimal_parens(s, 0, i - 1))
