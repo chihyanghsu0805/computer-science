@@ -38,7 +38,7 @@ $\Theta(2^n) -> \Theta(n^2)$
 -   Time-memory trade-off
 -   In some special cases, top down does not actually recurse all possible subproblems
 -   Bottom up often has better constant
--   Subproblem graphs, directed graph as a reduced / collapsed version of the recursion tree
+-   `Subproblem graphs`, directed graph as a reduced / collapsed version of the recursion tree
 -   Bottom up solves in reverse topological sort
 
 ### Exercises
@@ -78,3 +78,11 @@ $\Omega(2^n) -> \Theta(n^3)$
 14.2-4
 14.2-5
 14.2-6
+
+## 14.3 Elements of dynamic programming
+
+-   Optimal substructure
+    -   Running time depends on number of subproblems and number of choices for each
+    -   Independent subproblems
+
+-   Overlapping subproblems

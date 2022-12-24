@@ -129,10 +129,10 @@ def print_cut_rod_solution(p: List, n: int) -> None:
 
 
 def matrix_chain_order(p: List[Tuple], n: int) -> Tuple[List[List], List[List]]:
-    """Compute optimal parentheses for minimal operations in matrix multiplication.
+    """Compute minimal operations in matrix multiplication bottom_up.
 
     Args:
-        p (List[Tuple]): list of matrix sizes.
+        p (List[Tuple[int, int]]): list of matrix sizes.
         n (int): number of matrices.
 
     Returns:
@@ -181,6 +181,78 @@ def print_optimal_parens(s: List[List], i: int, j: int) -> str:
         return f"({ij}x{jk})"
 
 
+def recursive_matrix_chain(p: List[Tuple[int, int]], i: int, j: int) -> int:
+    """Compute minimal operations in matrix multiplication recursively.
+
+    Args:
+        p (List[Tuple[int, int]]): list of matrix sizes.
+        i (int): start.
+        j (int): end.
+
+    Returns:
+        int: minimum operations.
+    """
+    if i == j:
+        return 0
+
+    m = [[float("inf")] * (j + 1) for _ in range(i + 1)]
+
+    for k in range(i, j):
+        q = recursive_matrix_chain(p, i, k)
+        q += recursive_matrix_chain(p, k + 1, j)
+        q += p[i][0] * p[k][1] * p[j][1]
+
+        if q < m[i][j]:
+            m[i][j] = q
+
+    return m[i][j]
+
+
+def memoized_matrix_chain(p: List[Tuple[int, int]], n: int) -> int:
+    """Compute minimal operations in matrix multiplication top-down.
+
+    Args:
+        p (List[Tuple[int, int]]): list of matrix sizes.
+        n (int): number of matrices
+
+    Returns:
+        int: minimum operations.
+    """
+    m = [[float("inf")] * (n) for _ in range(n)]
+    return lookup_chain(m, p, 0, n - 1)
+
+
+def lookup_chain(m: List[List[int]], p: List[Tuple[int, int]], i: int, j: int) -> int:
+    """_Compute minimal operations in matrix multiplication top-down with memoization.
+
+    Args:
+        m (List[List[int]]): memo.
+        p (List[Tuple[int, int]]): list of matrix sizes.
+        i (int): start.
+        j (int): end.
+
+    Returns:
+        int: minimum operations.
+    """
+    if m[i][j] < float("inf"):
+        return m[i][j]
+
+    if i == j:
+        m[i][j] = 0
+
+    else:
+        for k in range(i, j):
+
+            q = lookup_chain(m, p, i, k)
+            q += lookup_chain(m, p, k + 1, j)
+            q += p[i][0] * p[k][1] * p[j][1]
+
+            if q < m[i][j]:
+                m[i][j] = q
+
+    return m[i][j]
+
+
 if __name__ == "__main__":
 
     # 14.1 Cut rod
@@ -201,9 +273,19 @@ if __name__ == "__main__":
 
     for i in range(1, len(MATRIX_SIZE) + 1):
         p, s = matrix_chain_order(MATRIX_SIZE, i)
-        print(s)
         assert p[0][-1] == OPERATIONS[i - 1]
+
         print("Operations: ")
         print(p[0][-1])
         print("Parens: ")
         print(print_optimal_parens(s, 0, i - 1))
+
+        p = recursive_matrix_chain(MATRIX_SIZE, 0, i - 1)
+        assert p == OPERATIONS[i - 1]
+        print("Operations: ")
+        print(p)
+
+        p = memoized_matrix_chain(MATRIX_SIZE, i)
+        assert p == OPERATIONS[i - 1]
+        print("Operations: ")
+        print(p)
