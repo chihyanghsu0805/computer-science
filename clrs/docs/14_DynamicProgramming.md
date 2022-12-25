@@ -86,3 +86,25 @@ $\Omega(2^n) -> \Theta(n^3)$
     -   Independent subproblems
 
 -   Overlapping subproblems
+
+### Exercises
+14.3-1
+14.3-2
+14.3-3
+14.3-4
+14.3-5
+
+## 14.4 Longest common subsequence
+
+Find Z, the LCS of X and Y
+
+1.  Optimal substructure
+-   If X<sub>m</sub> = Y<sub>n</sub>, Z<sub>k - 1</sub> is LCS of X<sub>m - 1</sub> and Y<sub>n - 1</sub>
+-   If X<sub>m</sub> != Y<sub>n</sub>
+    -   Z<sub>k</sub> != X<sub>m</sub> Z<sub>k - 1</sub> is LCS of X<sub>m - 1</sub> and Y<sub>n</sub>
+    -   Z<sub>k</sub> != Y<sub>n</sub> Z<sub>k - 1</sub> is LCS of X<sub>m</sub> and Y<sub>n - 1</sub>
+2.  Recursive solution
+
+-   if i = 0 or j = 0, c[i, j] = 0
+-   if i, j > 0 and x<sub>i</sub> = y<sub>j</sub>, c[i, j] = c[i - 1, j - 1] + 1
+-   if i, j > 0 and x<sub>i</sub> != y<sub>j</sub>, c[i, j] = max(c[i - 1, j], c[i, j - 1]]

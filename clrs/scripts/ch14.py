@@ -7,6 +7,9 @@ REVENUE = [1, 5, 8, 10, 13, 17, 18, 22, 25, 30]
 MATRIX_SIZE = [(30, 35), (35, 15), (15, 5), (5, 10), (10, 20), (20, 25)]
 OPERATIONS = [0, 15750, 7875, 9375, 11875, 15125]
 
+X = "ABCBDAB"
+Y = "BDCABA"
+
 
 def cut_rod(p: List, n: int) -> int:
     """Cut rod recursively.
@@ -253,6 +256,61 @@ def lookup_chain(m: List[List[int]], p: List[Tuple[int, int]], i: int, j: int) -
     return m[i][j]
 
 
+def lcs_length(X: str, Y: str, m: int, n: int) -> Tuple[List[List[int]], List[List]]:
+    """Find length of LCS of two sequences.
+
+    Args:
+        X (str): first sequence.
+        Y (str): second sequence.
+        m (int): length of first sequence.
+        n (int): length of second sequence.
+
+    Returns:
+        Tuple[List[List[int]], List[List]]: memo and path.
+    """
+    b = [[0] * (n + 1) for _ in range(m + 1)]
+    c = [[0] * (n + 1) for _ in range(m + 1)]
+
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+
+            if X[i - 1] == Y[j - 1]:
+                c[i][j] = c[i - 1][j - 1] + 1
+                b[i][j] = (-1, -1)
+
+            elif c[i - 1][j] >= c[i][j - 1]:
+                c[i][j] = c[i - 1][j]
+                b[i][j] = (-1, 0)
+
+            else:
+                c[i][j] = c[i][j - 1]
+                b[i][j] = (0, -1)
+
+    return c, b
+
+
+def print_lcs(b: List[List], X: str, i: int, j: int) -> None:
+    """Print LCS.
+
+    Args:
+        b (List[List]): path.
+        X (str): first sequence.
+        i (int): index of first sequence.
+        j (int): index of second sequence.
+    """
+    if i == 0 or j == 0:
+        return
+    if b[i][j] == (-1, -1):
+        print_lcs(b, X, i - 1, j - 1)
+        print(X[i - 1])
+
+    elif b[i][j] == (-1, 0):
+        print_lcs(b, X, i - 1, j)
+
+    else:
+        print_lcs(b, X, i, j - 1)
+
+
 if __name__ == "__main__":
 
     # 14.1 Cut rod
@@ -289,3 +347,9 @@ if __name__ == "__main__":
         assert p == OPERATIONS[i - 1]
         print("Operations: ")
         print(p)
+
+    # 14.4 Longest common subsequence
+
+    c, b = lcs_length(X, Y, len(X), len(Y))
+    assert c[-1][-1] == 4
+    print_lcs(b, X, len(X), len(Y))
