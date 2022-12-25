@@ -108,3 +108,14 @@ Find Z, the LCS of X and Y
 -   if i = 0 or j = 0, c[i, j] = 0
 -   if i, j > 0 and x<sub>i</sub> = y<sub>j</sub>, c[i, j] = c[i - 1, j - 1] + 1
 -   if i, j > 0 and x<sub>i</sub> != y<sub>j</sub>, c[i, j] = max(c[i - 1, j], c[i, j - 1]]
+-   Improving the code
+
+$\Omega(mn)$
+
+### Exercises
+14.4-1
+14.4-2
+14.4-3
+14.4-4 compute i % 2, overwrite
+14.4-5 https://leetcode.com/problems/longest-increasing-subsequence/
+14.4-6 https://leetcode.com/problems/longest-increasing-subsequence/
