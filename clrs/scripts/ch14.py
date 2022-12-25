@@ -10,6 +10,9 @@ OPERATIONS = [0, 15750, 7875, 9375, 11875, 15125]
 X = "ABCBDAB"
 Y = "BDCABA"
 
+P = [0.00, 0.15, 0.10, 0.05, 0.10, 0.20]
+Q = [0.05, 0.10, 0.05, 0.05, 0.05, 0.10]
+
 
 def cut_rod(p: List, n: int) -> int:
     """Cut rod recursively.
@@ -311,6 +314,76 @@ def print_lcs(b: List[List], X: str, i: int, j: int) -> None:
         print_lcs(b, X, i, j - 1)
 
 
+def optimal_bst(p: List, q: List, n: int) -> Tuple[List[List], List[List]]:
+    """Find optimal bst.
+
+    Args:
+        p (List): probabilities of keys.
+        q (List): probabilities of dummies.
+        n (int): number of nodes.
+
+    Returns:
+        Tuple[List[List], List[List]]: cost matrix and root matrix.
+    """
+    e = [[0] * (n + 1) for _ in range(n + 2)]
+    w = [[0] * (n + 1) for _ in range(n + 2)]
+    root = [[0] * (n + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 2):
+        e[i][i - 1] = q[i - 1]
+        w[i][i - 1] = q[i - 1]
+
+    for gap in range(1, n + 1):
+
+        for i in range(1, n - gap + 2):
+            j = i + gap - 1
+            e[i][j] = float("inf")
+            w[i][j] = w[i][j - 1] + p[j] + q[j]
+
+            for r in range(i, j + 1):
+                t = e[i][r - 1] + e[r + 1][j] + w[i][j]
+                if t < e[i][j]:
+                    e[i][j] = t
+                    root[i][j] = r
+
+    return e, root
+
+
+def optimal_bst2(p: List, q: List, n: int) -> Tuple[List[List], List[List]]:
+    """Find optimal bst with zero index.
+
+    Args:
+        p (List): probabilities of keys.
+        q (List): probabilities of dummies.
+        n (int): number of nodes.
+
+    Returns:
+        Tuple[List[List], List[List]]: cost matrix and root matrix.
+    """
+    e = [[0] * (n + 1) for _ in range(n + 1)]
+    w = [[0] * (n + 1) for _ in range(n + 1)]
+    root = [[0] * (n) for _ in range(n)]
+
+    for i in range(1, n + 2):
+        e[i - 1][i - 1] = q[i - 1]
+        w[i - 1][i - 1] = q[i - 1]
+
+    for gap in range(1, n + 1):
+
+        for i in range(1, n - gap + 2):
+            j = i + gap - 1
+            e[i - 1][j] = float("inf")
+            w[i - 1][j] = w[i - 1][j - 1] + p[j] + q[j]
+
+            for r in range(i, j + 1):
+                t = e[i - 1][r - 1] + e[r][j] + w[i - 1][j]
+                if t < e[i - 1][j]:
+                    e[i - 1][j] = t
+                    root[i - 1][j - 1] = r
+
+    return e, root
+
+
 if __name__ == "__main__":
 
     # 14.1 Cut rod
@@ -353,3 +426,13 @@ if __name__ == "__main__":
     c, b = lcs_length(X, Y, len(X), len(Y))
     assert c[-1][-1] == 4
     print_lcs(b, X, len(X), len(Y))
+
+    # 14.5 Optimal binasry search tree
+
+    e, root = optimal_bst(P, Q, len(P) - 1)
+    assert e[1][-1] == 2.75
+    assert root[1][-1] == 2
+
+    e, root = optimal_bst2(P, Q, len(P) - 1)
+    assert e[0][-1] == 2.75
+    assert root[0][-1] == 2

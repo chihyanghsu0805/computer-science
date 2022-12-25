@@ -99,10 +99,12 @@ $\Omega(2^n) -> \Theta(n^3)$
 Find Z, the LCS of X and Y
 
 1.  Optimal substructure
+
 -   If X<sub>m</sub> = Y<sub>n</sub>, Z<sub>k - 1</sub> is LCS of X<sub>m - 1</sub> and Y<sub>n - 1</sub>
 -   If X<sub>m</sub> != Y<sub>n</sub>
     -   Z<sub>k</sub> != X<sub>m</sub> Z<sub>k - 1</sub> is LCS of X<sub>m - 1</sub> and Y<sub>n</sub>
     -   Z<sub>k</sub> != Y<sub>n</sub> Z<sub>k - 1</sub> is LCS of X<sub>m</sub> and Y<sub>n - 1</sub>
+
 2.  Recursive solution
 
 -   if i = 0 or j = 0, c[i, j] = 0
@@ -119,3 +121,36 @@ $\Omega(mn)$
 14.4-4 compute i % 2, overwrite
 14.4-5 https://leetcode.com/problems/longest-increasing-subsequence/
 14.4-6 https://leetcode.com/problems/longest-increasing-subsequence/
+
+## 14.5 Optimal binary search trees
+
+Find bst with lowest cost, given probability p for keys and q for dummies
+
+1.  Optimal substructure
+
+2.  Recursive solution
+
+-   if j = i - 1, e[i, j] = q<sub>i - 1</sub>
+-   if i <= j, min{e[i, r - 1] + e[r + 1, j] + w(i, j) : i <= r <= j>>}
+
+$\Omega(N^3)$
+
+### Exercises
+14.5-1
+14.5-2
+14.5-3
+14.5-4
+
+## Problems
+14-1
+14-2
+14-3
+14-4
+14-5
+14-6
+14-7
+14-8
+14-9
+14-10
+14-11
+14-12
