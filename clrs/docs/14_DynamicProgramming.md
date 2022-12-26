@@ -127,6 +127,7 @@ $\Omega(mn)$
 Find bst with lowest cost, given probability p for keys and q for dummies
 
 1.  Optimal substructure
+-   Subtrees (T') of T are optimal BST as well.
 
 2.  Recursive solution
 
