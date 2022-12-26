@@ -58,3 +58,17 @@ Compression by using variable length code over fixed length code
 15.3-6
 15.3-7
 15.3-8
+
+## 15.4 Offline caching
+
+Furthest in future
+
+### Exercises
+
+15.4-1
+15.4-2
+
+## Problems
+
+15-1
+15-2
