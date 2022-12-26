@@ -37,4 +37,24 @@ Locally optimal solution leads to globally optimal solution.
 15.2-4
 15.2-5 Convex Hull
 15.2-6
-12.2-7
+15.2-7
+
+## 15.3 Huffman codes
+
+Compression by using variable length code over fixed length code
+
+-   Prefix-free codes can always achieve the optimal data compression
+-   Constructing a Huffman code: greedily merge the two least frequent leaf nodes
+-   Greedy choice property: minimum cost can be achieved by merging two least frequent character
+-   Optimal substructure: tree T with least frequent leaf nodes x, y must be optimal
+
+### Exercises
+
+15.3-1
+15.3-2
+15.3-3
+15.3-4
+15.3-5
+15.3-6
+15.3-7
+15.3-8
