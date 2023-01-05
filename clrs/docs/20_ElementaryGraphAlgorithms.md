@@ -63,3 +63,44 @@ Classification of edges
 20.3-11
 20.3-12
 20.3-13
+
+## 20.4 Topological sort
+
+Acyclic DAG with vertices appear in reverse order of their finishing time, $\Theta(V + E)$
+
+### Exercises
+
+20.4-1
+20.4-2
+20.4-3
+20.4-4
+20.4-5
+
+## 20.5 Strongly connected components
+
+call DFS($G$) to compute finish times u.f
+
+create $G^T$
+
+call DFS($G^T$) in order of decreasing u.f
+
+vertices of each tree os a separate strongly connected component
+
+### Exercises
+
+20.5-1
+20.5-2
+20.5-3
+20.5-4
+20.5-5
+20.5-6
+20.5-7
+20.5-8
+
+## Problems
+
+20-1
+20-2
+20-3
+20-4
+20-5
