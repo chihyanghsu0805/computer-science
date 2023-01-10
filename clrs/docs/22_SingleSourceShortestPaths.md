@@ -106,3 +106,43 @@ while Q is not empty
 22.3-10
 22.3-11
 22.3-12
+
+## 22.4 Difference constraints and shortest paths
+
+Linear programming
+
+Constraint graph
+
+### Exercises
+22.4-1
+22.4-2
+22.4-3
+22.4-4
+22.4-5
+22.4-6
+22.4-7
+22.4-8
+22.4-9
+22.4-10
+22.4-11
+22.4-12
+
+## 22.5 Proofs of shortest-paths properties
+
+### Exercises
+22.5-1
+22.5-2
+22.5-3
+22.5-4
+22.5-5
+22.5-6
+22.5-7
+22.5-8
+
+## Problems
+22-1
+22-2
+22-3
+22-4
+22-5
+22-6
