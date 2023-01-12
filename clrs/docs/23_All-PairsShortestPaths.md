@@ -94,3 +94,55 @@ return T(n)
 23.2-7
 23.2-8
 23.2-9
+
+## 23.3 Johnson's algorithm for sparse graphs
+
+Reweighting to apply Dijkstra
+
+1.  For all pairs of vertices u, v in V, a path p is a shortest path from u to v using wieght function w if and only if p is also a shortes path from u to v using weight function w'
+
+2.  For all edges (u, v), preprocessing G to determine the new weight function w' takes O(VE)
+
+w'(u, v) = w(u, v) + h(u) - h(v)
+
+$O(VElgV)$ with binary heap
+
+```
+Johnson(G, w)
+compute G`, where
+G`.V = G.V UNION {s}
+G`.E = F.E UNION {(s, v) : v in G.V}
+w(s, v) = 0 for all v in G.V
+
+if Bellman-Ford(G`, w, s) == False
+    "Negative Weight Cycle"
+
+else
+
+    for v in G`.V
+        h(v) == delta(s, v) computed by Bellman-Ford
+
+    for (u, v) in G`.E
+        w`(u, v) = w(u, v) + h(u) - h(v)
+
+    D = N x N
+
+    for u in G.V
+        Dijkstra(G, w`, u) to compute delta`(u, v) for all v in G.V
+        for v in G.V
+            d_(uv) = delta`(u, v) + h(v) - h(u)
+
+    return D
+```
+
+### Exercises
+23.3-1
+23.3-2
+23.3-3
+23.3-4
+23.3-5
+23.3-6
+
+## Problems
+23-1
+23-2
