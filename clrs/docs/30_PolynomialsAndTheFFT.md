@@ -41,3 +41,20 @@ Halving lemma
 ## 30.3 FFT circuits
 
 Butterfly operations
+
+Bit-reversal permutation
+
+### Exercises
+30.3-1
+30.3-2
+30.3-3
+30.3-4
+30.3-5
+
+## Problems
+
+30-1
+30-2
+30-3
+30-4
+30-5
