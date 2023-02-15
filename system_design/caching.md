@@ -41,6 +41,7 @@ If data is modified in database, it should be invalidated in the cache.
 -   Random Replacement
 
 ## Cache update
+
 -   Cache aside (Memcache)
     -   Look in cache -> Cache miss -> Look in database -> Add to cache -> Return
     -   Delay, Data may be stale (TTL)
@@ -56,7 +57,7 @@ If data is modified in database, it should be invalidated in the cache.
 
 ## Considerations for using cache
 
--   When to use cache: frequent reads but infrequent modifications. 
+-   When to use cache: frequent reads but infrequent modifications.
 -   Expiration policy
 -   Eviction policy
 -   Consistency
