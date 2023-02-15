@@ -32,7 +32,5 @@ Spread the traffic across to improve responsiveness and availability with softwa
         -   Application layer (header, message, cookies)
 
 ## Disadvantages
-
 -   Performance bottleneck
 -   May be single point of failure
-
