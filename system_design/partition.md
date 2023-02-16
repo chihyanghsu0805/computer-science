@@ -15,7 +15,7 @@ Scale horizonatally.
     -   Join and denormalization ([LINK](./sql.md#scaling-relational-database))
 
 -   Vertical partitioning
-    -   store tables related to specifc features
+    -   store tables related to specific features
     -   may be necesary to further partition
     -   may get up to 24TB according to Amazon Relational Database Service
     -   SPOF
@@ -28,14 +28,14 @@ Scale horizonatally.
 
 -   List Partitioning: each partition is assigned a list of values. Lookup values in each partition.
 
--   Round Robin: 
+-   Round Robin:
 
--   Composite: 
+-   Composite:
 
 ## Problems
 
--   Joins and Denormalization: 
+-   Joins and Denormalization:
 
--   Referential Integrity: 
+-   Referential Integrity:
 
--   Rebalancing: 
+-   Rebalancing:
