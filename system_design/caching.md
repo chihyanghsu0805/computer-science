@@ -36,7 +36,7 @@ If data is modified in database, it should be invalidated in the cache.
 -   FIFO
 -   LIFO
 -   Least Recently Used
--   Moset Recently Used
+-   Most Recently Used
 -   Least Frequently Used
 -   Random Replacement
 

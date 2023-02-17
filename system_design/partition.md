@@ -18,7 +18,7 @@ Scale horizonatally.
     -   store tables related to specific features
     -   may be necesary to further partition
     -   may get up to 24TB according to Amazon Relational Database Service
-    -   SPOF
+    -   Single Point Of Failure
     -   Cost
 
 -   Directory-Based Partitioning: directory server that holds the mapping between each tuple key to its database server.
