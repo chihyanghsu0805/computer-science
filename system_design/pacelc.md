@@ -1,7 +1,7 @@
 # PACELC
 
 ACID (Atomic, Consistency, Isolation, Durability) databases (mySQL, Oracle, Microsfot SQL Server) chose consistency.
-BASE (Basically Available, Soft-state, Eventually Consitent) databases (MondgoDB, Cassandra, Redis) chose availability.
+BASE (Basically Available, Soft-state, Eventually Consitent) databases (MongoDB, Cassandra, Redis) chose availability.
 
 What if there is no network partition?
 
