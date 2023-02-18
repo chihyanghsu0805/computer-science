@@ -24,7 +24,7 @@
 -   Cloud based
 -   Rapid development
 -   Super low latency
--   Only need to serializae and deserialize
+-   Only need to serialize and deserialize
 -   Massive amount of data
 
 ##  Relational Database Management System (RDBMS), SQL
@@ -39,7 +39,7 @@
     -   Basically available
     -   Soft state
     -   Eventual consistency
-    
+
 -   Unstructured, distributed, dynamic schema
 
 -   Key-value Stores:
@@ -73,7 +73,3 @@
     -   Improve read performance at the expense of write performance
     -   Redundant data are written to avoid joins
 -   SQL Tuning
-
-
-
-
