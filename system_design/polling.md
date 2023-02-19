@@ -4,15 +4,21 @@ Communication protocols between clients and server.
 
 ## Ajax Polling
 
-Clent repeatedly polls / requests server for data. If no data, return empty response.
+Clent repeatedly polls / requests server for data.
 
-Problem is client keep asking server for new data. Many empty response are returned creating HTTP overhead.
+If no data, return empty response.
+
+Problem is client keep asking server for new data.
+
+Many empty response are returned creating HTTP overhead.
 
 ## Long Polling
 
 Hanging GET.
 
-If the server dies not have new data, instead of sending empty response, holds the request till data is available unless timeout. The client immediately re-request after receiving the new data.
+If the server dies not have new data, instead of sending empty response, holds the request till data is available unless timeout.
+
+The client immediately re-request after receiving the new data.
 
 ## WebSockets
 
