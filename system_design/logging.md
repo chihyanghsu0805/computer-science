@@ -4,9 +4,7 @@
 -   Collect metrics for business insights
     -   Host level
     -   Level metrics
-    -   Businiess metrics
+    -   Business metrics
 
 -   Automation
     -   Continuous integration
-
-

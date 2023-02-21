@@ -2,14 +2,14 @@
 
 DNS translates a domain name to an IP address.
 
-DNS services can route traffic thorugh various methods,
+DNS services can route traffic through various methods,
 
 -   Weighted round robin
     -   Prevent traffic from going to bad servers
-    -   Balance 
+    -   Balance
     -   A/B testing
 
 -   Latency based
 -   Geolocation based
 
--   DNS introducs a slight delay
+-   DNS introduces a slight delay
