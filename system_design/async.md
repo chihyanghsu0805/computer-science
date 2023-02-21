@@ -11,4 +11,4 @@
 -   Task Queues
     -   Celery
 
--   Back Pressure: queue may become bigger than memoru, casuing cahe miss. Back pressure limites the queue size.
+-   Back Pressure: queue may become bigger than memory, causing cache miss. Back pressure limits the queue size.
