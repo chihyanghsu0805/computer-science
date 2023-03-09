@@ -29,7 +29,7 @@ If data is modified in database, it should be invalidated in the cache.
 
 -   Write around cache: data write to storage bypassing the cache, may result in cache miss and experience higher latency
 
--   Write back cache: data wriiten to cache before storage, low latency and hight throughput, risks data loss
+-   Write back cache: data written to cache before storage, low latency and hight throughput, risks data loss
 
 ## Cache eviction policies
 
