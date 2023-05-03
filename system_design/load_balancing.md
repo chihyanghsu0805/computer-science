@@ -7,6 +7,7 @@ Spread the traffic across to improve responsiveness and availability with softwa
 -   Between platform layer and database
 
 ## Benefits
+
 -   Prevent request from going to unhealthy servers
 -   Prevent overloading resources
 -   Redundant load balancer to alleviate single point of failure ([active-passive](./cap.md#availability-patterns) or [active-active](./cap.md#availability-patterns))
@@ -15,7 +16,8 @@ Spread the traffic across to improve responsiveness and availability with softwa
 -   Helps with horizontal scaling
 
 ## Algorithms
--   Healthy Checks
+
+-   Health Checks
 
 -   Selection Methods
     -   Random
@@ -32,5 +34,6 @@ Spread the traffic across to improve responsiveness and availability with softwa
         -   Application layer (header, message, cookies)
 
 ## Disadvantages
+
 -   Performance bottleneck
 -   May be single point of failure
