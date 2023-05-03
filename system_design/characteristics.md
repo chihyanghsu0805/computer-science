@@ -2,10 +2,11 @@
 
 -   Scalability
     -   Horizontal (more servers) v.s. Vertical (more power)
-    -   Horizontal scaling is easier to scale dynamically, e.g. Cassandra (NoSQL), MongoDB (NoSQL)
+    -   Horizontal scaling is easier to scale dynamically, e.g. Cassandra (NoSQL, wide-column), MongoDB (NoSQL, document-oriented)
     -   Vertical scaling may involove downtime with no failover and redundancy, e.g. MySQL
 
 -   Reliability
+    -   Probability a system will fail
     -   Service not interrupted despite failure
     -   Redundancy, single point of failure
 
@@ -23,4 +24,4 @@
 -   Efficiency
     -   Response time (latency) and throughput (bandwidth)
 
--   Serviceability of Manageability
+-   Serviceability or Manageability
