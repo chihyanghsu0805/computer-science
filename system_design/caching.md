@@ -1,35 +1,27 @@
 # Caching
 
-Short term memory, limited but fast, often found a level nearest to front end.
+Short term memory, limited but fast, often found a level nearest to front end
 
-Cache misses: global cache and distributed cache.
+## Application server cache
+-   in memory or node's local disk
+-   increased cache misses when scaling
+-   global caches and distributed caches
 
-Cache hit
-
-Avoid file based caching.
-
--   Client
--   [CDN](./cdn.md)
--   [Web Server](./proxies.md#reverse-proxy)
--   Database
--   Application
--   Database Query
-    -   Hard to delete
-    -   If a data changes, all queries need to be deleted
--   Object Level
-    -   Remove the object when data changed
-    -   Allows asynchronous processing
-    -   User sessions, fully rendered webpages, activity streams, user graph data
+## [Content delivery network](./cdn.md)
 
 ## Cache invalidation
 
-If data is modified in database, it should be invalidated in the cache.
+If data is modified in database, it should be invalidated in the cache
 
 -   Write through cache: data write into cache and database simultaneously, complete data consistency, higher latency
 
 -   Write around cache: data write to storage bypassing the cache, may result in cache miss and experience higher latency
 
 -   Write back cache: data written to cache before storage, low latency and hight throughput, risks data loss
+
+-   Cache aside (lazy loading): Memcached, miss cache results in three trips, data may become stale, needs time-to-live
+
+-   Refresh ahead
 
 ## Cache eviction policies
 
@@ -54,6 +46,33 @@ If data is modified in database, it should be invalidated in the cache.
 -   Refresh ahead
     -   Automatically refresh recently accessed cache entry prior to expiration
     -   Inaccurate prediction results in reduced performance
+
+## Client caching
+
+-   Caches can be kocated on the client side, server side, or in a distinct cache layer
+
+## Web server caching
+
+-   [Reverse proxies](./proxies.md#reverse-proxy) and caches can serve static and dynamic content
+-   Web servers can also cache request and return response
+
+## Database caching
+
+## Application caching
+
+-   Memcached, Redis
+-   Avoid file based caching
+
+## Caching at the database query level
+
+-   Hard to delete
+-   If a data changes, all queries need to be deleted
+
+## Caching at the object level
+
+-   Remove the object when data changed
+-   Allows asynchronous processing
+-   User sessions, fully rendered webpages, activity streams, user graph data
 
 ## Considerations for using cache
 
