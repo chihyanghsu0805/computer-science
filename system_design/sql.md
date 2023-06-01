@@ -17,6 +17,10 @@
     -   Durability: Once transaction is committed, it stays committed
 
 -   Structured data and unchanged
+-   Fixed schema
+-   Relational data
+-   Need for complex joins
+-   Transactions
 
 ## Reasons to use NoSQL
 
@@ -26,6 +30,11 @@
 -   Super low latency
 -   Only need to serialize and deserialize
 -   Massive amount of data
+-   Flexible schema
+-   Non-relational data
+-   Noe need for complex joins
+-   Big data (TB or PB)
+-   Data intensive
 
 ##  Relational Database Management System (RDBMS), SQL
 
@@ -35,6 +44,8 @@
 
 ##  Non-relational, NoSQL
 
+Choose availability over consistency
+
 -   BASE
     -   Basically available
     -   Soft state
@@ -43,12 +54,13 @@
 -   Unstructured, distributed, dynamic schema
 
 -   Key-value Stores:
+    -   O(1) reads and writes
     -   Key is an attribute name linked to a value
     -   Redis, Voldemort, DynamoDB
 
 -   Document Databases:
     -   data stored in documents and grouped in collections, documents can have entirely different structures
-    -   CouchDB, MongoDB
+    -   CouchDB, MongoDB, Elasticsearch
 
 -   Wide Column Databases:
     -   Column families
