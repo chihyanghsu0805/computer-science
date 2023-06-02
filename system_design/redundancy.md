@@ -1,9 +1,11 @@
 # Redundancy and Replication
 
 ## Redundancy
+
 Increasing reliability via duplication, removing single points of failure (SPOF)
 
 ## Replication
+
 Ensure consistency between redundant resources to improve reliability, fault tolerance, or accessibility
 
 Primary -> Replica

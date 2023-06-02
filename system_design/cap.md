@@ -1,8 +1,8 @@
 # Consistency, Availability, Partition Tolerance
 
--   Consistency: All nodes see the same data at the same time.
--   Availability: Every request received by a non-failing node must respond, may not be the most recent data.
--   Partition tolerance: A partition is a communication break between any two nodes.
+-   Consistency: All nodes see the same data at the same time
+-   Availability: Every request received by a non-failing node must respond, may not be the most recent data
+-   Partition tolerance: A partition is a communication break between any two nodes
 
 -   CA: RDBMS (Relational Database Management System)
 -   CP: Requires atomic reads and writes, BigTable, HBase.
@@ -26,7 +26,7 @@
 
 -   Fail-Over:
     -   Active-Passive:
-        -   heartbeats are sent between the active 
+        -   Heartbeats are sent between the active
         -   If the heartbeat is interrupted, passive takes over
         -   Hot or Cold standby
         -   Master-Slave
