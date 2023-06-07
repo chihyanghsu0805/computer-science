@@ -13,7 +13,7 @@
 -   [PACELC](./pacelc.md)
 -   [Consistent Hashing](./consistent.md)
 -   [Long Polling / Websockets / Server Sent](./polling.md)
--   [Blooming Filters](./blooming.md)
+-   [Bloom Filters](./bloom.md)
 -   [Quorum](./quorum.md)
 -   [Leader and Follower](./leader.md)
 -   [Heartbeat](./heartbeat.md)
